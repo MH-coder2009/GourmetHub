@@ -1,0 +1,1713 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍕 Gourmet Food Hub</title>
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ================================================================
+               GLOBAL RESET & BASE
+            ================================================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fafef9;
+            overflow-x: hidden;
+        }
+
+        body.no-scroll {
+            overflow: hidden;
+        }
+
+        .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* ================================================================
+               SCROLLBAR STYLING
+            ================================================================ */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #d1fae5;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #059669, #047857);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #047857, #064e3b);
+        }
+
+        /* ================================================================
+               NAVIGATION
+            ================================================================ */
+        .navbar {
+            background: linear-gradient(135deg, #064e3b 0%, #065f46 40%, #047857 80%, #059669 100%);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(6, 78, 59, 0.35);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 0 1.5rem;
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* ---- LOGO ---- */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            text-decoration: none;
+            z-index: 1001;
+        }
+
+        .logo .icon {
+            font-size: 2.25rem;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover .icon {
+            transform: scale(1.12) rotate(-6deg);
+        }
+
+        .logo .brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+        }
+
+        .logo .brand span {
+            color: #6ee7b7;
+        }
+
+        .logo .tagline {
+            display: none;
+        }
+
+        @media (min-width: 640px) {
+            .logo .tagline {
+                display: block;
+                font-size: 0.55rem;
+                font-weight: 700;
+                letter-spacing: 0.2em;
+                text-transform: uppercase;
+                color: rgba(255, 255, 255, 0.40);
+                margin-top: 0.1rem;
+            }
+        }
+
+        /* ---- DESKTOP NAV LINKS ---- */
+        .nav-links {
+            display: none;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+        }
+
+        .nav-link {
+            position: relative;
+            color: rgba(255, 255, 255, 0.70);
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 0.4rem 0;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2.5px;
+            background: linear-gradient(90deg, #6ee7b7, #34d399);
+            border-radius: 4px;
+            transition: width 0.35s ease;
+        }
+
+        .nav-link:hover {
+            color: #ffffff;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: #ffffff;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .btn-book {
+            background: rgba(255, 255, 255, 0.10);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            padding: 0.65rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-book:hover {
+            background: rgba(255, 255, 255, 0.20);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+        }
+
+        /* ================================================================
+               MOBILE HAMBURGER MENU
+            ================================================================ */
+
+        /* ---- Hamburger Button ---- */
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 4px;
+            background: none;
+            border: none;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background: #ffffff;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        @media (min-width: 768px) {
+            .hamburger {
+                display: none;
+            }
+        }
+
+        /* ---- Mobile Overlay (darkens background) ---- */
+        .mobile-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.50);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .mobile-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* ---- Mobile Menu Panel ---- */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 85%;
+            max-width: 360px;
+            height: 100vh;
+            background: linear-gradient(180deg, #064e3b 0%, #065f46 40%, #047857 80%, #059669 100%);
+            z-index: 1000;
+            padding: 2rem 1.5rem;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            box-shadow: -8px 0 40px rgba(0, 0, 0, 0.30);
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        /* ---- Close Button (X) ---- */
+        .mobile-close {
+            align-self: flex-end;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 2.4rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            padding: 0 0.5rem;
+            line-height: 1;
+        }
+
+        .mobile-close:hover {
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        /* ---- Mobile Nav Links ---- */
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex: 1;
+        }
+
+        .mobile-nav-link {
+            color: rgba(255, 255, 255, 0.80);
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .mobile-nav-link:hover {
+            color: #ffffff;
+            padding-left: 0.75rem;
+        }
+
+        .mobile-nav-link .emoji {
+            font-size: 1.3rem;
+        }
+
+        .mobile-nav-link.active {
+            color: #6ee7b7;
+        }
+
+        .mobile-btn-book {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            width: 100%;
+            text-align: center;
+        }
+
+        .mobile-btn-book:hover {
+            background: rgba(255, 255, 255, 0.22);
+            transform: translateY(-2px);
+        }
+
+        /* ---- Mobile Footer in Menu ---- */
+        .mobile-menu-footer {
+            margin-top: auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.30);
+            font-size: 0.75rem;
+        }
+
+        .mobile-menu-footer .social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .mobile-menu-footer .social a {
+            color: rgba(255, 255, 255, 0.40);
+            text-decoration: none;
+            font-size: 1.4rem;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu-footer .social a:hover {
+            color: #6ee7b7;
+        }
+
+        /* ================================================================
+               HERO BANNER
+            ================================================================ */
+        .hero {
+            background: linear-gradient(135deg, #064e3b 0%, #065f46 30%, #047857 60%, #059669 100%);
+            padding: 5rem 1.5rem 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-shapes {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .hero-shapes .shape {
+            border-radius: 50%;
+            opacity: 0.08;
+            position: absolute;
+        }
+
+        .hero-shapes .shape-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, #6ee7b7, transparent);
+            top: -200px;
+            right: -100px;
+            animation: floatShape 22s ease-in-out infinite;
+        }
+
+        .hero-shapes .shape-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, #34d399, transparent);
+            bottom: -200px;
+            left: -100px;
+            animation: floatShape 26s ease-in-out infinite reverse;
+        }
+
+        .hero-shapes .shape-3 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, #10b981, transparent);
+            top: 40%;
+            left: 40%;
+            animation: floatShape 30s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatShape {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(30px, -40px) scale(1.08);
+            }
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 3;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 0.5rem 2rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #a7f3d0;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.8rem, 10vw, 6rem);
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 1.08;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, #6ee7b7, #34d399, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-desc {
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            color: rgba(255, 255, 255, 0.70);
+            max-width: 640px;
+            font-weight: 300;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .btn-hero-primary {
+            background: #ffffff;
+            color: #064e3b;
+            padding: 0.9rem 2.8rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.20);
+        }
+
+        .btn-hero-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 20px 56px rgba(0, 0, 0, 0.30);
+        }
+
+        .btn-hero-secondary {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.20);
+            color: #ffffff;
+            padding: 0.9rem 2.8rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        .btn-hero-secondary:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.40);
+            transform: translateY(-3px);
+        }
+
+        /* ================================================================
+               MENU SECTION — GRID
+            ================================================================ */
+        .menu-section {
+            padding: 5rem 1.5rem;
+            background: linear-gradient(135deg, #f0fdf4, #ecfdf5, #f0fdf4);
+        }
+
+        .menu-section .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: rgba(5, 150, 105, 0.12);
+            color: #047857;
+            padding: 0.4rem 1.8rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.4rem, 5vw, 3.6rem);
+            font-weight: 900;
+            color: #064e3b;
+        }
+
+        .section-title .highlight {
+            background: linear-gradient(135deg, #059669, #047857);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-desc {
+            color: rgba(6, 78, 59, 0.55);
+            font-size: 1.05rem;
+            max-width: 560px;
+            margin-top: 0.5rem;
+            font-weight: 300;
+        }
+
+        .section-divider {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #34d399, #059669);
+            border-radius: 4px;
+            margin-top: 1.25rem;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 640px) {
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .menu-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .menu-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .menu-card {
+            background: #ffffff;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(16, 185, 129, 0.06);
+            box-shadow: 0 4px 20px rgba(6, 78, 59, 0.05);
+            transition: all 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 28px 60px rgba(6, 78, 59, 0.12);
+            border-color: rgba(16, 185, 129, 0.20);
+        }
+
+        .card-image {
+            height: 210px;
+            background: linear-gradient(135deg, #34d399, #059669);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .card-image .emoji {
+            font-size: 4.5rem;
+            opacity: 0.30;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            user-select: none;
+        }
+
+        .menu-card:hover .card-image .emoji {
+            transform: scale(1.20) rotate(8deg);
+            opacity: 0.45;
+        }
+
+        .card-image .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(6, 78, 59, 0.45) 0%, transparent 65%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .menu-card:hover .card-image .overlay {
+            opacity: 1;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 0.85rem;
+            left: 0.85rem;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.6rem;
+            font-weight: 800;
+            color: #065f46;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .card-rating {
+            position: absolute;
+            top: 0.85rem;
+            right: 0.85rem;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #f59e0b;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #064e3b;
+            margin-bottom: 0.4rem;
+            transition: color 0.3s ease;
+        }
+
+        .menu-card:hover .card-title {
+            color: #047857;
+        }
+
+        .card-desc {
+            font-size: 0.85rem;
+            color: #6b7280;
+            line-height: 1.6;
+            flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-footer {
+            margin-top: 1.25rem;
+            padding-top: 1.25rem;
+            border-top: 2px solid #d1fae5;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: #047857;
+        }
+
+        .card-price .currency {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #059669;
+        }
+
+        .btn-order {
+            background: linear-gradient(135deg, #059669, #047857);
+            color: #ffffff;
+            padding: 0.5rem 1.4rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(5, 150, 105, 0.25);
+        }
+
+        .btn-order:hover {
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 8px 28px rgba(5, 150, 105, 0.40);
+            background: linear-gradient(135deg, #047857, #065f46);
+        }
+
+        .menu-empty {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 4rem 2rem;
+            background: rgba(255, 255, 255, 0.50);
+            border-radius: 32px;
+            border: 2px dashed #d1fae5;
+        }
+
+        .menu-empty .icon {
+            font-size: 5rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .menu-empty h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #064e3b;
+        }
+
+        .menu-empty p {
+            color: #6b7280;
+            margin-top: 0.5rem;
+        }
+
+        .view-all-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+
+        .btn-view-all {
+            background: linear-gradient(135deg, #059669, #047857);
+            color: #ffffff;
+            padding: 0.9rem 3.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 28px rgba(5, 150, 105, 0.25);
+        }
+
+        .btn-view-all:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 16px 48px rgba(5, 150, 105, 0.35);
+        }
+
+        /* ================================================================
+               STATS SECTION — GRID
+            ================================================================ */
+        .stats-section {
+            background: linear-gradient(135deg, #064e3b, #047857);
+            padding: 3.5rem 1.5rem;
+        }
+
+        .stats-section .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        @media (min-width: 640px) {
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-top: 0.5rem;
+        }
+
+        /* ================================================================
+               TESTIMONIALS — GRID
+            ================================================================ */
+        .testimonials-section {
+            padding: 5rem 1.5rem;
+            background: #ffffff;
+        }
+
+        .testimonials-section .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .testimonial-card {
+            background: #fafef9;
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(16, 185, 129, 0.06);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(6, 78, 59, 0.06);
+            border-color: rgba(16, 185, 129, 0.12);
+        }
+
+        .testimonial-card .stars {
+            color: #f59e0b;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.75rem;
+        }
+
+        .testimonial-card .quote {
+            font-size: 0.95rem;
+            color: #374151;
+            line-height: 1.7;
+            font-style: italic;
+            flex: 1;
+        }
+
+        .testimonial-card .author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #f3f4f6;
+        }
+
+        .testimonial-card .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #34d399, #059669);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .testimonial-card .name {
+            font-weight: 700;
+            color: #064e3b;
+            font-size: 0.95rem;
+        }
+
+        .testimonial-card .role {
+            font-size: 0.75rem;
+            color: #9ca3af;
+        }
+
+        /* ================================================================
+               NEWSLETTER — FLEX
+            ================================================================ */
+        .newsletter-section {
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            padding: 4rem 1.5rem;
+            border-radius: 60px 60px 0 0;
+        }
+
+        .newsletter-section .container {
+            max-width: 640px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .newsletter-section .icon {
+            font-size: 3.5rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            font-weight: 900;
+            color: #064e3b;
+        }
+
+        .newsletter-section h3 span {
+            background: linear-gradient(135deg, #059669, #047857);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .newsletter-section p {
+            color: rgba(6, 78, 59, 0.60);
+            font-size: 1rem;
+            margin: 0.5rem 0 1.8rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            min-width: 220px;
+            padding: 0.9rem 1.5rem;
+            border-radius: 50px;
+            border: 2px solid rgba(5, 150, 105, 0.15);
+            outline: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #064e3b;
+            background: rgba(255, 255, 255, 0.70);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            transition: border-color 0.3s ease;
+        }
+
+        .newsletter-form input:focus {
+            border-color: #059669;
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(6, 78, 59, 0.30);
+        }
+
+        .newsletter-form button {
+            background: linear-gradient(135deg, #059669, #047857);
+            color: #ffffff;
+            padding: 0.9rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 28px rgba(5, 150, 105, 0.25);
+            white-space: nowrap;
+        }
+
+        .newsletter-form button:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(5, 150, 105, 0.35);
+        }
+
+        /* ================================================================
+               FOOTER — GRID
+            ================================================================ */
+        .footer {
+            background: #064e3b;
+            padding: 4rem 1.5rem 2rem;
+            color: #ffffff;
+        }
+
+        .footer .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .footer-grid {
+                grid-template-columns: 2fr 1fr 1fr 1fr;
+            }
+        }
+
+        .footer-brand .brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+        }
+
+        .footer-brand .brand span {
+            color: #34d399;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.40);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            max-width: 280px;
+            margin-top: 0.75rem;
+        }
+
+        .footer h4 {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #34d399;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer ul a {
+            color: rgba(255, 255, 255, 0.45);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer ul a:hover {
+            color: #34d399;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .footer-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.50);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: rgba(52, 211, 153, 0.15);
+            color: #34d399;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: center;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.30);
+        }
+
+        .footer-bottom .heart {
+            color: #ef4444;
+        }
+
+        /* ================================================================
+               RESPONSIVE TWEAKS
+            ================================================================ */
+        @media (max-width: 480px) {
+            .navbar {
+                height: 68px;
+                padding: 0 1rem;
+            }
+
+            .logo .brand {
+                font-size: 1.3rem;
+            }
+
+            .hero {
+                padding: 3rem 1rem 4rem;
+            }
+
+            .btn-hero-primary,
+            .btn-hero-secondary {
+                padding: 0.7rem 1.8rem;
+                font-size: 0.85rem;
+            }
+
+            .card-image {
+                height: 160px;
+            }
+
+            .card-image .emoji {
+                font-size: 3.5rem;
+            }
+
+            .card-price {
+                font-size: 1.3rem;
+            }
+
+            .newsletter-section {
+                border-radius: 30px 30px 0 0;
+                padding: 3rem 1rem;
+            }
+
+            .newsletter-form input {
+                min-width: 100%;
+            }
+
+            .newsletter-form button {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .mobile-menu {
+                width: 92%;
+                max-width: 320px;
+                padding: 1.5rem 1.2rem;
+            }
+
+            .mobile-nav-link {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-overlay {
+                display: none !important;
+            }
+
+            .mobile-menu {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================================================================ -->
+    <!-- NAVIGATION
+    <!-- ================================================================ -->
+    <nav class="navbar">
+        <div class="container">
+
+            <!-- Logo -->
+            <a href="#" class="logo">
+                <span class="icon">🍽️</span>
+                <div>
+                    <span class="brand">Gourmet<span>Hub</span></span>
+                    <div class="tagline">Premium Dining</div>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <div class="nav-links">
+                <a href="#" class="nav-link active">Home</a>
+                <a href="#" class="nav-link">Menu</a>
+                <a href="#" class="nav-link">Reservations</a>
+                <a href="#" class="nav-link">About</a>
+                <a href="#" class="nav-link">Contact</a>
+                <button class="btn-book">🍷 Book Table</button>
+            </div>
+
+            <!-- Hamburger Button -->
+            <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+        </div>
+    </nav>
+
+    <!-- ================================================================ -->
+    <!-- MOBILE OVERLAY (darkens background) -->
+    <!-- ================================================================ -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- ================================================================ -->
+    <!-- MOBILE MENU PANEL -->
+    <!-- ================================================================ -->
+    <div class="mobile-menu" id="mobileMenu">
+
+        <!-- Close Button (X) -->
+        <button class="mobile-close" id="mobileCloseBtn" aria-label="Close menu">✕</button>
+
+        <!-- Mobile Nav Links -->
+        <div class="mobile-nav-links">
+            <a href="#" class="mobile-nav-link active">
+                <span class="emoji">🏠</span> Home
+            </a>
+            <a href="#" class="mobile-nav-link">
+                <span class="emoji">🍕</span> Menu
+            </a>
+            <a href="#" class="mobile-nav-link">
+                <span class="emoji">📅</span> Reservations
+            </a>
+            <a href="#" class="mobile-nav-link">
+                <span class="emoji">👨‍🍳</span> About
+            </a>
+            <a href="#" class="mobile-nav-link">
+                <span class="emoji">📞</span> Contact
+            </a>
+            <button class="mobile-btn-book">🍷 Book Table</button>
+        </div>
+
+        <!-- Mobile Footer -->
+        <div class="mobile-menu-footer">
+            <div class="social">
+                <a href="#">📘</a>
+                <a href="#">📸</a>
+                <a href="#">🐦</a>
+                <a href="#">▶️</a>
+            </div>
+            <p>© 2026 GourmetHub</p>
+        </div>
+
+    </div>
+
+    <!-- ================================================================ -->
+    <!-- HERO BANNER -->
+    <!-- ================================================================ -->
+    <section class="hero">
+
+        <div class="hero-shapes">
+            <span class="shape shape-1"></span>
+            <span class="shape shape-2"></span>
+            <span class="shape shape-3"></span>
+        </div>
+
+        <div class="container">
+            <div class="hero-content">
+
+                <span class="hero-badge">🌟 Since 2026</span>
+
+                <h1 class="hero-title">
+                    Taste the<br>
+                    <span class="highlight">Extraordinary</span>
+                </h1>
+
+                <p class="hero-desc">
+                    Experience culinary excellence with our handcrafted dishes,
+                    made from the finest ingredients and served with passion.
+                </p>
+
+                <div class="hero-buttons">
+                    <button class="btn-hero-primary">🍽️ Explore Menu</button>
+                    <button class="btn-hero-secondary">📖 Our Story</button>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- MENU SECTION -->
+    <!-- ================================================================ -->
+    <section class="menu-section">
+        <div class="container">
+
+            <div class="section-header">
+                <span class="section-tag">🍕 Our Collection</span>
+                <h2 class="section-title">
+                    Signature <span class="highlight">Dishes</span>
+                </h2>
+                <p class="section-desc">
+                    Each dish is a masterpiece, crafted with love and the finest ingredients
+                </p>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="menu-grid">
+
+                {% for item in items %}
+                <a href="{% url 'food:details' item.id %}" class="menu-card">
+
+                    <div class="card-image">
+                        <span class="emoji">🍕</span>
+                        <div class="overlay"></div>
+                        <span class="card-badge">⭐ Featured</span>
+                        <span class="card-rating">★ 4.9</span>
+                    </div>
+
+                    <div class="card-body">
+                        <h3 class="card-title">{{ item.item_name }}</h3>
+                        <p class="card-desc">{{ item.item_desc }}</p>
+
+                        <div class="card-footer">
+                            <span class="card-price">
+                                <span class="currency">$</span>{{ item.item_price }}
+                            </span>
+                            <span class="btn-order">Order →</span>
+                        </div>
+                    </div>
+
+                </a>
+                {% empty %}
+
+                <div class="menu-empty">
+                    <span class="icon">🌿</span>
+                    <h3>No Dishes Available</h3>
+                    <p>Our menu is being refreshed. Check back soon!</p>
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+            <div class="view-all-wrapper">
+                <button class="btn-view-all">🍽️ View Full Menu</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- STATS SECTION -->
+    <!-- ================================================================ -->
+    <section class="stats-section">
+        <div class="container">
+
+            <div class="stats-grid">
+
+                <div class="stat-item">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Expert Chefs</span>
+                </div>
+
+                <div class="stat-item">
+                    <span class="stat-number">4.9</span>
+                    <span class="stat-label">Average Rating</span>
+                </div>
+
+                <div class="stat-item">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Signature Dishes</span>
+                </div>
+
+                <div class="stat-item">
+                    <span class="stat-number">2K+</span>
+                    <span class="stat-label">Happy Customers</span>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- TESTIMONIALS SECTION -->
+    <!-- ================================================================ -->
+    <section class="testimonials-section">
+        <div class="container">
+
+            <div class="section-header">
+                <span class="section-tag">💬 Testimonials</span>
+                <h2 class="section-title">
+                    What Our <span class="highlight">Guests Say</span>
+                </h2>
+            </div>
+
+            <div class="testimonials-grid">
+
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="quote">
+                        "Absolutely incredible! The flavors are out of this world. Best dining experience I've ever
+                        had."
+                    </p>
+                    <div class="author">
+                        <div class="avatar">JD</div>
+                        <div>
+                            <div class="name">John Doe</div>
+                            <div class="role">Food Critic</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="quote">
+                        "The attention to detail in every dish is remarkable. A true gem for food lovers."
+                    </p>
+                    <div class="author">
+                        <div class="avatar">SM</div>
+                        <div>
+                            <div class="name">Sarah Mitchell</div>
+                            <div class="role">Regular Guest</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="quote">
+                        "Perfect ambiance, impeccable service, and food that tells a story. Highly recommended!"
+                    </p>
+                    <div class="author">
+                        <div class="avatar">AR</div>
+                        <div>
+                            <div class="name">Alex Rivera</div>
+                            <div class="role">Chef &amp; Blogger</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- NEWSLETTER SECTION -->
+    <!-- ================================================================ -->
+    <section class="newsletter-section">
+        <div class="container">
+
+            <span class="icon">📬</span>
+            <h3>Join Our <span>Community</span></h3>
+            <p>Subscribe for exclusive offers, new menu alerts, and special events.</p>
+
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">Subscribe →</button>
+            </form>
+
+        </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- FOOTER -->
+    <!-- ================================================================ -->
+    <footer class="footer">
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <div class="brand">Gourmet<span>Hub</span></div>
+                    <p>Serving excellence since 2026. Premium dining experiences crafted with passion.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Instagram">📸</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="YouTube">▶️</a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Menu</a></li>
+                        <li><a href="#">Reservations</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Visit Us</h4>
+                    <ul>
+                        <li style="color: rgba(255,255,255,0.45); font-size:0.9rem;">
+                            📍 123 Food Street, NYC
+                        </li>
+                        <li style="color: rgba(255,255,255,0.45); font-size:0.9rem;">
+                            📞 +1 (555) 123-4567
+                        </li>
+                        <li style="color: rgba(255,255,255,0.45); font-size:0.9rem;">
+                            ✉️ hello@gourmethub.com
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 GourmetHub. Crafted with <span class="heart">❤️</span> for food lovers everywhere.</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- ================================================================ -->
+    <!-- JAVASCRIPT — Mobile Menu Toggle -->
+    <!-- ================================================================ -->
+    <script>
+        (function () {
+
+            // DOM elements
+            const hamburger = document.getElementById('hamburgerBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+            const mobileClose = document.getElementById('mobileCloseBtn');
+            const body = document.body;
+
+            // Functions to open/close menu
+            function openMenu() {
+                mobileMenu.classList.add('open');
+                mobileOverlay.classList.add('open');
+                hamburger.classList.add('active');
+                body.classList.add('no-scroll');
+            }
+
+            function closeMenu() {
+                mobileMenu.classList.remove('open');
+                mobileOverlay.classList.remove('open');
+                hamburger.classList.remove('active');
+                body.classList.remove('no-scroll');
+            }
+
+            // Toggle function
+            function toggleMenu() {
+                if (mobileMenu.classList.contains('open')) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            }
+
+            // Event listeners
+            hamburger.addEventListener('click', toggleMenu);
+
+            mobileClose.addEventListener('click', closeMenu);
+
+            mobileOverlay.addEventListener('click', closeMenu);
+
+            // Close menu on Escape key
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+                    closeMenu();
+                }
+            });
+
+            // Close menu when a nav link is clicked (optional)
+            document.querySelectorAll('.mobile-nav-link').forEach(function (link) {
+                link.addEventListener('click', closeMenu);
+            });
+
+            // Close menu when Book Table button is clicked
+            document.querySelector('.mobile-btn-book').addEventListener('click', closeMenu);
+
+            // Handle window resize — close menu if switching to desktop
+            window.addEventListener('resize', function () {
+                if (window.innerWidth >= 768 && mobileMenu.classList.contains('open')) {
+                    closeMenu();
+                }
+            });
+
+        })();
+    </script>
+
+</body>
+
+</html>
