@@ -8,111 +8,213 @@
 <!-- ============================================================ -->
 <!-- HERO BANNER -->
 <!-- ============================================================ -->
-<section class="hero">
-    <div class="hero-shapes">
-        <span class="shape shape-1"></span>
-        <span class="shape shape-2"></span>
-        <span class="shape shape-3"></span>
+<section
+    style="background: linear-gradient(135deg, #064e3b 0%, #065f46 30%, #047857 60%, #059669 100%); padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 3vw, 1.5rem); position: relative; overflow: hidden;">
+    <div style="position: absolute; inset: 0; pointer-events: none; overflow: hidden;">
+        <span
+            style="position: absolute; width: clamp(150px, 40vw, 400px); height: clamp(150px, 40vw, 400px); border-radius: 50%; background: radial-gradient(circle, #6ee7b7, transparent); top: -150px; right: -80px; opacity: 0.08; animation: floatShape 22s ease-in-out infinite;"></span>
+        <span
+            style="position: absolute; width: clamp(120px, 30vw, 350px); height: clamp(120px, 30vw, 350px); border-radius: 50%; background: radial-gradient(circle, #34d399, transparent); bottom: -150px; left: -80px; opacity: 0.08; animation: floatShape 26s ease-in-out infinite reverse;"></span>
+        <span
+            style="position: absolute; width: clamp(80px, 20vw, 200px); height: clamp(80px, 20vw, 200px); border-radius: 50%; background: radial-gradient(circle, #10b981, transparent); top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.05; animation: floatShape 30s ease-in-out infinite alternate;"></span>
     </div>
-    <div class="container">
-        <div class="hero-content">
-            <span class="hero-badge">🌟 Since 2026</span>
-            <h1 class="hero-title">
-                Taste the<br>
-                <span class="highlight">Extraordinary</span>
+    <style>
+        @keyframes floatShape {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(20px, -30px) scale(1.05);
+            }
+        }
+    </style>
+    <div style="max-width: 1280px; margin: 0 auto; position: relative; z-index: 2;">
+        <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+            <span
+                style="display: inline-block; background: rgba(255,255,255,0.08); backdrop-filter: blur(8px); padding: 0.4rem 1.5rem; border-radius: 50px; font-size: clamp(0.5rem, 0.7vw, 0.65rem); font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #a7f3d0; border: 1px solid rgba(255,255,255,0.06); margin-bottom: 1rem;">🌟
+                Since 2026</span>
+            <h1
+                style="font-family: 'Playfair Display', serif; font-size: clamp(2rem, 8vw, 4.5rem); font-weight: 900; color: #ffffff; line-height: 1.08; margin-bottom: 1rem;">
+                Taste the<br><span
+                    style="background: linear-gradient(135deg, #6ee7b7, #34d399, #10b981); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Extraordinary</span>
             </h1>
-            <p class="hero-desc">
-                Experience culinary excellence with our handcrafted dishes,
-                made from the finest ingredients and served with passion.
-            </p>
-            <div class="hero-buttons">
-                <button class="btn-hero-primary">🍽️ Explore Menu</button>
-                <button class="btn-hero-secondary">📖 Our Story</button>
+            <p
+                style="font-size: clamp(0.85rem, 1.5vw, 1.2rem); color: rgba(255,255,255,0.70); max-width: 560px; font-weight: 300; line-height: 1.7; margin-bottom: 2rem;">
+                Experience culinary excellence with our handcrafted dishes, made from the finest ingredients and served
+                with passion.</p>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem;">
+                <button
+                    style="background: #ffffff; color: #064e3b; padding: clamp(0.5rem, 1vw, 0.8rem) clamp(1.2rem, 3vw, 2.2rem); border-radius: 50px; font-weight: 700; font-size: clamp(0.75rem, 1vw, 0.9rem); border: none; cursor: pointer; box-shadow: 0 8px 30px rgba(0,0,0,0.15); transition: transform 0.3s ease;">🍽️
+                    Explore Menu</button>
+                <button
+                    style="background: transparent; border: 2px solid rgba(255,255,255,0.20); color: #ffffff; padding: clamp(0.5rem, 1vw, 0.8rem) clamp(1.2rem, 3vw, 2.2rem); border-radius: 50px; font-weight: 700; font-size: clamp(0.75rem, 1vw, 0.9rem); cursor: pointer; backdrop-filter: blur(4px); transition: all 0.3s ease;">📖
+                    Our Story</button>
             </div>
         </div>
     </div>
 </section>
 
 <!-- ============================================================ -->
-<!-- MENU SECTION - RESPONSIVE FULL WIDTH -->
+<!-- MENU SECTION - SMALLER CARDS WITH FLEX + GRID -->
 <!-- ============================================================ -->
-<section class="menu-section">
-    <div class="container">
+<section
+    style="padding: clamp(2rem, 5vw, 3.5rem) clamp(1rem, 3vw, 1.5rem); background: linear-gradient(135deg, #f0fdf4, #ecfdf5, #f0fdf4);">
+    <div style="max-width: 1280px; margin: 0 auto;">
 
         <!-- Section Header -->
-        <div class="section-header">
-            <span class="section-tag">🍕 Our Collection</span>
-            <h2 class="section-title">
-                Signature <span class="highlight">Dishes</span>
+        <div
+            style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: clamp(1.5rem, 4vw, 2.5rem);">
+            <span
+                style="display: inline-block; background: rgba(5,150,105,0.12); color: #047857; padding: clamp(0.2rem, 0.5vw, 0.35rem) clamp(0.8rem, 1.5vw, 1.5rem); border-radius: 50px; font-size: clamp(0.5rem, 0.7vw, 0.65rem); font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase;">🍕
+                Our Collection</span>
+            <h2
+                style="font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; color: #064e3b; margin-top: 0.3rem;">
+                Signature <span
+                    style="background: linear-gradient(135deg, #059669, #047857); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Dishes</span>
             </h2>
-            <p class="section-desc">
-                Each dish is a masterpiece, crafted with love and the finest ingredients
-            </p>
-            <div class="section-divider"></div>
+            <p
+                style="color: rgba(6,78,59,0.55); font-size: clamp(0.8rem, 1vw, 0.95rem); max-width: 500px; margin-top: 0.3rem; font-weight: 300;">
+                Each dish is a masterpiece, crafted with love and the finest ingredients</p>
+            <div
+                style="width: clamp(40px, 6vw, 60px); height: 3px; background: linear-gradient(90deg, #34d399, #059669); border-radius: 4px; margin-top: 0.8rem;">
+            </div>
         </div>
 
-        <!-- Responsive Grid -->
-        <div class="menu-grid">
-            {% for item in items %}
-            <a href="{% url 'food:details' item.id %}" class="menu-card">
-                <div class="card-image"
-                    style="position: relative; width: 100%; height: 220px; overflow: hidden; flex-shrink: 0;">
+        <!-- ===== RESPONSIVE GRID WITH SMALLER CARDS ===== -->
+        <div style="
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(0.8rem, 1.5vw, 1.2rem);
+            width: 100%;
+        ">
 
-                    <!-- ===== IMAGE - FULL COVER ===== -->
-                    {% if item.item_image %}
-                    <img src="{{ item.item_image }}" alt="{{ item.item_name }}"
-                        style="width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;">
-                    {% else %}
-                    <span class="emoji"
-                        style="font-size: 4.5rem; opacity: 0.30; user-select: none; position: absolute; z-index: 1;">🍕</span>
-                    {% endif %}
+            <!-- Tablet: 2 columns -->
+            <style>
+                @media (min-width: 640px) {
+                    .menu-grid-cards {
+                        grid-template-columns: repeat(2, 1fr) !important;
+                    }
+                }
 
-                    <!-- Dark Overlay on Hover -->
-                    <div class="overlay"
-                        style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(6,78,59,0.50) 0%, transparent 60%); opacity: 0; transition: opacity 0.4s ease; z-index: 2;">
+                @media (min-width: 1024px) {
+                    .menu-grid-cards {
+                        grid-template-columns: repeat(3, 1fr) !important;
+                    }
+                }
+
+                @media (min-width: 1280px) {
+                    .menu-grid-cards {
+                        grid-template-columns: repeat(4, 1fr) !important;
+                    }
+                }
+            </style>
+
+            <div class="menu-grid-cards" style="
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: clamp(0.8rem, 1.5vw, 1.2rem);
+                width: 100%;
+            ">
+                {% for item in items %}
+                <a href="{% url 'food:details' item.id %}"
+                    style="text-decoration: none; color: inherit; display: block; width: 100%;">
+                    <div style="
+                        background: #ffffff;
+                        border-radius: clamp(12px, 1.5vw, 16px);
+                        overflow: hidden;
+                        border: 1px solid rgba(16,185,129,0.06);
+                        box-shadow: 0 2px 12px rgba(6,78,59,0.04);
+                        transition: all 0.3s cubic-bezier(0.23,1,0.32,1);
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                        height: 100%;
+                    ">
+                        <!-- ===== IMAGE - SMALLER ===== -->
+                        <div style="
+                            position: relative;
+                            width: 100%;
+                            aspect-ratio: 16/9;
+                            overflow: hidden;
+                            flex-shrink: 0;
+                            background: #d1fae5;
+                        ">
+                            {% if item.item_image %}
+                            <img src="{{ item.item_image }}" alt="{{ item.item_name }}"
+                                style="width: 100%; height: 100%; object-fit: cover; object-position: center; position: absolute; inset: 0;">
+                            {% else %}
+                            <div
+                                style="width: 100%; height: 100%; background: linear-gradient(135deg, #34d399, #059669); display: flex; align-items: center; justify-content: center;">
+                                <span
+                                    style="font-size: clamp(2.5rem, 5vw, 3.5rem); opacity: 0.25; user-select: none;">🍕</span>
+                            </div>
+                            {% endif %}
+
+                            <!-- Hover Overlay -->
+                            <div
+                                style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(6,78,59,0.40) 0%, transparent 50%); opacity: 0; transition: opacity 0.3s ease; z-index: 2;">
+                            </div>
+
+                            <!-- Badges -->
+                            <span
+                                style="position: absolute; top: 0.5rem; left: 0.5rem; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); padding: 0.2rem 0.7rem; border-radius: 50px; font-size: clamp(0.4rem, 0.5vw, 0.5rem); font-weight: 800; color: #065f46; letter-spacing: 0.06em; text-transform: uppercase; box-shadow: 0 2px 8px rgba(0,0,0,0.06); z-index: 3;">
+                                ⭐ Featured
+                            </span>
+                            <span
+                                style="position: absolute; top: 0.5rem; right: 0.5rem; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); padding: 0.2rem 0.7rem; border-radius: 50px; font-size: clamp(0.45rem, 0.55vw, 0.55rem); font-weight: 700; color: #f59e0b; box-shadow: 0 2px 8px rgba(0,0,0,0.06); z-index: 3;">
+                                ★ 4.9
+                            </span>
+                        </div>
+
+                        <!-- ===== CARD BODY - SMALLER ===== -->
+                        <div
+                            style="padding: clamp(0.6rem, 1.2vw, 0.9rem); display: flex; flex-direction: column; flex: 1; width: 100%;">
+                            <h3
+                                style="font-family: 'Playfair Display', serif; font-size: clamp(0.9rem, 1.2vw, 1rem); font-weight: 800; color: #064e3b; margin-bottom: 0.2rem; line-height: 1.2;">
+                                {{ item.item_name }}
+                            </h3>
+                            <p
+                                style="font-size: clamp(0.7rem, 0.85vw, 0.75rem); color: #6b7280; line-height: 1.5; flex: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                                {{ item.item_desc }}
+                            </p>
+
+                            <!-- ===== CARD FOOTER - SMALLER ===== -->
+                            <div
+                                style="margin-top: clamp(0.5rem, 1vw, 0.7rem); padding-top: clamp(0.5rem, 1vw, 0.7rem); border-top: 1.5px solid #d1fae5; display: flex; align-items: center; justify-content: space-between; width: 100%; flex-wrap: wrap; gap: 0.3rem;">
+                                <span
+                                    style="font-family: 'Playfair Display', serif; font-size: clamp(1rem, 1.5vw, 1.2rem); font-weight: 900; color: #047857;">
+                                    <span
+                                        style="font-size: clamp(0.6rem, 0.8vw, 0.7rem); font-weight: 700; color: #059669;">$</span>{{ item.item_price }}
+                                </span>
+                                <span
+                                    style="background: linear-gradient(135deg, #059669, #047857); color: #ffffff; padding: clamp(0.2rem, 0.4vw, 0.35rem) clamp(0.6rem, 1vw, 0.9rem); border-radius: 50px; font-size: clamp(0.5rem, 0.6vw, 0.6rem); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; box-shadow: 0 2px 10px rgba(5,150,105,0.20); cursor: pointer; transition: all 0.3s ease; white-space: nowrap;">
+                                    Order →
+                                </span>
+                            </div>
+                        </div>
                     </div>
-
-                    <!-- Badges (on top of image) -->
-                    <span class="card-badge"
-                        style="position: absolute; top: 0.85rem; left: 0.85rem; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.6rem; font-weight: 800; color: #065f46; letter-spacing: 0.08em; text-transform: uppercase; box-shadow: 0 4px 12px rgba(0,0,0,0.06); z-index: 3;">
-                        ⭐ Featured
-                    </span>
-                    <span class="card-rating"
-                        style="position: absolute; top: 0.85rem; right: 0.85rem; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.7rem; font-weight: 700; color: #f59e0b; box-shadow: 0 4px 12px rgba(0,0,0,0.06); z-index: 3;">
-                        ★ 4.9
-                    </span>
-
+                </a>
+                {% empty %}
+                <div
+                    style="grid-column: 1 / -1; text-align: center; padding: clamp(2rem, 4vw, 3rem) clamp(1rem, 3vw, 1.5rem); background: rgba(255,255,255,0.50); border-radius: 24px; border: 2px dashed #d1fae5;">
+                    <span style="font-size: clamp(3rem, 6vw, 4rem); display: block; margin-bottom: 0.8rem;">🌿</span>
+                    <h3
+                        style="font-family: 'Playfair Display', serif; font-size: clamp(1.3rem, 2.5vw, 1.8rem); font-weight: 700; color: #064e3b;">
+                        No Dishes Available</h3>
+                    <p style="color: #6b7280; margin-top: 0.3rem; font-size: clamp(0.8rem, 1vw, 0.9rem);">Our menu is
+                        being refreshed. Check back soon!</p>
                 </div>
-                <div class="card-body">
-                    <h3 class="card-title">{{ item.item_name }}</h3>
-                    <p class="card-desc">{{ item.item_desc }}</p>
-                    <div class="card-footer">
-                        <span class="card-price">
-                            <span class="currency">$</span>{{ item.item_price }}
-                        </span>
-                        <span class="btn-order">Order →</span>
-                    </div>
-                </div>
-            </a>
-            {% empty %}
-            <div
-                style="grid-column: 1 / -1; text-align: center; padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 3vw, 2rem); background: rgba(255,255,255,0.50); border-radius: 32px; border: 2px dashed #d1fae5;">
-                <span style="font-size: clamp(3rem, 8vw, 5rem); display: block; margin-bottom: 1rem;">🌿</span>
-                <h3
-                    style="font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: #064e3b;">
-                    No Dishes Available
-                </h3>
-                <p style="color: #6b7280; margin-top: 0.5rem; font-size: clamp(0.85rem, 1.2vw, 1rem);">
-                    Our menu is being refreshed. Check back soon!
-                </p>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
 
         <!-- View All Button -->
-        <div style="display: flex; justify-content: center; margin-top: clamp(2rem, 5vw, 3rem);">
-            <button class="btn-view-all"
-                style="background: linear-gradient(135deg, #059669, #047857); color: #ffffff; padding: clamp(0.6rem, 1.2vw, 0.9rem) clamp(1.5rem, 4vw, 3.5rem); border-radius: 50px; font-weight: 700; font-size: clamp(0.8rem, 1.2vw, 1rem); border: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 28px rgba(5,150,105,0.25);">
+        <div style="display: flex; justify-content: center; margin-top: clamp(1.5rem, 3vw, 2.5rem);">
+            <button
+                style="background: linear-gradient(135deg, #059669, #047857); color: #ffffff; padding: clamp(0.5rem, 1vw, 0.75rem) clamp(1.5rem, 3vw, 2.5rem); border-radius: 50px; font-weight: 700; font-size: clamp(0.75rem, 1vw, 0.9rem); border: none; cursor: pointer; box-shadow: 0 4px 20px rgba(5,150,105,0.20); transition: transform 0.3s ease;">
                 🍽️ View Full Menu
             </button>
         </div>
@@ -123,24 +225,37 @@
 <!-- ============================================================ -->
 <!-- STATS SECTION -->
 <!-- ============================================================ -->
-<section class="stats-section">
-    <div class="container">
-        <div class="stats-grid">
-            <div class="stat-item">
-                <span class="stat-number">15+</span>
-                <span class="stat-label">Expert Chefs</span>
+<section
+    style="background: linear-gradient(135deg, #064e3b, #047857); padding: clamp(2rem, 4vw, 3rem) clamp(1rem, 3vw, 1.5rem);">
+    <div style="max-width: 1280px; margin: 0 auto;">
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1rem, 2vw, 1.5rem);">
+            <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+                <span
+                    style="font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; color: #ffffff; line-height: 1;">15+</span>
+                <span
+                    style="color: rgba(255,255,255,0.55); font-size: clamp(0.5rem, 0.7vw, 0.65rem); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.3rem;">Expert
+                    Chefs</span>
             </div>
-            <div class="stat-item">
-                <span class="stat-number">4.9</span>
-                <span class="stat-label">Average Rating</span>
+            <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+                <span
+                    style="font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; color: #ffffff; line-height: 1;">4.9</span>
+                <span
+                    style="color: rgba(255,255,255,0.55); font-size: clamp(0.5rem, 0.7vw, 0.65rem); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.3rem;">Average
+                    Rating</span>
             </div>
-            <div class="stat-item">
-                <span class="stat-number">50+</span>
-                <span class="stat-label">Signature Dishes</span>
+            <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+                <span
+                    style="font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; color: #ffffff; line-height: 1;">50+</span>
+                <span
+                    style="color: rgba(255,255,255,0.55); font-size: clamp(0.5rem, 0.7vw, 0.65rem); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.3rem;">Signature
+                    Dishes</span>
             </div>
-            <div class="stat-item">
-                <span class="stat-number">2K+</span>
-                <span class="stat-label">Happy Customers</span>
+            <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+                <span
+                    style="font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; color: #ffffff; line-height: 1;">2K+</span>
+                <span
+                    style="color: rgba(255,255,255,0.55); font-size: clamp(0.5rem, 0.7vw, 0.65rem); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.3rem;">Happy
+                    Customers</span>
             </div>
         </div>
     </div>
@@ -149,47 +264,77 @@
 <!-- ============================================================ -->
 <!-- TESTIMONIALS -->
 <!-- ============================================================ -->
-<section class="testimonials-section">
-    <div class="container">
-        <div class="section-header">
-            <span class="section-tag">💬 Testimonials</span>
-            <h2 class="section-title">
-                What Our <span class="highlight">Guests Say</span>
-            </h2>
+<section style="padding: clamp(2rem, 5vw, 3.5rem) clamp(1rem, 3vw, 1.5rem); background: #ffffff;">
+    <div style="max-width: 1280px; margin: 0 auto;">
+        <div
+            style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: clamp(1.5rem, 3vw, 2.5rem);">
+            <span
+                style="display: inline-block; background: rgba(5,150,105,0.12); color: #047857; padding: clamp(0.2rem, 0.5vw, 0.35rem) clamp(0.8rem, 1.5vw, 1.5rem); border-radius: 50px; font-size: clamp(0.5rem, 0.7vw, 0.65rem); font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase;">💬
+                Testimonials</span>
+            <h2
+                style="font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; color: #064e3b; margin-top: 0.3rem;">
+                What Our <span
+                    style="background: linear-gradient(135deg, #059669, #047857); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Guests
+                    Say</span></h2>
         </div>
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <div class="stars">★★★★★</div>
-                <p class="quote">"Absolutely incredible! The flavors are out of this world. Best dining experience I've
-                    ever had."</p>
-                <div class="author">
-                    <div class="avatar">JD</div>
+        <div style="display: grid; grid-template-columns: 1fr; gap: clamp(0.8rem, 1.5vw, 1.2rem);">
+            <div
+                style="background: #fafef9; border-radius: clamp(14px, 1.5vw, 18px); padding: clamp(0.8rem, 1.5vw, 1.2rem); border: 1px solid rgba(16,185,129,0.06); display: flex; flex-direction: column;">
+                <div
+                    style="color: #f59e0b; font-size: clamp(0.8rem, 1vw, 0.95rem); letter-spacing: 2px; margin-bottom: 0.5rem;">
+                    ★★★★★</div>
+                <p
+                    style="font-size: clamp(0.8rem, 0.9vw, 0.85rem); color: #374151; line-height: 1.6; font-style: italic; flex: 1;">
+                    "Absolutely incredible! The flavors are out of this world."</p>
+                <div
+                    style="display: flex; align-items: center; gap: 0.8rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #f3f4f6;">
+                    <div
+                        style="width: clamp(32px, 4vw, 38px); height: clamp(32px, 4vw, 38px); border-radius: 50%; background: linear-gradient(135deg, #34d399, #059669); display: flex; align-items: center; justify-content: center; color: #ffffff; font-weight: 700; font-size: clamp(0.7rem, 0.8vw, 0.85rem); flex-shrink: 0;">
+                        JD</div>
                     <div>
-                        <div class="name">John Doe</div>
-                        <div class="role">Food Critic</div>
+                        <div style="font-weight: 700; color: #064e3b; font-size: clamp(0.8rem, 0.9vw, 0.85rem);">John
+                            Doe</div>
+                        <div style="font-size: clamp(0.6rem, 0.7vw, 0.65rem); color: #9ca3af;">Food Critic</div>
                     </div>
                 </div>
             </div>
-            <div class="testimonial-card">
-                <div class="stars">★★★★★</div>
-                <p class="quote">"The attention to detail in every dish is remarkable. A true gem for food lovers."</p>
-                <div class="author">
-                    <div class="avatar">SM</div>
+            <div
+                style="background: #fafef9; border-radius: clamp(14px, 1.5vw, 18px); padding: clamp(0.8rem, 1.5vw, 1.2rem); border: 1px solid rgba(16,185,129,0.06); display: flex; flex-direction: column;">
+                <div
+                    style="color: #f59e0b; font-size: clamp(0.8rem, 1vw, 0.95rem); letter-spacing: 2px; margin-bottom: 0.5rem;">
+                    ★★★★★</div>
+                <p
+                    style="font-size: clamp(0.8rem, 0.9vw, 0.85rem); color: #374151; line-height: 1.6; font-style: italic; flex: 1;">
+                    "The attention to detail in every dish is remarkable."</p>
+                <div
+                    style="display: flex; align-items: center; gap: 0.8rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #f3f4f6;">
+                    <div
+                        style="width: clamp(32px, 4vw, 38px); height: clamp(32px, 4vw, 38px); border-radius: 50%; background: linear-gradient(135deg, #34d399, #059669); display: flex; align-items: center; justify-content: center; color: #ffffff; font-weight: 700; font-size: clamp(0.7rem, 0.8vw, 0.85rem); flex-shrink: 0;">
+                        SM</div>
                     <div>
-                        <div class="name">Sarah Mitchell</div>
-                        <div class="role">Regular Guest</div>
+                        <div style="font-weight: 700; color: #064e3b; font-size: clamp(0.8rem, 0.9vw, 0.85rem);">Sarah
+                            Mitchell</div>
+                        <div style="font-size: clamp(0.6rem, 0.7vw, 0.65rem); color: #9ca3af;">Regular Guest</div>
                     </div>
                 </div>
             </div>
-            <div class="testimonial-card">
-                <div class="stars">★★★★★</div>
-                <p class="quote">"Perfect ambiance, impeccable service, and food that tells a story. Highly
-                    recommended!"</p>
-                <div class="author">
-                    <div class="avatar">AR</div>
+            <div
+                style="background: #fafef9; border-radius: clamp(14px, 1.5vw, 18px); padding: clamp(0.8rem, 1.5vw, 1.2rem); border: 1px solid rgba(16,185,129,0.06); display: flex; flex-direction: column;">
+                <div
+                    style="color: #f59e0b; font-size: clamp(0.8rem, 1vw, 0.95rem); letter-spacing: 2px; margin-bottom: 0.5rem;">
+                    ★★★★★</div>
+                <p
+                    style="font-size: clamp(0.8rem, 0.9vw, 0.85rem); color: #374151; line-height: 1.6; font-style: italic; flex: 1;">
+                    "Perfect ambiance, impeccable service, and amazing food!"</p>
+                <div
+                    style="display: flex; align-items: center; gap: 0.8rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #f3f4f6;">
+                    <div
+                        style="width: clamp(32px, 4vw, 38px); height: clamp(32px, 4vw, 38px); border-radius: 50%; background: linear-gradient(135deg, #34d399, #059669); display: flex; align-items: center; justify-content: center; color: #ffffff; font-weight: 700; font-size: clamp(0.7rem, 0.8vw, 0.85rem); flex-shrink: 0;">
+                        AR</div>
                     <div>
-                        <div class="name">Alex Rivera</div>
-                        <div class="role">Chef &amp; Blogger</div>
+                        <div style="font-weight: 700; color: #064e3b; font-size: clamp(0.8rem, 0.9vw, 0.85rem);">Alex
+                            Rivera</div>
+                        <div style="font-size: clamp(0.6rem, 0.7vw, 0.65rem); color: #9ca3af;">Chef &amp; Blogger</div>
                     </div>
                 </div>
             </div>
@@ -200,14 +345,24 @@
 <!-- ============================================================ -->
 <!-- NEWSLETTER -->
 <!-- ============================================================ -->
-<section class="newsletter-section">
-    <div class="container">
-        <span class="icon">📬</span>
-        <h3>Join Our <span>Community</span></h3>
-        <p>Subscribe for exclusive offers, new menu alerts, and special events.</p>
-        <form class="newsletter-form">
-            <input type="email" placeholder="Enter your email address" required>
-            <button type="submit">Subscribe →</button>
+<section
+    style="background: linear-gradient(135deg, #d1fae5, #a7f3d0); padding: clamp(2rem, 5vw, 3.5rem) clamp(1rem, 3vw, 1.5rem); border-radius: clamp(30px, 5vw, 50px) clamp(30px, 5vw, 50px) 0 0;">
+    <div
+        style="max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center;">
+        <span style="font-size: clamp(2.5rem, 4vw, 3rem); display: block; margin-bottom: 0.8rem;">📬</span>
+        <h3
+            style="font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3.5vw, 2.2rem); font-weight: 900; color: #064e3b;">
+            Join Our <span
+                style="background: linear-gradient(135deg, #059669, #047857); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Community</span>
+        </h3>
+        <p style="color: rgba(6,78,59,0.60); font-size: clamp(0.8rem, 1vw, 0.9rem); margin: 0.3rem 0 1.2rem;">Subscribe
+            for exclusive offers, new menu alerts, and special events.</p>
+        <form style="display: flex; flex-wrap: wrap; gap: 0.6rem; width: 100%; justify-content: center;">
+            <input type="email" placeholder="Enter your email" required
+                style="flex: 1; min-width: 160px; padding: clamp(0.5rem, 1vw, 0.75rem) clamp(0.8rem, 1.5vw, 1.2rem); border-radius: 50px; border: 2px solid rgba(5,150,105,0.15); outline: none; font-size: clamp(0.8rem, 0.9vw, 0.85rem); font-weight: 500; color: #064e3b; background: rgba(255,255,255,0.70); backdrop-filter: blur(8px); transition: border-color 0.3s ease;">
+            <button type="submit"
+                style="background: linear-gradient(135deg, #059669, #047857); color: #ffffff; padding: clamp(0.5rem, 1vw, 0.75rem) clamp(1.2rem, 2.5vw, 2rem); border-radius: 50px; font-weight: 700; font-size: clamp(0.8rem, 0.9vw, 0.85rem); border: none; cursor: pointer; box-shadow: 0 4px 20px rgba(5,150,105,0.20); white-space: nowrap;">Subscribe
+                →</button>
         </form>
     </div>
 </section>

@@ -5,84 +5,213 @@
 
 {% block content %}
 
-<!-- ============================================================ -->
-<!-- DETAILS PAGE -->
-<!-- ============================================================ -->
 <section
-    style="padding: 5rem 1.5rem; background: linear-gradient(135deg, #f0fdf4, #ecfdf5, #f0fdf4); min-height: 80vh; display: flex; align-items: center;">
+    style="padding: clamp(1rem, 3vw, 2rem) clamp(1rem, 3vw, 2rem); background: linear-gradient(135deg, #f0fdf4, #ecfdf5, #f0fdf4); min-height: 90vh; display: flex; align-items: flex-start; padding-top: 2rem;">
     <div style="max-width: 1024px; margin: 0 auto; width: 100%;">
 
+        <a href="{% url 'food:index' %}"
+            style="display: inline-flex; align-items: center; gap: 0.5rem; color: #059669; font-weight: 600; text-decoration: none; margin-bottom: 1.5rem; transition: all 0.3s ease; font-size: clamp(0.85rem, 1.1vw, 1rem); background: rgba(5,150,105,0.08); padding: 0.5rem 1.2rem; border-radius: 50px;">
+            <span style="font-size: 1.2rem;">←</span> Back to Menu
+        </a>
+
         <div
-            style="background: #ffffff; border-radius: 32px; box-shadow: 0 20px 60px rgba(6,78,59,0.10); overflow: hidden;">
+            style="background: #ffffff; border-radius: clamp(20px, 3vw, 32px); box-shadow: 0 20px 60px rgba(6,78,59,0.10); overflow: hidden;">
 
-            <!-- Image Header -->
-            <div
-                style="height: 300px; background: linear-gradient(135deg, #34d399, #059669); display: flex; align-items: center; justify-content: center; position: relative;">
-                <span style="font-size: 8rem; opacity: 0.15; user-select: none;">🍕</span>
-                <span
-                    style="position: absolute; top: 1.5rem; left: 1.5rem; background: rgba(255,255,255,0.90); backdrop-filter: blur(8px); padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.75rem; font-weight: 800; color: #047857; letter-spacing: 0.1em; text-transform: uppercase; box-shadow: 0 4px 16px rgba(0,0,0,0.06);">
-                    ⭐ Featured
-                </span>
-                <span
-                    style="position: absolute; top: 1.5rem; right: 1.5rem; background: rgba(255,255,255,0.90); backdrop-filter: blur(8px); padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.9rem; font-weight: 700; color: #f59e0b; box-shadow: 0 4px 16px rgba(0,0,0,0.06);">
-                    ★ 4.9
-                </span>
-            </div>
-
-            <!-- Content -->
-            <div style="padding: 2.5rem 3rem;">
-
-                <!-- Title -->
-                <h1
-                    style="font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; color: #064e3b; margin-bottom: 0.5rem;">
-                    {{ item.item_name }}
-                </h1>
-
-                <!-- Category Badge -->
-                <span
-                    style="display: inline-block; background: rgba(5,150,105,0.10); color: #047857; padding: 0.25rem 1.2rem; border-radius: 50px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1.5rem;">
-                    🍽️ Main Course
-                </span>
-
-                <!-- Description -->
-                <p style="font-size: 1.1rem; color: #4b5563; line-height: 1.8; margin-bottom: 2rem;">
-                    {{ item.item_desc }}
-                </p>
-
-                <!-- Divider -->
+            <!-- IMAGE - FIXED ASPECT RATIO 16:9 -->
+            <div style="position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #d1fae5;">
+                {% if item.item_image %}
+                <img src="{{ item.item_image }}" alt="{{ item.item_name }}"
+                    style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;">
+                {% else %}
                 <div
-                    style="border-top: 2px solid #d1fae5; padding-top: 1.5rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem;">
+                    style="width: 100%; height: 100%; background: linear-gradient(135deg, #34d399, #059669); display: flex; align-items: center; justify-content: center;">
+                    <span style="font-size: clamp(6rem, 20vw, 12rem); opacity: 0.15; user-select: none;">🍕</span>
+                </div>
+                {% endif %}
 
-                    <!-- Price -->
-                    <div>
-                        <span
-                            style="font-size: 0.8rem; font-weight: 600; color: #059669; text-transform: uppercase; letter-spacing: 0.1em;">Price</span>
-                        <div
-                            style="font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900; color: #047857;">
-                            ${{ item.item_price }}
-                        </div>
-                    </div>
-
-                    <!-- Order Button -->
-                    <button
-                        style="background: linear-gradient(135deg, #059669, #047857); color: #ffffff; padding: 1rem 3rem; border-radius: 50px; font-weight: 700; font-size: 1.1rem; border: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 28px rgba(5,150,105,0.25);">
-                        🛒 Order Now
-                    </button>
-
+                <div
+                    style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(6,78,59,0.70) 0%, rgba(6,78,59,0.20) 40%, rgba(6,78,59,0.05) 70%, transparent 100%);">
                 </div>
 
-                <!-- Back Link -->
-                <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 2px solid #d1fae5;">
-                    <a href="{% url 'food:index' %}"
-                        style="color: #059669; font-weight: 600; text-decoration: none; transition: color 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
-                        ← Back to Menu
-                    </a>
+                <div
+                    style="position: absolute; top: clamp(1rem, 2vw, 1.5rem); left: clamp(1rem, 2vw, 1.5rem); display: flex; flex-wrap: wrap; gap: 0.6rem; z-index: 5;">
+                    <span
+                        style="background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); padding: 0.35rem 1.2rem; border-radius: 50px; font-size: clamp(0.55rem, 0.7vw, 0.65rem); font-weight: 800; color: #047857; letter-spacing: 0.08em; text-transform: uppercase; box-shadow: 0 4px 16px rgba(0,0,0,0.08);">⭐
+                        Featured</span>
+                    <span
+                        style="background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); padding: 0.35rem 1.2rem; border-radius: 50px; font-size: clamp(0.55rem, 0.7vw, 0.65rem); font-weight: 700; color: #f59e0b; box-shadow: 0 4px 16px rgba(0,0,0,0.08);">★
+                        4.9 (200+)</span>
+                </div>
+
+                <div
+                    style="position: absolute; bottom: clamp(1.5rem, 3vw, 2.5rem); left: clamp(1.5rem, 3vw, 2.5rem); z-index: 5; max-width: 70%;">
+                    <span
+                        style="font-size: clamp(0.6rem, 0.8vw, 0.7rem); font-weight: 600; color: rgba(255,255,255,0.60); text-transform: uppercase; letter-spacing: 0.15em; display: block; margin-bottom: 0.2rem;">Premium
+                        Dish</span>
+                    <h1
+                        style="font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 3.2rem); font-weight: 900; color: #ffffff; text-shadow: 0 4px 30px rgba(0,0,0,0.40); margin: 0; line-height: 1.1;">
+                        {{ item.item_name }}</h1>
+                </div>
+
+                <div
+                    style="position: absolute; bottom: clamp(1.5rem, 3vw, 2.5rem); right: clamp(1.5rem, 3vw, 2.5rem); z-index: 5; background: rgba(255,255,255,0.15); backdrop-filter: blur(16px); padding: 0.5rem 1.5rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.15);">
+                    <span
+                        style="font-size: clamp(0.55rem, 0.7vw, 0.65rem); font-weight: 700; color: rgba(255,255,255,0.70); text-transform: uppercase; letter-spacing: 0.1em; display: block; text-align: right;">Price</span>
+                    <span
+                        style="font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 900; color: #ffffff; text-shadow: 0 2px 20px rgba(0,0,0,0.20); display: block; line-height: 1;">${{ item.item_price }}</span>
+                </div>
+            </div>
+
+            <div style="padding: clamp(1.5rem, 4vw, 3rem);">
+
+                <div style="margin-bottom: 2rem;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+                        <span style="font-size: 1.2rem;">📖</span>
+                        <span
+                            style="font-size: 0.7rem; font-weight: 700; color: #059669; text-transform: uppercase; letter-spacing: 0.15em;">About
+                            This Dish</span>
+                    </div>
+                    <p
+                        style="font-size: clamp(0.95rem, 1.2vw, 1.1rem); color: #4b5563; line-height: 1.9; margin: 0; padding-left: 0.5rem; border-left: 3px solid #34d399; padding-left: 1rem;">
+                        {{ item.item_desc }}</p>
+                </div>
+
+                <div style="border-top: 2px solid #d1fae5; margin: 2rem 0;"></div>
+
+                <div
+                    style="display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(0.8rem, 1.5vw, 1.2rem); margin-bottom: 2rem;">
+                    <div
+                        style="background: #f0fdf4; border-radius: 16px; padding: clamp(0.8rem, 1.5vw, 1.2rem); text-align: center; border: 1px solid rgba(5,150,105,0.06);">
+                        <span style="font-size: clamp(1.5rem, 2.5vw, 2rem); display: block;">⏱️</span>
+                        <p
+                            style="font-weight: 700; color: #064e3b; margin: 0.3rem 0 0; font-size: clamp(0.8rem, 1vw, 0.95rem);">
+                            15-20 min</p>
+                        <p style="font-size: clamp(0.55rem, 0.7vw, 0.65rem); color: #6b7280; margin: 0;">Prep Time</p>
+                    </div>
+                    <div
+                        style="background: #f0fdf4; border-radius: 16px; padding: clamp(0.8rem, 1.5vw, 1.2rem); text-align: center; border: 1px solid rgba(5,150,105,0.06);">
+                        <span style="font-size: clamp(1.5rem, 2.5vw, 2rem); display: block;">👥</span>
+                        <p
+                            style="font-weight: 700; color: #064e3b; margin: 0.3rem 0 0; font-size: clamp(0.8rem, 1vw, 0.95rem);">
+                            2-3 People</p>
+                        <p style="font-size: clamp(0.55rem, 0.7vw, 0.65rem); color: #6b7280; margin: 0;">Serves</p>
+                    </div>
+                    <div
+                        style="background: #f0fdf4; border-radius: 16px; padding: clamp(0.8rem, 1.5vw, 1.2rem); text-align: center; border: 1px solid rgba(5,150,105,0.06);">
+                        <span style="font-size: clamp(1.5rem, 2.5vw, 2rem); display: block;">🔥</span>
+                        <p
+                            style="font-weight: 700; color: #064e3b; margin: 0.3rem 0 0; font-size: clamp(0.8rem, 1vw, 0.95rem);">
+                            450 kcal</p>
+                        <p style="font-size: clamp(0.55rem, 0.7vw, 0.65rem); color: #6b7280; margin: 0;">Calories</p>
+                    </div>
+                    <div
+                        style="background: #f0fdf4; border-radius: 16px; padding: clamp(0.8rem, 1.5vw, 1.2rem); text-align: center; border: 1px solid rgba(5,150,105,0.06);">
+                        <span style="font-size: clamp(1.5rem, 2.5vw, 2rem); display: block;">🏷️</span>
+                        <p
+                            style="font-weight: 700; color: #064e3b; margin: 0.3rem 0 0; font-size: clamp(0.8rem, 1vw, 0.95rem);">
+                            Main Course</p>
+                        <p style="font-size: clamp(0.55rem, 0.7vw, 0.65rem); color: #6b7280; margin: 0;">Category</p>
+                    </div>
+                </div>
+
+                <div
+                    style="background: linear-gradient(135deg, #f0fdf4, #ecfdf5); border-radius: 20px; padding: clamp(1.2rem, 3vw, 2rem); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.2rem; border: 1px solid rgba(5,150,105,0.08);">
+                    <div>
+                        <span
+                            style="font-size: 0.6rem; font-weight: 700; color: #059669; text-transform: uppercase; letter-spacing: 0.15em; display: block;">Total</span>
+                        <span
+                            style="font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; color: #047857; display: block; line-height: 1;">${{ item.item_price }}</span>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem;">
+                        <div
+                            style="display: flex; align-items: center; background: #ffffff; border-radius: 50px; padding: 0.15rem; border: 2px solid #d1fae5;">
+                            <button onclick="changeQty(-1)"
+                                style="background: none; border: none; width: clamp(32px, 3vw, 38px); height: clamp(32px, 3vw, 38px); border-radius: 50%; font-size: 1.2rem; font-weight: 700; color: #047857; cursor: pointer; display: flex; align-items: center; justify-content: center;">−</button>
+                            <span id="qtyDisplay"
+                                style="font-weight: 700; color: #064e3b; min-width: 30px; text-align: center; font-size: clamp(1rem, 1.2vw, 1.1rem);">1</span>
+                            <button onclick="changeQty(1)"
+                                style="background: none; border: none; width: clamp(32px, 3vw, 38px); height: clamp(32px, 3vw, 38px); border-radius: 50%; font-size: 1.2rem; font-weight: 700; color: #047857; cursor: pointer; display: flex; align-items: center; justify-content: center;">+</button>
+                        </div>
+                        <button id="orderBtn"
+                            style="background: linear-gradient(135deg, #059669, #047857); color: #ffffff; padding: clamp(0.6rem, 1.2vw, 0.85rem) clamp(1.5rem, 3vw, 2.5rem); border-radius: 50px; font-weight: 700; font-size: clamp(0.85rem, 1.1vw, 1rem); border: none; cursor: pointer; box-shadow: 0 8px 28px rgba(5,150,105,0.30); white-space: nowrap; display: flex; align-items: center; gap: 0.5rem;">
+                            🛒 Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div
+                    style="margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 1.2rem; justify-content: center; padding: 0.5rem;">
+                    <span
+                        style="font-size: clamp(0.7rem, 0.9vw, 0.8rem); color: #6b7280; display: flex; align-items: center; gap: 0.4rem; background: #f9fafb; padding: 0.3rem 1rem; border-radius: 50px;">✅
+                        Free Delivery</span>
+                    <span
+                        style="font-size: clamp(0.7rem, 0.9vw, 0.8rem); color: #6b7280; display: flex; align-items: center; gap: 0.4rem; background: #f9fafb; padding: 0.3rem 1rem; border-radius: 50px;">🌿
+                        Fresh Ingredients</span>
+                    <span
+                        style="font-size: clamp(0.7rem, 0.9vw, 0.8rem); color: #6b7280; display: flex; align-items: center; gap: 0.4rem; background: #f9fafb; padding: 0.3rem 1rem; border-radius: 50px;">⭐
+                        4.9 Rating</span>
                 </div>
 
             </div>
         </div>
 
+        <div style="margin-top: 2.5rem;">
+            <div
+                style="display: flex; align-items: center; gap: 0.8rem; justify-content: center; margin-bottom: 1.2rem;">
+                <span style="font-size: 1.3rem;">🍽️</span>
+                <h3
+                    style="font-family: 'Playfair Display', serif; font-size: clamp(1.1rem, 1.8vw, 1.5rem); font-weight: 700; color: #064e3b; margin: 0;">
+                    You Might Also Like</h3>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem;">
+                <a href="#"
+                    style="text-decoration: none; background: #ffffff; border-radius: 16px; padding: 1rem; text-align: center; border: 1px solid #d1fae5; transition: all 0.3s ease; display: block;">
+                    <span style="font-size: 2.8rem; display: block;">🍝</span>
+                    <p style="font-weight: 600; color: #064e3b; margin: 0.3rem 0 0; font-size: 0.8rem;">Pasta</p>
+                </a>
+                <a href="#"
+                    style="text-decoration: none; background: #ffffff; border-radius: 16px; padding: 1rem; text-align: center; border: 1px solid #d1fae5; transition: all 0.3s ease; display: block;">
+                    <span style="font-size: 2.8rem; display: block;">🥗</span>
+                    <p style="font-weight: 600; color: #064e3b; margin: 0.3rem 0 0; font-size: 0.8rem;">Salad</p>
+                </a>
+                <a href="#"
+                    style="text-decoration: none; background: #ffffff; border-radius: 16px; padding: 1rem; text-align: center; border: 1px solid #d1fae5; transition: all 0.3s ease; display: block;">
+                    <span style="font-size: 2.8rem; display: block;">🍰</span>
+                    <p style="font-weight: 600; color: #064e3b; margin: 0.3rem 0 0; font-size: 0.8rem;">Dessert</p>
+                </a>
+                <a href="#"
+                    style="text-decoration: none; background: #ffffff; border-radius: 16px; padding: 1rem; text-align: center; border: 1px solid #d1fae5; transition: all 0.3s ease; display: block;">
+                    <span style="font-size: 2.8rem; display: block;">🥤</span>
+                    <p style="font-weight: 600; color: #064e3b; margin: 0.3rem 0 0; font-size: 0.8rem;">Drinks</p>
+                </a>
+            </div>
+        </div>
+
     </div>
 </section>
+
+<script>
+    let qty = 1;
+    const qtyDisplay = document.getElementById('qtyDisplay');
+    const orderBtn = document.getElementById('orderBtn');
+    const basePrice = {
+        {
+            item.item_price
+        }
+    };
+
+    function changeQty(amount) {
+        qty = Math.max(1, qty + amount);
+        qtyDisplay.textContent = qty;
+        updateOrderButton();
+    }
+
+    function updateOrderButton() {
+        const total = (basePrice * qty).toFixed(2);
+        orderBtn.innerHTML = `🛒 Add to Cart • $${total}`;
+    }
+
+    updateOrderButton();
+</script>
 
 {% endblock %}
