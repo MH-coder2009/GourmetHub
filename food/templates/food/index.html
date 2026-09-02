@@ -6,169 +6,89 @@
 {% block content %}
 
 <!-- ============================================================ -->
-<!-- HERO BANNER SECTION -->
+<!-- HERO BANNER -->
 <!-- ============================================================ -->
-<section class="hero"
-    style="background: linear-gradient(135deg, #064e3b 0%, #065f46 30%, #047857 60%, #059669 100%); padding: 5rem 1.5rem 6rem; position: relative; overflow: hidden;">
-
-    <!-- Floating Background Shapes -->
-    <div style="position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden;">
-        <span
-            style="position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, #6ee7b7, transparent); top: -200px; right: -100px; opacity: 0.08; animation: floatShape 22s ease-in-out infinite;"></span>
-        <span
-            style="position: absolute; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, #34d399, transparent); bottom: -200px; left: -100px; opacity: 0.08; animation: floatShape 26s ease-in-out infinite reverse;"></span>
-        <span
-            style="position: absolute; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, #10b981, transparent); top: 40%; left: 40%; opacity: 0.08; animation: floatShape 30s ease-in-out infinite alternate;"></span>
+<section class="hero">
+    <div class="hero-shapes">
+        <span class="shape shape-1"></span>
+        <span class="shape shape-2"></span>
+        <span class="shape shape-3"></span>
     </div>
-
-    <style>
-        @keyframes floatShape {
-
-            0%,
-            100% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            50% {
-                transform: translate(30px, -40px) scale(1.08);
-            }
-        }
-    </style>
-
-    <div style="max-width: 1280px; margin: 0 auto; position: relative; z-index: 2;">
-        <div
-            style="display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; z-index: 3;">
-
-            <!-- Badge -->
-            <span
-                style="display: inline-block; background: rgba(255,255,255,0.08); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 0.5rem 2rem; border-radius: 50px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #a7f3d0; border: 1px solid rgba(255,255,255,0.06); margin-bottom: 1.5rem;">
-                🌟 Since 2026
-            </span>
-
-            <!-- Title -->
-            <h1
-                style="font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 10vw, 6rem); font-weight: 900; color: #ffffff; line-height: 1.08; margin-bottom: 1.25rem;">
+    <div class="container">
+        <div class="hero-content">
+            <span class="hero-badge">🌟 Since 2026</span>
+            <h1 class="hero-title">
                 Taste the<br>
-                <span
-                    style="background: linear-gradient(135deg, #6ee7b7, #34d399, #10b981); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Extraordinary</span>
+                <span class="highlight">Extraordinary</span>
             </h1>
-
-            <!-- Description -->
-            <p
-                style="font-size: clamp(1rem, 2vw, 1.4rem); color: rgba(255,255,255,0.70); max-width: 640px; font-weight: 300; line-height: 1.7; margin-bottom: 2.5rem;">
+            <p class="hero-desc">
                 Experience culinary excellence with our handcrafted dishes,
                 made from the finest ingredients and served with passion.
             </p>
-
-            <!-- Buttons -->
-            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
-                <button
-                    style="background: #ffffff; color: #064e3b; padding: 0.9rem 2.8rem; border-radius: 50px; font-weight: 700; font-size: 1rem; border: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 12px 40px rgba(0,0,0,0.20);">
-                    🍽️ Explore Menu
-                </button>
-                <button
-                    style="background: transparent; border: 2px solid rgba(255,255,255,0.20); color: #ffffff; padding: 0.9rem 2.8rem; border-radius: 50px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);">
-                    📖 Our Story
-                </button>
+            <div class="hero-buttons">
+                <button class="btn-hero-primary">🍽️ Explore Menu</button>
+                <button class="btn-hero-secondary">📖 Our Story</button>
             </div>
-
         </div>
     </div>
 </section>
 
 <!-- ============================================================ -->
-<!-- MENU SECTION -->
+<!-- MENU SECTION - RESPONSIVE FULL WIDTH -->
 <!-- ============================================================ -->
-<section style="padding: 5rem 1.5rem; background: linear-gradient(135deg, #f0fdf4, #ecfdf5, #f0fdf4);">
-    <div style="max-width: 1280px; margin: 0 auto;">
+<section class="menu-section">
+    <div class="container">
 
         <!-- Section Header -->
-        <div
-            style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 3.5rem;">
-            <span
-                style="display: inline-block; background: rgba(5,150,105,0.12); color: #047857; padding: 0.4rem 1.8rem; border-radius: 50px; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1rem;">
-                🍕 Our Collection
-            </span>
-            <h2
-                style="font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 900; color: #064e3b;">
-                Signature <span
-                    style="background: linear-gradient(135deg, #059669, #047857); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Dishes</span>
+        <div class="section-header">
+            <span class="section-tag">🍕 Our Collection</span>
+            <h2 class="section-title">
+                Signature <span class="highlight">Dishes</span>
             </h2>
-            <p
-                style="color: rgba(6,78,59,0.55); font-size: 1.05rem; max-width: 560px; margin-top: 0.5rem; font-weight: 300;">
+            <p class="section-desc">
                 Each dish is a masterpiece, crafted with love and the finest ingredients
             </p>
-            <div
-                style="width: 80px; height: 4px; background: linear-gradient(90deg, #34d399, #059669); border-radius: 4px; margin-top: 1.25rem;">
-            </div>
+            <div class="section-divider"></div>
         </div>
 
-        <!-- Menu Grid -->
-        <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
+        <!-- Responsive Grid -->
+        <div class="menu-grid">
             {% for item in items %}
-            <a href="{% url 'food:details' item.id %}" style="text-decoration: none; color: inherit;">
-                <div
-                    style="background: #ffffff; border-radius: 24px; overflow: hidden; border: 1px solid rgba(16,185,129,0.06); box-shadow: 0 4px 20px rgba(6,78,59,0.05); transition: all 0.45s cubic-bezier(0.23,1,0.32,1); display: flex; flex-direction: column;">
-                    <!-- Card Image -->
-                    <div
-                        style="height: 210px; background: linear-gradient(135deg, #34d399, #059669); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; flex-shrink: 0;">
-                        <span
-                            style="font-size: 4.5rem; opacity: 0.30; transition: all 0.5s cubic-bezier(0.23,1,0.32,1); user-select: none;">🍕</span>
-                        <div
-                            style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(6,78,59,0.45) 0%, transparent 65%); opacity: 0; transition: opacity 0.4s ease;">
-                        </div>
-                        <span
-                            style="position: absolute; top: 0.85rem; left: 0.85rem; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.6rem; font-weight: 800; color: #065f46; letter-spacing: 0.08em; text-transform: uppercase; box-shadow: 0 4px 12px rgba(0,0,0,0.06);">
-                            ⭐ Featured
+            <a href="{% url 'food:details' item.id %}" class="menu-card">
+                <div class="card-image">
+                    <span class="emoji">🍕</span>
+                    <div class="overlay"></div>
+                    <span class="card-badge">⭐ Featured</span>
+                    <span class="card-rating">★ 4.9</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{ item.item_name }}</h3>
+                    <p class="card-desc">{{ item.item_desc }}</p>
+                    <div class="card-footer">
+                        <span class="card-price">
+                            <span class="currency">$</span>{{ item.item_price }}
                         </span>
-                        <span
-                            style="position: absolute; top: 0.85rem; right: 0.85rem; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.7rem; font-weight: 700; color: #f59e0b; box-shadow: 0 4px 12px rgba(0,0,0,0.06);">
-                            ★ 4.9
-                        </span>
-                    </div>
-
-                    <!-- Card Body -->
-                    <div style="padding: 1.5rem; display: flex; flex-direction: column; flex: 1;">
-                        <h3
-                            style="font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 800; color: #064e3b; margin-bottom: 0.4rem; transition: color 0.3s ease;">
-                            {{ item.item_name }}
-                        </h3>
-                        <p
-                            style="font-size: 0.85rem; color: #6b7280; line-height: 1.6; flex: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-                            {{ item.item_desc }}
-                        </p>
-
-                        <!-- Card Footer -->
-                        <div
-                            style="margin-top: 1.25rem; padding-top: 1.25rem; border-top: 2px solid #d1fae5; display: flex; align-items: center; justify-content: space-between;">
-                            <span
-                                style="font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 900; color: #047857;">
-                                <span
-                                    style="font-size: 0.95rem; font-weight: 700; color: #059669;">$</span>{{ item.item_price }}
-                            </span>
-                            <span
-                                style="background: linear-gradient(135deg, #059669, #047857); color: #ffffff; padding: 0.5rem 1.4rem; border-radius: 50px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; transition: all 0.3s ease; box-shadow: 0 4px 16px rgba(5,150,105,0.25); cursor: pointer;">
-                                Order →
-                            </span>
-                        </div>
+                        <span class="btn-order">Order →</span>
                     </div>
                 </div>
             </a>
             {% empty %}
             <div
-                style="grid-column: 1 / -1; text-align: center; padding: 4rem 2rem; background: rgba(255,255,255,0.50); border-radius: 32px; border: 2px dashed #d1fae5;">
-                <span style="font-size: 5rem; display: block; margin-bottom: 1rem;">🌿</span>
-                <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: #064e3b;">
+                style="grid-column: 1 / -1; text-align: center; padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 3vw, 2rem); background: rgba(255,255,255,0.50); border-radius: 32px; border: 2px dashed #d1fae5;">
+                <span style="font-size: clamp(3rem, 8vw, 5rem); display: block; margin-bottom: 1rem;">🌿</span>
+                <h3
+                    style="font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: #064e3b;">
                     No Dishes Available</h3>
-                <p style="color: #6b7280; margin-top: 0.5rem;">Our menu is being refreshed. Check back soon!</p>
+                <p style="color: #6b7280; margin-top: 0.5rem; font-size: clamp(0.85rem, 1.2vw, 1rem);">Our menu is being
+                    refreshed. Check back soon!</p>
             </div>
             {% endfor %}
         </div>
 
         <!-- View All Button -->
-        <div style="display: flex; justify-content: center; margin-top: 3rem;">
-            <button
-                style="background: linear-gradient(135deg, #059669, #047857); color: #ffffff; padding: 0.9rem 3.5rem; border-radius: 50px; font-weight: 700; font-size: 1rem; border: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 28px rgba(5,150,105,0.25);">
+        <div style="display: flex; justify-content: center; margin-top: clamp(2rem, 5vw, 3rem);">
+            <button class="btn-view-all"
+                style="background: linear-gradient(135deg, #059669, #047857); color: #ffffff; padding: clamp(0.6rem, 1.2vw, 0.9rem) clamp(1.5rem, 4vw, 3.5rem); border-radius: 50px; font-weight: 700; font-size: clamp(0.8rem, 1.2vw, 1rem); border: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 28px rgba(5,150,105,0.25);">
                 🍽️ View Full Menu
             </button>
         </div>
@@ -179,145 +99,91 @@
 <!-- ============================================================ -->
 <!-- STATS SECTION -->
 <!-- ============================================================ -->
-<section style="background: linear-gradient(135deg, #064e3b, #047857); padding: 3.5rem 1.5rem;">
-    <div style="max-width: 1280px; margin: 0 auto;">
-        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
-            <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-                <span
-                    style="font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 900; color: #ffffff; line-height: 1;">15+</span>
-                <span
-                    style="color: rgba(255,255,255,0.55); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.5rem;">Expert
-                    Chefs</span>
+<section class="stats-section">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-number">15+</span>
+                <span class="stat-label">Expert Chefs</span>
             </div>
-            <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-                <span
-                    style="font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 900; color: #ffffff; line-height: 1;">4.9</span>
-                <span
-                    style="color: rgba(255,255,255,0.55); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.5rem;">Average
-                    Rating</span>
+            <div class="stat-item">
+                <span class="stat-number">4.9</span>
+                <span class="stat-label">Average Rating</span>
             </div>
-            <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-                <span
-                    style="font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 900; color: #ffffff; line-height: 1;">50+</span>
-                <span
-                    style="color: rgba(255,255,255,0.55); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.5rem;">Signature
-                    Dishes</span>
+            <div class="stat-item">
+                <span class="stat-number">50+</span>
+                <span class="stat-label">Signature Dishes</span>
             </div>
-            <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-                <span
-                    style="font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 900; color: #ffffff; line-height: 1;">2K+</span>
-                <span
-                    style="color: rgba(255,255,255,0.55); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.5rem;">Happy
-                    Customers</span>
+            <div class="stat-item">
+                <span class="stat-number">2K+</span>
+                <span class="stat-label">Happy Customers</span>
             </div>
         </div>
     </div>
 </section>
 
 <!-- ============================================================ -->
-<!-- TESTIMONIALS SECTION -->
+<!-- TESTIMONIALS -->
 <!-- ============================================================ -->
-<section style="padding: 5rem 1.5rem; background: #ffffff;">
-    <div style="max-width: 1280px; margin: 0 auto;">
-
-        <!-- Section Header -->
-        <div
-            style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 3.5rem;">
-            <span
-                style="display: inline-block; background: rgba(5,150,105,0.12); color: #047857; padding: 0.4rem 1.8rem; border-radius: 50px; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1rem;">
-                💬 Testimonials
-            </span>
-            <h2
-                style="font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 900; color: #064e3b;">
-                What Our <span
-                    style="background: linear-gradient(135deg, #059669, #047857); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Guests
-                    Say</span>
+<section class="testimonials-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">💬 Testimonials</span>
+            <h2 class="section-title">
+                What Our <span class="highlight">Guests Say</span>
             </h2>
         </div>
-
-        <!-- Testimonials Grid -->
-        <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
-            <div
-                style="background: #fafef9; border-radius: 20px; padding: 2rem; border: 1px solid rgba(16,185,129,0.06); transition: all 0.3s ease; display: flex; flex-direction: column;">
-                <div style="color: #f59e0b; font-size: 1.1rem; letter-spacing: 2px; margin-bottom: 0.75rem;">★★★★★</div>
-                <p style="font-size: 0.95rem; color: #374151; line-height: 1.7; font-style: italic; flex: 1;">
-                    "Absolutely incredible! The flavors are out of this world. Best dining experience I've ever had."
-                </p>
-                <div
-                    style="display: flex; align-items: center; gap: 1rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #f3f4f6;">
-                    <div
-                        style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #34d399, #059669); display: flex; align-items: center; justify-content: center; color: #ffffff; font-weight: 700; font-size: 1rem; flex-shrink: 0;">
-                        JD</div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="quote">"Absolutely incredible! The flavors are out of this world. Best dining experience I've
+                    ever had."</p>
+                <div class="author">
+                    <div class="avatar">JD</div>
                     <div>
-                        <div style="font-weight: 700; color: #064e3b; font-size: 0.95rem;">John Doe</div>
-                        <div style="font-size: 0.75rem; color: #9ca3af;">Food Critic</div>
+                        <div class="name">John Doe</div>
+                        <div class="role">Food Critic</div>
                     </div>
                 </div>
             </div>
-
-            <div
-                style="background: #fafef9; border-radius: 20px; padding: 2rem; border: 1px solid rgba(16,185,129,0.06); transition: all 0.3s ease; display: flex; flex-direction: column;">
-                <div style="color: #f59e0b; font-size: 1.1rem; letter-spacing: 2px; margin-bottom: 0.75rem;">★★★★★</div>
-                <p style="font-size: 0.95rem; color: #374151; line-height: 1.7; font-style: italic; flex: 1;">
-                    "The attention to detail in every dish is remarkable. A true gem for food lovers."
-                </p>
-                <div
-                    style="display: flex; align-items: center; gap: 1rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #f3f4f6;">
-                    <div
-                        style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #34d399, #059669); display: flex; align-items: center; justify-content: center; color: #ffffff; font-weight: 700; font-size: 1rem; flex-shrink: 0;">
-                        SM</div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="quote">"The attention to detail in every dish is remarkable. A true gem for food lovers."</p>
+                <div class="author">
+                    <div class="avatar">SM</div>
                     <div>
-                        <div style="font-weight: 700; color: #064e3b; font-size: 0.95rem;">Sarah Mitchell</div>
-                        <div style="font-size: 0.75rem; color: #9ca3af;">Regular Guest</div>
+                        <div class="name">Sarah Mitchell</div>
+                        <div class="role">Regular Guest</div>
                     </div>
                 </div>
             </div>
-
-            <div
-                style="background: #fafef9; border-radius: 20px; padding: 2rem; border: 1px solid rgba(16,185,129,0.06); transition: all 0.3s ease; display: flex; flex-direction: column;">
-                <div style="color: #f59e0b; font-size: 1.1rem; letter-spacing: 2px; margin-bottom: 0.75rem;">★★★★★</div>
-                <p style="font-size: 0.95rem; color: #374151; line-height: 1.7; font-style: italic; flex: 1;">
-                    "Perfect ambiance, impeccable service, and food that tells a story. Highly recommended!"
-                </p>
-                <div
-                    style="display: flex; align-items: center; gap: 1rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #f3f4f6;">
-                    <div
-                        style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #34d399, #059669); display: flex; align-items: center; justify-content: center; color: #ffffff; font-weight: 700; font-size: 1rem; flex-shrink: 0;">
-                        AR</div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="quote">"Perfect ambiance, impeccable service, and food that tells a story. Highly
+                    recommended!"</p>
+                <div class="author">
+                    <div class="avatar">AR</div>
                     <div>
-                        <div style="font-weight: 700; color: #064e3b; font-size: 0.95rem;">Alex Rivera</div>
-                        <div style="font-size: 0.75rem; color: #9ca3af;">Chef &amp; Blogger</div>
+                        <div class="name">Alex Rivera</div>
+                        <div class="role">Chef &amp; Blogger</div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 </section>
 
 <!-- ============================================================ -->
-<!-- NEWSLETTER SECTION -->
+<!-- NEWSLETTER -->
 <!-- ============================================================ -->
-<section
-    style="background: linear-gradient(135deg, #d1fae5, #a7f3d0); padding: 4rem 1.5rem; border-radius: 60px 60px 0 0;">
-    <div
-        style="max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center;">
-        <span style="font-size: 3.5rem; display: block; margin-bottom: 1rem;">📬</span>
-        <h3
-            style="font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900; color: #064e3b;">
-            Join Our <span
-                style="background: linear-gradient(135deg, #059669, #047857); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Community</span>
-        </h3>
-        <p style="color: rgba(6,78,59,0.60); font-size: 1rem; margin: 0.5rem 0 1.8rem;">
-            Subscribe for exclusive offers, new menu alerts, and special events.
-        </p>
-        <form style="display: flex; flex-wrap: wrap; gap: 0.75rem; width: 100%; justify-content: center;">
-            <input type="email" placeholder="Enter your email address" required
-                style="flex: 1; min-width: 220px; padding: 0.9rem 1.5rem; border-radius: 50px; border: 2px solid rgba(5,150,105,0.15); outline: none; font-size: 0.95rem; font-weight: 500; color: #064e3b; background: rgba(255,255,255,0.70); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: border-color 0.3s ease;">
-            <button type="submit"
-                style="background: linear-gradient(135deg, #059669, #047857); color: #ffffff; padding: 0.9rem 2.5rem; border-radius: 50px; font-weight: 700; font-size: 0.95rem; border: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 28px rgba(5,150,105,0.25); white-space: nowrap;">
-                Subscribe →
-            </button>
+<section class="newsletter-section">
+    <div class="container">
+        <span class="icon">📬</span>
+        <h3>Join Our <span>Community</span></h3>
+        <p>Subscribe for exclusive offers, new menu alerts, and special events.</p>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit">Subscribe →</button>
         </form>
     </div>
 </section>

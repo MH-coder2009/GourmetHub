@@ -5,7 +5,7 @@ from . import views
 app_name = "food"
 
 urlpatterns = [
-    path("", views.index),
+    path("", views.index, name="index"),
     path("username/", views.item),
     path("<int:id>/", views.details, name="details"),
 ]
