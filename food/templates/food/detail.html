@@ -1,25 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+{% block title %}{{ item.item_name }} - Gourmet Food Hub{% endblock %}
 
-<body bgcolor="aque">
-    <h1>This is the details page</h1>
-    <div>
-        <h2>
-            {{item.item_name}}
-        </h2>
-        <p>
-            {{item.item_desc}}
-        </p>
-        <span>
-            {{item.item_price}}
-        </span>
+{% block content %}
+
+<!-- ============================================================ -->
+<!-- DETAILS PAGE -->
+<!-- ============================================================ -->
+<section
+    style="padding: 5rem 1.5rem; background: linear-gradient(135deg, #f0fdf4, #ecfdf5, #f0fdf4); min-height: 80vh; display: flex; align-items: center;">
+    <div style="max-width: 1024px; margin: 0 auto; width: 100%;">
+
+        <div
+            style="background: #ffffff; border-radius: 32px; box-shadow: 0 20px 60px rgba(6,78,59,0.10); overflow: hidden;">
+
+            <!-- Image Header -->
+            <div
+                style="height: 300px; background: linear-gradient(135deg, #34d399, #059669); display: flex; align-items: center; justify-content: center; position: relative;">
+                <span style="font-size: 8rem; opacity: 0.15; user-select: none;">🍕</span>
+                <span
+                    style="position: absolute; top: 1.5rem; left: 1.5rem; background: rgba(255,255,255,0.90); backdrop-filter: blur(8px); padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.75rem; font-weight: 800; color: #047857; letter-spacing: 0.1em; text-transform: uppercase; box-shadow: 0 4px 16px rgba(0,0,0,0.06);">
+                    ⭐ Featured
+                </span>
+                <span
+                    style="position: absolute; top: 1.5rem; right: 1.5rem; background: rgba(255,255,255,0.90); backdrop-filter: blur(8px); padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.9rem; font-weight: 700; color: #f59e0b; box-shadow: 0 4px 16px rgba(0,0,0,0.06);">
+                    ★ 4.9
+                </span>
+            </div>
+
+            <!-- Content -->
+            <div style="padding: 2.5rem 3rem;">
+
+                <!-- Title -->
+                <h1
+                    style="font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; color: #064e3b; margin-bottom: 0.5rem;">
+                    {{ item.item_name }}
+                </h1>
+
+                <!-- Category Badge -->
+                <span
+                    style="display: inline-block; background: rgba(5,150,105,0.10); color: #047857; padding: 0.25rem 1.2rem; border-radius: 50px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1.5rem;">
+                    🍽️ Main Course
+                </span>
+
+                <!-- Description -->
+                <p style="font-size: 1.1rem; color: #4b5563; line-height: 1.8; margin-bottom: 2rem;">
+                    {{ item.item_desc }}
+                </p>
+
+                <!-- Divider -->
+                <div
+                    style="border-top: 2px solid #d1fae5; padding-top: 1.5rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem;">
+
+                    <!-- Price -->
+                    <div>
+                        <span
+                            style="font-size: 0.8rem; font-weight: 600; color: #059669; text-transform: uppercase; letter-spacing: 0.1em;">Price</span>
+                        <div
+                            style="font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900; color: #047857;">
+                            ${{ item.item_price }}
+                        </div>
+                    </div>
+
+                    <!-- Order Button -->
+                    <button
+                        style="background: linear-gradient(135deg, #059669, #047857); color: #ffffff; padding: 1rem 3rem; border-radius: 50px; font-weight: 700; font-size: 1.1rem; border: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 28px rgba(5,150,105,0.25);">
+                        🛒 Order Now
+                    </button>
+
+                </div>
+
+                <!-- Back Link -->
+                <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 2px solid #d1fae5;">
+                    <a href="{% url 'food:index' %}"
+                        style="color: #059669; font-weight: 600; text-decoration: none; transition: color 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
+                        ← Back to Menu
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
     </div>
-</body>
+</section>
 
-</html>
+{% endblock %}
