@@ -135,14 +135,15 @@
                     ">
                         <!-- ===== IMAGE - SMALLER ===== -->
                         <div style="
-                            position: relative;
-                            width: 100%;
-                            aspect-ratio: 16/9;
-                            overflow: hidden;
-                            flex-shrink: 0;
-                            background: #d1fae5;
-                        ">
+                        position: relative;
+                        width: 100%;
+                        aspect-ratio: 16/9;
+                        overflow: hidden;
+                        flex-shrink: 0;
+                        background: #d1fae5;
+                    ">
                             {% if item.item_image %}
+
                             <img src="{{ item.item_image }}" alt="{{ item.item_name }}"
                                 style="width: 100%; height: 100%; object-fit: cover; object-position: center; position: absolute; inset: 0;">
                             {% else %}
@@ -153,71 +154,73 @@
                             </div>
                             {% endif %}
 
-                            <!-- Hover Overlay -->
-                            <div
-                                style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(6,78,59,0.40) 0%, transparent 50%); opacity: 0; transition: opacity 0.3s ease; z-index: 2;">
-                            </div>
-
-                            <!-- Badges -->
-                            <span
-                                style="position: absolute; top: 0.5rem; left: 0.5rem; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); padding: 0.2rem 0.7rem; border-radius: 50px; font-size: clamp(0.4rem, 0.5vw, 0.5rem); font-weight: 800; color: #065f46; letter-spacing: 0.06em; text-transform: uppercase; box-shadow: 0 2px 8px rgba(0,0,0,0.06); z-index: 3;">
-                                ⭐ Featured
-                            </span>
-                            <span
-                                style="position: absolute; top: 0.5rem; right: 0.5rem; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); padding: 0.2rem 0.7rem; border-radius: 50px; font-size: clamp(0.45rem, 0.55vw, 0.55rem); font-weight: 700; color: #f59e0b; box-shadow: 0 2px 8px rgba(0,0,0,0.06); z-index: 3;">
-                                ★ 4.9
-                            </span>
                         </div>
 
-                        <!-- ===== CARD BODY - SMALLER ===== -->
+                        <!-- Hover Overlay -->
                         <div
-                            style="padding: clamp(0.6rem, 1.2vw, 0.9rem); display: flex; flex-direction: column; flex: 1; width: 100%;">
-                            <h3
-                                style="font-family: 'Playfair Display', serif; font-size: clamp(0.9rem, 1.2vw, 1rem); font-weight: 800; color: #064e3b; margin-bottom: 0.2rem; line-height: 1.2;">
-                                {{ item.item_name }}
-                            </h3>
-                            <p
-                                style="font-size: clamp(0.7rem, 0.85vw, 0.75rem); color: #6b7280; line-height: 1.5; flex: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-                                {{ item.item_desc }}
-                            </p>
+                            style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(6,78,59,0.40) 0%, transparent 50%); opacity: 0; transition: opacity 0.3s ease; z-index: 2;">
+                        </div>
 
-                            <!-- ===== CARD FOOTER - SMALLER ===== -->
-                            <div
-                                style="margin-top: clamp(0.5rem, 1vw, 0.7rem); padding-top: clamp(0.5rem, 1vw, 0.7rem); border-top: 1.5px solid #d1fae5; display: flex; align-items: center; justify-content: space-between; width: 100%; flex-wrap: wrap; gap: 0.3rem;">
+                        <!-- Badges -->
+                        <span
+                            style="position: absolute; top: 0.5rem; left: 0.5rem; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); padding: 0.2rem 0.7rem; border-radius: 50px; font-size: clamp(0.4rem, 0.5vw, 0.5rem); font-weight: 800; color: #065f46; letter-spacing: 0.06em; text-transform: uppercase; box-shadow: 0 2px 8px rgba(0,0,0,0.06); z-index: 3;">
+                            ⭐ Featured
+                        </span>
+                        <span
+                            style="position: absolute; top: 0.5rem; right: 0.5rem; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); padding: 0.2rem 0.7rem; border-radius: 50px; font-size: clamp(0.45rem, 0.55vw, 0.55rem); font-weight: 700; color: #f59e0b; box-shadow: 0 2px 8px rgba(0,0,0,0.06); z-index: 3;">
+                            ★ 4.9
+                        </span>
+                    </div>
+
+                    <!-- ===== CARD BODY - SMALLER ===== -->
+                    <div
+                        style="padding: clamp(0.6rem, 1.2vw, 0.9rem); display: flex; flex-direction: column; flex: 1; width: 100%;">
+                        <h3
+                            style="font-family: 'Playfair Display', serif; font-size: clamp(0.9rem, 1.2vw, 1rem); font-weight: 800; color: #064e3b; margin-bottom: 0.2rem; line-height: 1.2;">
+                            {{ item.item_name }}
+                        </h3>
+                        <p
+                            style="font-size: clamp(0.7rem, 0.85vw, 0.75rem); color: #6b7280; line-height: 1.5; flex: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                            {{ item.item_desc }}
+                        </p>
+
+                        <!-- ===== CARD FOOTER - SMALLER ===== -->
+                        <div
+                            style="margin-top: clamp(0.5rem, 1vw, 0.7rem); padding-top: clamp(0.5rem, 1vw, 0.7rem); border-top: 1.5px solid #d1fae5; display: flex; align-items: center; justify-content: space-between; width: 100%; flex-wrap: wrap; gap: 0.3rem;">
+                            <span
+                                style="font-family: 'Playfair Display', serif; font-size: clamp(1rem, 1.5vw, 1.2rem); font-weight: 900; color: #047857;">
                                 <span
-                                    style="font-family: 'Playfair Display', serif; font-size: clamp(1rem, 1.5vw, 1.2rem); font-weight: 900; color: #047857;">
-                                    <span
-                                        style="font-size: clamp(0.6rem, 0.8vw, 0.7rem); font-weight: 700; color: #059669;">$</span>{{ item.item_price }}
-                                </span>
-                                <span
-                                    style="background: linear-gradient(135deg, #059669, #047857); color: #ffffff; padding: clamp(0.2rem, 0.4vw, 0.35rem) clamp(0.6rem, 1vw, 0.9rem); border-radius: 50px; font-size: clamp(0.5rem, 0.6vw, 0.6rem); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; box-shadow: 0 2px 10px rgba(5,150,105,0.20); cursor: pointer; transition: all 0.3s ease; white-space: nowrap;">
-                                    Order →
-                                </span>
-                            </div>
+                                    style="font-size: clamp(0.6rem, 0.8vw, 0.7rem); font-weight: 700; color: #059669;">$</span>{{ item.item_price }}
+                            </span>
+                            <span
+                                style="background: linear-gradient(135deg, #059669, #047857); color: #ffffff; padding: clamp(0.2rem, 0.4vw, 0.35rem) clamp(0.6rem, 1vw, 0.9rem); border-radius: 50px; font-size: clamp(0.5rem, 0.6vw, 0.6rem); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; box-shadow: 0 2px 10px rgba(5,150,105,0.20); cursor: pointer; transition: all 0.3s ease; white-space: nowrap;">
+                                Order →
+                            </span>
                         </div>
                     </div>
-                </a>
-                {% empty %}
-                <div
-                    style="grid-column: 1 / -1; text-align: center; padding: clamp(2rem, 4vw, 3rem) clamp(1rem, 3vw, 1.5rem); background: rgba(255,255,255,0.50); border-radius: 24px; border: 2px dashed #d1fae5;">
-                    <span style="font-size: clamp(3rem, 6vw, 4rem); display: block; margin-bottom: 0.8rem;">🌿</span>
-                    <h3
-                        style="font-family: 'Playfair Display', serif; font-size: clamp(1.3rem, 2.5vw, 1.8rem); font-weight: 700; color: #064e3b;">
-                        No Dishes Available</h3>
-                    <p style="color: #6b7280; margin-top: 0.3rem; font-size: clamp(0.8rem, 1vw, 0.9rem);">Our menu is
-                        being refreshed. Check back soon!</p>
-                </div>
-                {% endfor %}
             </div>
+            </a>
+            {% empty %}
+            <div
+                style="grid-column: 1 / -1; text-align: center; padding: clamp(2rem, 4vw, 3rem) clamp(1rem, 3vw, 1.5rem); background: rgba(255,255,255,0.50); border-radius: 24px; border: 2px dashed #d1fae5;">
+                <span style="font-size: clamp(3rem, 6vw, 4rem); display: block; margin-bottom: 0.8rem;">🌿</span>
+                <h3
+                    style="font-family: 'Playfair Display', serif; font-size: clamp(1.3rem, 2.5vw, 1.8rem); font-weight: 700; color: #064e3b;">
+                    No Dishes Available</h3>
+                <p style="color: #6b7280; margin-top: 0.3rem; font-size: clamp(0.8rem, 1vw, 0.9rem);">Our menu is
+                    being refreshed. Check back soon!</p>
+            </div>
+            {% endfor %}
         </div>
+    </div>
 
-        <!-- View All Button -->
-        <div style="display: flex; justify-content: center; margin-top: clamp(1.5rem, 3vw, 2.5rem);">
-            <button
-                style="background: linear-gradient(135deg, #059669, #047857); color: #ffffff; padding: clamp(0.5rem, 1vw, 0.75rem) clamp(1.5rem, 3vw, 2.5rem); border-radius: 50px; font-weight: 700; font-size: clamp(0.75rem, 1vw, 0.9rem); border: none; cursor: pointer; box-shadow: 0 4px 20px rgba(5,150,105,0.20); transition: transform 0.3s ease;">
-                🍽️ View Full Menu
-            </button>
-        </div>
+    <!-- View All Button -->
+    <div style="display: flex; justify-content: center; margin-top: clamp(1.5rem, 3vw, 2.5rem);">
+        <button
+            style="background: linear-gradient(135deg, #059669, #047857); color: #ffffff; padding: clamp(0.5rem, 1vw, 0.75rem) clamp(1.5rem, 3vw, 2.5rem); border-radius: 50px; font-weight: 700; font-size: clamp(0.75rem, 1vw, 0.9rem); border: none; cursor: pointer; box-shadow: 0 4px 20px rgba(5,150,105,0.20); transition: transform 0.3s ease;">
+            🍽️ View Full Menu
+        </button>
+    </div>
 
     </div>
 </section>

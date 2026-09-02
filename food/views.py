@@ -1,5 +1,7 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
+
+from .forms import ItemForm
 from .models import Item
 
 
@@ -10,10 +12,19 @@ def index(request):
 
 
 def details(request, id):
-    item = Item.objects.get(id=id)
+    item = get_object_or_404(Item, id=id)
     context = {"item": item}
-    return render(request, "food/detail.html", context)
+    return render(request, "food/details.html", context)
 
 
-def item(request):
-    return HttpResponse("hello")
+def create_item(request):
+    if request.method == "POST":
+        form = ItemForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("food:index")
+    else:
+        form = ItemForm()
+
+    context = {"form": form}
+    return render(request, "food/item-form.html", context)
