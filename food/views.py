@@ -39,5 +39,9 @@ def update_item(request, id):
     else:
         form = ItemForm(instance=item)
 
-    context = {"form": form, "item": item}
+    context = {"form": form}
     return render(request, "food/item-form.html", context)
+
+
+def delete_item(request, id):
+    render(request, "food/item-delete.html")
