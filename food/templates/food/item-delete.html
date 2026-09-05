@@ -36,7 +36,7 @@
 
             <!-- ===== ITEM PREVIEW ===== -->
             <div
-                style="background: #f9fafb; border-radius: 16px; padding: 1rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; border: 1px solid #f3f4f6;">
+                style="background: #f9fafb; border-radius: 16px; padding: 1rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; border: 1px solid #f3f4f6; text-align: left;">
                 <div
                     style="width: 60px; height: 60px; border-radius: 12px; background: linear-gradient(135deg, #34d399, #059669); flex-shrink: 0; display: flex; align-items: center; justify-content: center; overflow: hidden;">
                     {% if item.item_image %}
@@ -46,7 +46,7 @@
                     <span style="font-size: 1.8rem;">🍕</span>
                     {% endif %}
                 </div>
-                <div style="text-align: left;">
+                <div>
                     <p style="font-weight: 700; color: #064e3b; margin: 0; font-size: 1rem;">{{ item.item_name }}</p>
                     <p style="color: #6b7280; font-size: 0.85rem; margin: 0;">${{ item.item_price }}</p>
                 </div>
@@ -65,7 +65,7 @@
             <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
 
                 <!-- Delete Button (Danger) -->
-                <form method="POST" style="display: inline-block; flex: 1; min-width: 140px;">
+                <form method="POST" style="display: inline-block; flex: 1; min-width: 140px; margin: 0;">
                     {% csrf_token %}
                     <button type="submit"
                         style="width: 100%; background: linear-gradient(135deg, #dc2626, #b91c1c); color: #ffffff; padding: 0.85rem 2rem; border-radius: 50px; font-weight: 700; font-size: 1rem; border: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(220, 38, 38, 0.30);">
@@ -75,7 +75,7 @@
 
                 <!-- Cancel Button -->
                 <a href="{% url 'food:index' %}"
-                    style="flex: 1; min-width: 140px; background: #f3f4f6; color: #4b5563; padding: 0.85rem 2rem; border-radius: 50px; font-weight: 700; font-size: 1rem; text-decoration: none; text-align: center; transition: all 0.3s ease; border: none; cursor: pointer; display: inline-block;">
+                    style="flex: 1; min-width: 140px; background: #f3f4f6; color: #4b5563; padding: 0.85rem 2rem; border-radius: 50px; font-weight: 700; font-size: 1rem; text-decoration: none; text-align: center; transition: all 0.3s ease; display: inline-block; border: none; cursor: pointer;">
                     ✕ Cancel
                 </a>
             </div>
@@ -95,10 +95,9 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- JAVASCRIPT FOR CONFIRMATION (Optional) -->
+<!-- JAVASCRIPT FOR CONFIRMATION -->
 <!-- ============================================================ -->
 <script>
-    // Optional: Add extra confirmation before submit
     document.querySelector('form').addEventListener('submit', function (e) {
         const confirmed = confirm('⚠️ Are you sure you want to delete "{{ item.item_name }}" permanently?');
         if (!confirmed) {
