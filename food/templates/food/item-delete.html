@@ -5,87 +5,82 @@
 
 {% block content %}
 
-<!-- ============================================================ -->
-<!-- DELETE MODAL - FULL PAGE -->
-<!-- ============================================================ -->
 <section
-    style="min-height: 80vh; display: flex; align-items: center; justify-content: center; padding: clamp(1.5rem, 4vw, 3rem); background: linear-gradient(135deg, #f0fdf4, #ecfdf5, #f0fdf4);">
+    style="min-height: 80vh; display: flex; align-items: center; justify-content: center; padding: clamp(1rem, 3vw, 2rem); background: linear-gradient(135deg, #f0fdf4, #ecfdf5, #f0fdf4);">
 
-    <div style="max-width: 480px; width: 100%; margin: 0 auto;">
+    <div style="max-width: 480px; width: 100%;">
 
-        <!-- ===== DELETE CARD ===== -->
         <div
-            style="background: #ffffff; border-radius: 28px; padding: clamp(2rem, 4vw, 3rem); box-shadow: 0 20px 60px rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.06); text-align: center;">
+            style="background: #ffffff; border-radius: 24px; padding: 2rem; box-shadow: 0 20px 60px rgba(0,0,0,0.08); border: 1px solid #f3f4f6; text-align: center;">
 
-            <!-- ===== ICON ===== -->
+            <!-- Icon -->
             <div
-                style="width: 80px; height: 80px; border-radius: 50%; background: #fef2f2; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; border: 2px solid #fecaca;">
-                <span style="font-size: 2.8rem;">⚠️</span>
+                style="width: 72px; height: 72px; border-radius: 50%; background: #fef2f2; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem; border: 2px solid #fecaca;">
+                <span style="font-size: 2.4rem;">🗑️</span>
             </div>
 
-            <!-- ===== TITLE ===== -->
+            <!-- Title -->
             <h1
-                style="font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 900; color: #dc2626; margin-bottom: 0.5rem;">
+                style="font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900; color: #dc2626; margin-bottom: 0.5rem;">
                 Delete Item
             </h1>
 
-            <p style="color: #6b7280; font-size: clamp(0.95rem, 1.1vw, 1.05rem); margin-bottom: 1.5rem;">
+            <p style="color: #6b7280; font-size: 1rem; margin-bottom: 1.5rem;">
                 Are you sure you want to delete <br>
-                <strong style="color: #064e3b; font-size: 1.2rem;">"{{ item.item_name }}"</strong>?
+                <strong style="color: #064e3b; font-size: 1.1rem;">"{{ item.item_name }}"</strong>?
             </p>
 
-            <!-- ===== ITEM PREVIEW ===== -->
+            <!-- Item Preview -->
             <div
-                style="background: #f9fafb; border-radius: 16px; padding: 1rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; border: 1px solid #f3f4f6; text-align: left;">
+                style="background: #f9fafb; border-radius: 12px; padding: 0.8rem 1rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.8rem; border: 1px solid #f3f4f6;">
                 <div
-                    style="width: 60px; height: 60px; border-radius: 12px; background: linear-gradient(135deg, #34d399, #059669); flex-shrink: 0; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                    style="width: 50px; height: 50px; border-radius: 10px; background: linear-gradient(135deg, #34d399, #059669); flex-shrink: 0; display: flex; align-items: center; justify-content: center; overflow: hidden;">
                     {% if item.item_image %}
                     <img src="{{ item.item_image }}" alt="{{ item.item_name }}"
                         style="width: 100%; height: 100%; object-fit: cover;">
                     {% else %}
-                    <span style="font-size: 1.8rem;">🍕</span>
+                    <span style="font-size: 1.5rem;">🍕</span>
                     {% endif %}
                 </div>
-                <div>
-                    <p style="font-weight: 700; color: #064e3b; margin: 0; font-size: 1rem;">{{ item.item_name }}</p>
-                    <p style="color: #6b7280; font-size: 0.85rem; margin: 0;">${{ item.item_price }}</p>
+                <div style="text-align: left;">
+                    <p style="font-weight: 700; color: #064e3b; margin: 0; font-size: 0.95rem;">{{ item.item_name }}</p>
+                    <p style="color: #6b7280; font-size: 0.8rem; margin: 0;">${{ item.item_price }}</p>
                 </div>
             </div>
 
-            <!-- ===== WARNING TEXT ===== -->
+            <!-- Warning -->
             <div
-                style="background: #fef2f2; border-radius: 12px; padding: 0.8rem 1rem; margin-bottom: 2rem; border-left: 4px solid #dc2626;">
-                <p
-                    style="color: #dc2626; font-size: 0.85rem; margin: 0; display: flex; align-items: center; gap: 0.5rem; justify-content: center;">
-                    <span>⛔</span> This action <strong>cannot be undone</strong>!
+                style="background: #fef2f2; border-radius: 10px; padding: 0.6rem 1rem; margin-bottom: 1.5rem; border-left: 4px solid #dc2626;">
+                <p style="color: #dc2626; font-size: 0.8rem; margin: 0;">
+                    ⛔ This action <strong>cannot be undone</strong>!
                 </p>
             </div>
 
             <!-- ===== BUTTONS ===== -->
-            <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+            <div
+                style="display: flex; flex-direction: row; gap: 0.8rem; justify-content: center; align-items: center; width: 100%;">
 
-                <!-- Delete Button (Danger) -->
-                <form method="POST" style="display: inline-block; flex: 1; min-width: 140px; margin: 0;">
+                <!-- Delete Button -->
+                <form method="POST" style="display: block; width: 50%; margin: 0;">
                     {% csrf_token %}
                     <button type="submit"
-                        style="width: 100%; background: linear-gradient(135deg, #dc2626, #b91c1c); color: #ffffff; padding: 0.85rem 2rem; border-radius: 50px; font-weight: 700; font-size: 1rem; border: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(220, 38, 38, 0.30);">
-                        🗑️ Yes, Delete
+                        style="width: 100%; background: #dc2626; color: #ffffff; padding: 0.7rem 1.5rem; border-radius: 50px; font-weight: 700; font-size: 0.9rem; border: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 16px rgba(220, 38, 38, 0.25);">
+                        🗑️ Delete
                     </button>
                 </form>
 
                 <!-- Cancel Button -->
                 <a href="{% url 'food:index' %}"
-                    style="flex: 1; min-width: 140px; background: #f3f4f6; color: #4b5563; padding: 0.85rem 2rem; border-radius: 50px; font-weight: 700; font-size: 1rem; text-decoration: none; text-align: center; transition: all 0.3s ease; display: inline-block; border: none; cursor: pointer;">
-                    ✕ Cancel
+                    style="display: block; width: 50%; background: #e5e7eb; color: #4b5563; padding: 0.7rem 1.5rem; border-radius: 50px; font-weight: 700; font-size: 0.9rem; text-decoration: none; text-align: center; transition: all 0.3s ease; border: none; cursor: pointer;">
+                    Cancel
                 </a>
             </div>
 
         </div>
 
-        <!-- ===== BACK LINK ===== -->
-        <div style="text-align: center; margin-top: 1.5rem;">
-            <a href="{% url 'food:index' %}"
-                style="color: #6b7280; font-size: 0.9rem; text-decoration: none; transition: color 0.3s ease;">
+        <!-- Back Link -->
+        <div style="text-align: center; margin-top: 1rem;">
+            <a href="{% url 'food:index' %}" style="color: #9ca3af; font-size: 0.85rem; text-decoration: none;">
                 ← Back to Menu
             </a>
         </div>
@@ -94,9 +89,6 @@
 
 </section>
 
-<!-- ============================================================ -->
-<!-- JAVASCRIPT FOR CONFIRMATION -->
-<!-- ============================================================ -->
 <script>
     document.querySelector('form').addEventListener('submit', function (e) {
         const confirmed = confirm('⚠️ Are you sure you want to delete "{{ item.item_name }}" permanently?');
