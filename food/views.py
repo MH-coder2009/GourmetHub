@@ -44,11 +44,11 @@ def update_item(request, id):
 
 
 def delete_item(request, id):
-    item = get_object_or_404(item, id=id)
+    item = get_object_or_404(Item, id=id)
 
     if request.method == "POST":
         item.delete()
         return redirect("food:index")
 
     context = {"item": item}
-    render(request, "food/item-delete.html", context)
+    return render(request, "food/item-delete.html", context)
