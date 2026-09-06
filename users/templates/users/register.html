@@ -5,104 +5,404 @@
 
 {% block content %}
 
+<style>
+    .register-container {
+        max-width: 440px;
+        width: 100%;
+        margin: 0 auto;
+        background: #ffffff;
+        border-radius: 24px;
+        padding: 2.5rem 2rem;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+    }
+
+    .register-container .header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .register-container .header .icon {
+        font-size: 2.5rem;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .register-container .header h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.8rem;
+        font-weight: 900;
+        color: #064e3b;
+        margin: 0;
+    }
+
+    .register-container .header p {
+        color: #6b7280;
+        font-size: 0.9rem;
+        margin-top: 0.3rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: 700;
+        font-size: 0.85rem;
+        color: #064e3b;
+        margin-bottom: 0.4rem;
+    }
+
+    .form-group label .required {
+        color: #ef4444;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 0.8rem 1rem;
+        border: 2px solid #e5e7eb;
+        border-radius: 12px;
+        font-size: 0.95rem;
+        outline: none;
+        background: #fafafa;
+        transition: all 0.3s ease;
+        box-sizing: border-box;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .form-group input:focus {
+        border-color: #059669;
+        background: #ffffff;
+        box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.08);
+    }
+
+    .form-group .error-input {
+        border-color: #dc2626 !important;
+        background: #fef2f2 !important;
+    }
+
+    .form-group .help-text {
+        color: #9ca3af;
+        font-size: 0.75rem;
+        margin-top: 0.3rem;
+        display: block;
+    }
+
+    .form-group .error-text {
+        color: #dc2626;
+        font-size: 0.8rem;
+        margin-top: 0.3rem;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+    }
+
+    .messages-container {
+        border-radius: 12px;
+        padding: 0.8rem 1rem;
+        margin-bottom: 1.5rem;
+        border: 1px solid;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .messages-container.success {
+        background: #d1fae5;
+        border-color: #6ee7b7;
+        color: #065f46;
+    }
+
+    .messages-container.error {
+        background: #fef2f2;
+        border-color: #fecaca;
+        color: #dc2626;
+    }
+
+    .messages-container p {
+        margin: 0;
+        font-size: 0.9rem;
+    }
+
+    .btn-submit {
+        width: 100%;
+        background: linear-gradient(135deg, #059669, #047857);
+        color: #ffffff;
+        padding: 0.9rem;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 1rem;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 20px rgba(5, 150, 105, 0.30);
+        font-family: 'Inter', sans-serif;
+    }
+
+    .btn-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(5, 150, 105, 0.40);
+    }
+
+    .btn-submit:active {
+        transform: translateY(0) scale(0.98);
+    }
+
+    .login-link {
+        text-align: center;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #f3f4f6;
+    }
+
+    .login-link p {
+        color: #6b7280;
+        font-size: 0.9rem;
+        margin: 0;
+    }
+
+    .login-link a {
+        color: #059669;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+
+    .login-link a:hover {
+        color: #047857;
+        text-decoration: underline;
+    }
+
+    .password-requirements {
+        background: #f9fafb;
+        border-radius: 10px;
+        padding: 0.8rem 1rem;
+        margin-top: 0.5rem;
+        font-size: 0.8rem;
+        color: #6b7280;
+        border: 1px solid #f3f4f6;
+    }
+
+    .password-requirements ul {
+        margin: 0.3rem 0 0 0;
+        padding-left: 1.2rem;
+    }
+
+    .password-requirements li {
+        margin: 0.2rem 0;
+    }
+
+    .password-requirements .valid {
+        color: #059669;
+    }
+
+    .password-requirements .invalid {
+        color: #dc2626;
+    }
+
+    @media (max-width: 480px) {
+        .register-container {
+            padding: 1.5rem 1.2rem;
+        }
+    }
+</style>
+
+<!-- ============================================================ -->
+<!-- REGISTER SECTION -->
+<!-- ============================================================ -->
 <section
     style="min-height: 80vh; display: flex; align-items: center; justify-content: center; padding: 2rem 1rem; background: linear-gradient(135deg, #f0fdf4, #ecfdf5, #f0fdf4);">
 
-    <div
-        style="max-width: 440px; width: 100%; background: #ffffff; border-radius: 24px; padding: 2.5rem 2rem; box-shadow: 0 20px 60px rgba(0,0,0,0.08);">
+    <div class="register-container">
 
-        <!-- Header -->
-        <div style="text-align: center; margin-bottom: 2rem;">
-            <span style="font-size: 2.5rem; display: block; margin-bottom: 0.5rem;">📝</span>
-            <h1
-                style="font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900; color: #064e3b; margin: 0;">
-                Create Account
-            </h1>
-            <p style="color: #6b7280; font-size: 0.9rem; margin-top: 0.3rem;">Join GourmetHub today</p>
+        <!-- ===== HEADER ===== -->
+        <div class="header">
+            <span class="icon">📝</span>
+            <h1>Create Account</h1>
+            <p>Join GourmetHub today</p>
         </div>
 
-        <!-- Form -->
-        <form method="POST" style="width: 100%;">
+        <!-- ===== MESSAGES ===== -->
+        {% if messages %}
+        {% for message in messages %}
+        <div class="messages-container {% if message.tags == 'success' %}success{% else %}error{% endif %}">
+            {% if message.tags == 'success' %}✅{% else %}❌{% endif %}
+            <p>{{ message }}</p>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        <!-- ===== FORM ===== -->
+        <form method="POST" style="width: 100%;" id="registerForm">
             {% csrf_token %}
 
-            <!-- Errors -->
-            {% if form.errors %}
+            <!-- ===== FORM ERRORS ===== -->
+            {% if form.non_field_errors %}
             <div
                 style="background: #fef2f2; border-radius: 12px; padding: 0.8rem 1rem; margin-bottom: 1.5rem; border: 1px solid #fecaca;">
-                {% for field in form %}
-                {% for error in field.errors %}
+                {% for error in form.non_field_errors %}
                 <p style="color: #dc2626; font-size: 0.85rem; margin: 0.2rem 0;">❌ {{ error }}</p>
-                {% endfor %}
                 {% endfor %}
             </div>
             {% endif %}
 
-            <!-- Username -->
-            <div style="margin-bottom: 1.2rem;">
-                <label
-                    style="display: block; font-weight: 700; font-size: 0.85rem; color: #064e3b; margin-bottom: 0.4rem;">
-                    Username <span style="color: #ef4444;">*</span>
+            <!-- ===== USERNAME ===== -->
+            <div class="form-group">
+                <label>
+                    Username <span class="required">*</span>
                 </label>
                 <input type="text" name="username" placeholder="Choose a username"
-                    style="width: 100%; padding: 0.8rem 1rem; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 0.95rem; outline: none; background: #fafafa; transition: all 0.3s ease; box-sizing: border-box;"
-                    onfocus="this.style.borderColor='#059669'; this.style.background='#ffffff';"
-                    onblur="this.style.borderColor='#e5e7eb'; this.style.background='#fafafa';" required>
+                    value="{{ form.username.value|default:'' }}"
+                    class="{% if form.username.errors %}error-input{% endif %}" required minlength="3" maxlength="150">
+                {% if form.username.errors %}
+                <span class="error-text">❌ {{ form.username.errors.0 }}</span>
+                {% else %}
+                <span class="help-text">Required. 150 characters or fewer.</span>
+                {% endif %}
             </div>
 
-            <!-- Email (دستی اضافه شده) -->
-            <div style="margin-bottom: 1.2rem;">
-                <label
-                    style="display: block; font-weight: 700; font-size: 0.85rem; color: #064e3b; margin-bottom: 0.4rem;">
-                    Email Address <span style="color: #ef4444;">*</span>
+            <!-- ===== EMAIL ===== -->
+            <div class="form-group">
+                <label>
+                    Email Address <span class="required">*</span>
                 </label>
-                <input type="email" name="email" placeholder="Enter your email"
-                    style="width: 100%; padding: 0.8rem 1rem; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 0.95rem; outline: none; background: #fafafa; transition: all 0.3s ease; box-sizing: border-box;"
-                    onfocus="this.style.borderColor='#059669'; this.style.background='#ffffff';"
-                    onblur="this.style.borderColor='#e5e7eb'; this.style.background='#fafafa';" required>
+                <input type="email" name="email" placeholder="Enter your email" value="{{ email_value|default:'' }}"
+                    class="{% if email_error %}error-input{% endif %}" required>
+                {% if email_error %}
+                <span class="error-text">❌ {{ email_error }}</span>
+                {% else %}
+                <span class="help-text">We'll never share your email with anyone else.</span>
+                {% endif %}
             </div>
 
-            <!-- Password 1 -->
-            <div style="margin-bottom: 1.2rem;">
-                <label
-                    style="display: block; font-weight: 700; font-size: 0.85rem; color: #064e3b; margin-bottom: 0.4rem;">
-                    Password <span style="color: #ef4444;">*</span>
+            <!-- ===== PASSWORD 1 ===== -->
+            <div class="form-group">
+                <label>
+                    Password <span class="required">*</span>
                 </label>
                 <input type="password" name="password1" placeholder="Enter password"
-                    style="width: 100%; padding: 0.8rem 1rem; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 0.95rem; outline: none; background: #fafafa; transition: all 0.3s ease; box-sizing: border-box;"
-                    onfocus="this.style.borderColor='#059669'; this.style.background='#ffffff';"
-                    onblur="this.style.borderColor='#e5e7eb'; this.style.background='#fafafa';" required>
+                    class="{% if form.password1.errors %}error-input{% endif %}" required minlength="8" id="password1">
+                {% if form.password1.errors %}
+                <span class="error-text">❌ {{ form.password1.errors.0 }}</span>
+                {% endif %}
+
+                <!-- Password Requirements -->
+                <div class="password-requirements" id="passwordRequirements">
+                    <strong>Password must contain:</strong>
+                    <ul>
+                        <li id="req-length" class="invalid">❌ At least 8 characters</li>
+                        <li id="req-upper" class="invalid">❌ At least one uppercase letter</li>
+                        <li id="req-lower" class="invalid">❌ At least one lowercase letter</li>
+                        <li id="req-number" class="invalid">❌ At least one number</li>
+                    </ul>
+                </div>
             </div>
 
-            <!-- Password 2 -->
-            <div style="margin-bottom: 1.5rem;">
-                <label
-                    style="display: block; font-weight: 700; font-size: 0.85rem; color: #064e3b; margin-bottom: 0.4rem;">
-                    Confirm Password <span style="color: #ef4444;">*</span>
+            <!-- ===== PASSWORD 2 ===== -->
+            <div class="form-group">
+                <label>
+                    Confirm Password <span class="required">*</span>
                 </label>
                 <input type="password" name="password2" placeholder="Confirm password"
-                    style="width: 100%; padding: 0.8rem 1rem; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 0.95rem; outline: none; background: #fafafa; transition: all 0.3s ease; box-sizing: border-box;"
-                    onfocus="this.style.borderColor='#059669'; this.style.background='#ffffff';"
-                    onblur="this.style.borderColor='#e5e7eb'; this.style.background='#fafafa';" required>
+                    class="{% if form.password2.errors %}error-input{% endif %}" required id="password2">
+                {% if form.password2.errors %}
+                <span class="error-text">❌ {{ form.password2.errors.0 }}</span>
+                {% endif %}
+                <span class="help-text" id="passwordMatch"></span>
             </div>
 
-            <!-- Submit -->
-            <button type="submit"
-                style="width: 100%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff; padding: 0.9rem; border-radius: 50px; font-weight: 700; font-size: 1rem; border: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(5,150,105,0.30);"
-                onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 30px rgba(5,150,105,0.40)';"
-                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(5,150,105,0.30)';">
-                🚀 Register
+            <!-- ===== SUBMIT ===== -->
+            <button type="submit" class="btn-submit">
+                🚀 Create Account
             </button>
         </form>
 
-        <!-- Login Link -->
-        <div style="text-align: center; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #f3f4f6;">
-            <p style="color: #6b7280; font-size: 0.9rem; margin: 0;">
+        <!-- ===== LOGIN LINK ===== -->
+        <div class="login-link">
+            <p>
                 Already have an account?
-                <a href="#" style="color: #059669; text-decoration: none; font-weight: 600;">Login →</a>
+                <a href="#">Login →</a>
             </p>
         </div>
 
     </div>
 </section>
+
+<!-- ============================================================ -->
+<!-- JAVASCRIPT: Password Validation -->
+<!-- ============================================================ -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const password1 = document.getElementById('password1');
+        const password2 = document.getElementById('password2');
+        const reqLength = document.getElementById('req-length');
+        const reqUpper = document.getElementById('req-upper');
+        const reqLower = document.getElementById('req-lower');
+        const reqNumber = document.getElementById('req-number');
+        const passwordMatch = document.getElementById('passwordMatch');
+
+        // Password requirements validation
+        password1.addEventListener('input', function () {
+            const val = this.value;
+
+            // Length check
+            if (val.length >= 8) {
+                reqLength.className = 'valid';
+                reqLength.innerHTML = '✅ At least 8 characters';
+            } else {
+                reqLength.className = 'invalid';
+                reqLength.innerHTML = '❌ At least 8 characters';
+            }
+
+            // Uppercase check
+            if (/[A-Z]/.test(val)) {
+                reqUpper.className = 'valid';
+                reqUpper.innerHTML = '✅ At least one uppercase letter';
+            } else {
+                reqUpper.className = 'invalid';
+                reqUpper.innerHTML = '❌ At least one uppercase letter';
+            }
+
+            // Lowercase check
+            if (/[a-z]/.test(val)) {
+                reqLower.className = 'valid';
+                reqLower.innerHTML = '✅ At least one lowercase letter';
+            } else {
+                reqLower.className = 'invalid';
+                reqLower.innerHTML = '❌ At least one lowercase letter';
+            }
+
+            // Number check
+            if (/[0-9]/.test(val)) {
+                reqNumber.className = 'valid';
+                reqNumber.innerHTML = '✅ At least one number';
+            } else {
+                reqNumber.className = 'invalid';
+                reqNumber.innerHTML = '❌ At least one number';
+            }
+
+            // Check password match
+            checkPasswordMatch();
+        });
+
+        // Password match validation
+        password2.addEventListener('input', checkPasswordMatch);
+
+        function checkPasswordMatch() {
+            if (password2.value.length === 0) {
+                passwordMatch.textContent = '';
+                return;
+            }
+
+            if (password1.value === password2.value) {
+                passwordMatch.textContent = '✅ Passwords match!';
+                passwordMatch.style.color = '#059669';
+            } else {
+                passwordMatch.textContent = '❌ Passwords do not match!';
+                passwordMatch.style.color = '#dc2626';
+            }
+        }
+    });
+</script>
 
 {% endblock %}
