@@ -1,11 +1,14 @@
-from django.shortcuts import render, redirect  # ← اینجا redirect رو import کن
+from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
+from django.views.decorators.csrf import csrf_protect, ensure_csrf_cookie
 
 
+@csrf_protect
+@ensure_csrf_cookie
 def register(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
