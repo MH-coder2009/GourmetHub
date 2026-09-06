@@ -77,7 +77,83 @@
             font-size: clamp(1.2rem, 2.5vw, 1.8rem);
         }
 
-        /* ===== MESSAGES ANIMATION ===== */
+        /* ===== MESSAGES - OVERLAY MODAL ===== */
+        #messages-container {
+            position: fixed;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            width: 100%;
+            max-width: 600px;
+            padding: 0 1rem;
+            pointer-events: none;
+        }
+
+        #messages-container .message-item {
+            pointer-events: auto;
+            padding: 0.8rem 1.2rem;
+            border-radius: 12px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+            transform: translateY(-30px);
+            opacity: 0;
+            animation: slideDown 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        #messages-container .message-item.success {
+            background: linear-gradient(135deg, #059669, #047857);
+            color: #ffffff;
+        }
+
+        #messages-container .message-item.error {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: #ffffff;
+        }
+
+        #messages-container .message-item.warning {
+            background: linear-gradient(135deg, #d97706, #b45309);
+            color: #ffffff;
+        }
+
+        #messages-container .message-item.info {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: #ffffff;
+        }
+
+        #messages-container .message-item .msg-icon {
+            font-size: 1.2rem;
+            margin-right: 0.5rem;
+        }
+
+        #messages-container .message-item .msg-text {
+            flex: 1;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        #messages-container .message-item .msg-close {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.60);
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 0 0.3rem;
+            transition: all 0.3s ease;
+            line-height: 1;
+        }
+
+        #messages-container .message-item .msg-close:hover {
+            color: #ffffff;
+            transform: rotate(90deg);
+        }
+
         @keyframes slideDown {
             0% {
                 transform: translateY(-30px);
@@ -1267,6 +1343,16 @@
             .btn-order {
                 text-align: center;
             }
+
+            #messages-container {
+                top: 70px;
+                padding: 0 0.8rem;
+            }
+
+            #messages-container .message-item {
+                padding: 0.6rem 1rem;
+                font-size: 0.85rem;
+            }
         }
 
         @media (min-width: 769px) {
@@ -1284,6 +1370,27 @@
 </head>
 
 <body>
+
+    <!-- ============================================================ -->
+    <!-- MESSAGES - OVERLAY MODAL -->
+    <!-- ============================================================ -->
+    <div id="messages-container">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="message-item {{ message.tags }}">
+            <span class="msg-icon">
+                {% if message.tags == 'success' %}✅
+                {% elif message.tags == 'error' %}❌
+                {% elif message.tags == 'warning' %}⚠️
+                {% else %}ℹ️
+                {% endif %}
+            </span>
+            <span class="msg-text">{{ message }}</span>
+            <button class="msg-close" onclick="closeMessage(this)">✕</button>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
 
     <!-- ============================================================ -->
     <!-- HEADER / NAVIGATION -->
@@ -1349,44 +1456,6 @@
             </div>
         </div>
     </header>
-
-    <!-- ============================================================ -->
-    <!-- MESSAGES / NOTIFICATIONS -->
-    <!-- ============================================================ -->
-    {% if messages %}
-    <div style="max-width: 1200px; margin: 1rem auto 0; padding: 0 1rem; position: sticky; top: 90px; z-index: 999;">
-        {% for message in messages %}
-        <div id="message-{{ forloop.counter }}" style="padding: 0.8rem 1.2rem; border-radius: 12px; margin-bottom: 0.5rem; 
-                    display: flex; align-items: center; justify-content: space-between;
-                    {% if message.tags == 'success' %}
-                        background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46;
-                    {% elif message.tags == 'error' %}
-                        background: #fef2f2; border: 1px solid #fecaca; color: #dc2626;
-                    {% elif message.tags == 'warning' %}
-                        background: #fef3c7; border: 1px solid #fcd34d; color: #92400e;
-                    {% else %}
-                        background: #dbeafe; border: 1px solid #93c5fd; color: #1e40af;
-                    {% endif %}
-                    transform: translateY(-20px);
-                    opacity: 0;
-                    animation: slideDown 0.5s ease forwards;
-                    box-shadow: 0 8px 30px rgba(0,0,0,0.08);">
-            <span style="display: flex; align-items: center; gap: 0.5rem;">
-                {% if message.tags == 'success' %}✅
-                {% elif message.tags == 'error' %}❌
-                {% elif message.tags == 'warning' %}⚠️
-                {% else %}ℹ️
-                {% endif %}
-                {{ message }}
-            </span>
-            <button onclick="closeMessage(this)"
-                style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: inherit; opacity: 0.6; padding: 0 0.5rem;">
-                ✕
-            </button>
-        </div>
-        {% endfor %}
-    </div>
-    {% endif %}
 
     <!-- ============================================================ -->
     <!-- MAIN CONTENT -->
@@ -1515,7 +1584,7 @@
 
         // ===== MESSAGES: Auto dismiss after 5 seconds =====
         document.addEventListener('DOMContentLoaded', function () {
-            const messages = document.querySelectorAll('[id^="message-"]');
+            const messages = document.querySelectorAll('.message-item');
             messages.forEach(function (msg, index) {
                 setTimeout(function () {
                     closeMessage(msg);
@@ -1525,7 +1594,7 @@
 
         function closeMessage(element) {
             if (element.tagName === 'BUTTON') {
-                element = element.closest('[id^="message-"]');
+                element = element.closest('.message-item');
             }
             if (element) {
                 element.classList.add('message-fade-out');
