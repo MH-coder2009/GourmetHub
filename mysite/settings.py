@@ -141,3 +141,4 @@ CSRF_TRUSTED_ORIGINS = [
 
 
 LOGIN_REDIRECT_URL = "food:index"
+LOGOUT_REDIRECT_URL = "food:index"

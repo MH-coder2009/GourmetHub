@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 from django.views.decorators.csrf import csrf_protect, ensure_csrf_cookie
+from django.contrib.auth import logout
 from .forms import RegisterForm
 
 
@@ -51,3 +52,8 @@ def register(request):
 
     context = {"form": form}
     return render(request, "users/register.html", context)
+
+
+def logout_view(request):
+    logout(request)
+    return render(request, "users/logout.html")

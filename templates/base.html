@@ -1395,9 +1395,13 @@
     <!-- ============================================================ -->
     <!-- HEADER / NAVIGATION -->
     <!-- ============================================================ -->
+    <!-- ============================================================ -->
+    <!-- HEADER / NAVIGATION -->
+    <!-- ============================================================ -->
     <header>
         <nav class="navbar">
             <div class="container">
+                <!-- Logo -->
                 <a href="{% url 'food:index' %}" class="logo">
                     <span class="icon">🍽️</span>
                     <div>
@@ -1406,15 +1410,32 @@
                     </div>
                 </a>
 
+                <!-- ===== DESKTOP NAVIGATION ===== -->
                 <div class="nav-links">
                     <a href="{% url 'food:index' %}" class="nav-link active">Home</a>
                     <a href="#" class="nav-link">Menu</a>
                     <a href="#" class="nav-link">Reservations</a>
                     <a href="#" class="nav-link">About</a>
                     <a href="#" class="nav-link">Contact</a>
+
+                    <!-- ===== AUTH LINKS ===== -->
+                    {% if user.is_authenticated %}
+                    <span style="color: white; font-weight: 600; display: flex; align-items: center; gap: 0.5rem;">
+                        👋 {{ user.username }}
+                    </span>
+                    <a href="{% url 'users:logout' %}" class="nav-link" style="color: #fca5a5;"
+                        onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#fca5a5'">
+                        🚪 Logout
+                    </a>
+                    {% else %}
+                    <a href="{% url 'users:register' %}" class="nav-link">Register</a>
+                    <a href="{% url 'users:login' %}" class="nav-link">Login</a>
+                    {% endif %}
+
                     <button class="btn-book">🍷 Book Table</button>
                 </div>
 
+                <!-- Hamburger Menu Button -->
                 <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
                     <span></span>
                     <span></span>
@@ -1423,10 +1444,13 @@
             </div>
         </nav>
 
+        <!-- Mobile Overlay -->
         <div class="mobile-overlay" id="mobileOverlay"></div>
 
+        <!-- ===== MOBILE MENU ===== -->
         <div class="mobile-menu" id="mobileMenu">
             <button class="mobile-close" id="mobileCloseBtn" aria-label="Close menu">✕</button>
+
             <div class="mobile-nav-links">
                 <a href="{% url 'food:index' %}" class="mobile-nav-link active">
                     <span class="emoji">🏠</span> Home
@@ -1443,8 +1467,29 @@
                 <a href="#" class="mobile-nav-link">
                     <span class="emoji">📞</span> Contact
                 </a>
+
+                <!-- ===== AUTH LINKS (MOBILE) ===== -->
+                {% if user.is_authenticated %}
+                <div
+                    style="color: rgba(255,255,255,0.80); padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; gap: 0.5rem;">
+                    👋 {{ user.username }}
+                </div>
+                <a href="{% url 'users:logout' %}" class="mobile-nav-link" style="color: #fca5a5;"
+                    onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#fca5a5'">
+                    <span class="emoji">🚪</span> Logout
+                </a>
+                {% else %}
+                <a href="{% url 'users:register' %}" class="mobile-nav-link">
+                    <span class="emoji">📝</span> Register
+                </a>
+                <a href="{% url 'users:login' %}" class="mobile-nav-link">
+                    <span class="emoji">🔐</span> Login
+                </a>
+                {% endif %}
+
                 <button class="mobile-btn-book">🍷 Book Table</button>
             </div>
+
             <div class="mobile-menu-footer">
                 <div class="social">
                     <a href="#">📘</a>
