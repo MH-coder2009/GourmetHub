@@ -16,7 +16,6 @@
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
 
-    <!-- ===== Custom Responsive Styles ===== -->
     <style>
         /* ===== RESET & BASE ===== */
         * {
@@ -78,6 +77,35 @@
             font-size: clamp(1.2rem, 2.5vw, 1.8rem);
         }
 
+        /* ===== MESSAGES ANIMATION ===== */
+        @keyframes slideDown {
+            0% {
+                transform: translateY(-30px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+        }
+
+        .message-fade-out {
+            animation: fadeOut 0.5s ease forwards !important;
+        }
+
         /* ===== SCROLLBAR ===== */
         ::-webkit-scrollbar {
             width: 8px;
@@ -119,7 +147,6 @@
             width: 100%;
         }
 
-        /* ---- Logo ---- */
         .logo {
             display: flex;
             align-items: center;
@@ -166,7 +193,6 @@
             }
         }
 
-        /* ---- Desktop Navigation ---- */
         .nav-links {
             display: none;
             align-items: center;
@@ -244,7 +270,6 @@
             box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
         }
 
-        /* ===== HAMBURGER ===== */
         .hamburger {
             display: flex;
             flex-direction: column;
@@ -285,7 +310,6 @@
             }
         }
 
-        /* ===== MOBILE OVERLAY ===== */
         .mobile-overlay {
             position: fixed;
             inset: 0;
@@ -303,7 +327,6 @@
             visibility: visible;
         }
 
-        /* ===== MOBILE MENU ===== */
         .mobile-menu {
             position: fixed;
             top: 0;
@@ -426,7 +449,6 @@
             color: #6ee7b7;
         }
 
-        /* ===== HERO ===== */
         .hero {
             background: linear-gradient(135deg, #064e3b 0%, #065f46 30%, #047857 60%, #059669 100%);
             padding: clamp(2rem, 8vw, 5rem) clamp(1rem, 3vw, 1.5rem) clamp(3rem, 8vw, 6rem);
@@ -588,7 +610,6 @@
             transform: translateY(-3px);
         }
 
-        /* ===== MENU SECTION ===== */
         .menu-section {
             padding: clamp(2rem, 8vw, 5rem) clamp(1rem, 3vw, 1.5rem);
             background: linear-gradient(135deg, #f0fdf4, #ecfdf5, #f0fdf4);
@@ -651,7 +672,6 @@
             margin-top: clamp(0.8rem, 2vw, 1.25rem);
         }
 
-        /* ===== RESPONSIVE GRID - FULL WIDTH ===== */
         .menu-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -843,7 +863,6 @@
             background: linear-gradient(135deg, #047857, #065f46);
         }
 
-        /* ===== STATS ===== */
         .stats-section {
             background: linear-gradient(135deg, #064e3b, #047857);
             padding: clamp(2rem, 5vw, 3.5rem) clamp(1rem, 3vw, 1.5rem);
@@ -890,7 +909,6 @@
             margin-top: 0.5rem;
         }
 
-        /* ===== TESTIMONIALS ===== */
         .testimonials-section {
             padding: clamp(2rem, 8vw, 5rem) clamp(1rem, 3vw, 1.5rem);
             background: #ffffff;
@@ -973,7 +991,6 @@
             color: #9ca3af;
         }
 
-        /* ===== NEWSLETTER ===== */
         .newsletter-section {
             background: linear-gradient(135deg, #d1fae5, #a7f3d0);
             padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 3vw, 1.5rem);
@@ -1065,7 +1082,6 @@
             box-shadow: 0 12px 40px rgba(5, 150, 105, 0.35);
         }
 
-        /* ===== FOOTER ===== */
         .footer {
             background: #064e3b;
             padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 3vw, 1.5rem) clamp(1rem, 3vw, 2rem);
@@ -1180,7 +1196,6 @@
             color: #ef4444;
         }
 
-        /* ===== RESPONSIVE FIXES ===== */
         @media (max-width: 480px) {
             .navbar {
                 height: 60px;
@@ -1190,7 +1205,7 @@
             .mobile-menu {
                 width: 92%;
                 max-width: 300px;
-                padding: 1rem 1rem;
+                padding: 1rem;
             }
 
             .mobile-nav-link {
@@ -1276,7 +1291,6 @@
     <header>
         <nav class="navbar">
             <div class="container">
-                <!-- Logo -->
                 <a href="{% url 'food:index' %}" class="logo">
                     <span class="icon">🍽️</span>
                     <div>
@@ -1285,7 +1299,6 @@
                     </div>
                 </a>
 
-                <!-- Desktop Navigation -->
                 <div class="nav-links">
                     <a href="{% url 'food:index' %}" class="nav-link active">Home</a>
                     <a href="#" class="nav-link">Menu</a>
@@ -1295,7 +1308,6 @@
                     <button class="btn-book">🍷 Book Table</button>
                 </div>
 
-                <!-- Hamburger Menu Button -->
                 <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
                     <span></span>
                     <span></span>
@@ -1304,10 +1316,8 @@
             </div>
         </nav>
 
-        <!-- Mobile Overlay -->
         <div class="mobile-overlay" id="mobileOverlay"></div>
 
-        <!-- Mobile Menu -->
         <div class="mobile-menu" id="mobileMenu">
             <button class="mobile-close" id="mobileCloseBtn" aria-label="Close menu">✕</button>
             <div class="mobile-nav-links">
@@ -1339,6 +1349,44 @@
             </div>
         </div>
     </header>
+
+    <!-- ============================================================ -->
+    <!-- MESSAGES / NOTIFICATIONS -->
+    <!-- ============================================================ -->
+    {% if messages %}
+    <div style="max-width: 1200px; margin: 1rem auto 0; padding: 0 1rem; position: sticky; top: 90px; z-index: 999;">
+        {% for message in messages %}
+        <div id="message-{{ forloop.counter }}" style="padding: 0.8rem 1.2rem; border-radius: 12px; margin-bottom: 0.5rem; 
+                    display: flex; align-items: center; justify-content: space-between;
+                    {% if message.tags == 'success' %}
+                        background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46;
+                    {% elif message.tags == 'error' %}
+                        background: #fef2f2; border: 1px solid #fecaca; color: #dc2626;
+                    {% elif message.tags == 'warning' %}
+                        background: #fef3c7; border: 1px solid #fcd34d; color: #92400e;
+                    {% else %}
+                        background: #dbeafe; border: 1px solid #93c5fd; color: #1e40af;
+                    {% endif %}
+                    transform: translateY(-20px);
+                    opacity: 0;
+                    animation: slideDown 0.5s ease forwards;
+                    box-shadow: 0 8px 30px rgba(0,0,0,0.08);">
+            <span style="display: flex; align-items: center; gap: 0.5rem;">
+                {% if message.tags == 'success' %}✅
+                {% elif message.tags == 'error' %}❌
+                {% elif message.tags == 'warning' %}⚠️
+                {% else %}ℹ️
+                {% endif %}
+                {{ message }}
+            </span>
+            <button onclick="closeMessage(this)"
+                style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: inherit; opacity: 0.6; padding: 0 0.5rem;">
+                ✕
+            </button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
 
     <!-- ============================================================ -->
     <!-- MAIN CONTENT -->
@@ -1409,9 +1457,10 @@
     </footer>
 
     <!-- ============================================================ -->
-    <!-- JAVASCRIPT: Mobile Menu -->
+    <!-- JAVASCRIPT: Mobile Menu & Messages -->
     <!-- ============================================================ -->
     <script>
+        // ===== MOBILE MENU =====
         (function () {
             const hamburger = document.getElementById('hamburgerBtn');
             const mobileMenu = document.getElementById('mobileMenu');
@@ -1463,6 +1512,28 @@
                 }
             });
         })();
+
+        // ===== MESSAGES: Auto dismiss after 5 seconds =====
+        document.addEventListener('DOMContentLoaded', function () {
+            const messages = document.querySelectorAll('[id^="message-"]');
+            messages.forEach(function (msg, index) {
+                setTimeout(function () {
+                    closeMessage(msg);
+                }, 5000 + (index * 300));
+            });
+        });
+
+        function closeMessage(element) {
+            if (element.tagName === 'BUTTON') {
+                element = element.closest('[id^="message-"]');
+            }
+            if (element) {
+                element.classList.add('message-fade-out');
+                setTimeout(function () {
+                    element.remove();
+                }, 500);
+            }
+        }
     </script>
 
     {% block extra_js %}{% endblock %}

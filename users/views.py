@@ -37,8 +37,9 @@ def register(request):
             user = form.save(commit=False)
             user.email = email
             user.save()
+            username = form.cleaned_data.get("username")
             messages.success(
-                request, "Account created successfully! You can now login."
+                request, f"Account created successfully! You can now login{username}."
             )
             return redirect("food:index")
         else:
