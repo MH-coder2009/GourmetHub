@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Register - Gourmet Food Hub{% endblock %}
+
+{% block content %}
+
+<section
+    style="min-height: 80vh; display: flex; align-items: center; justify-content: center; padding: 2rem 1rem; background: linear-gradient(135deg, #f0fdf4, #ecfdf5, #f0fdf4);">
+
+    <div
+        style="max-width: 440px; width: 100%; background: #ffffff; border-radius: 24px; padding: 2.5rem 2rem; box-shadow: 0 20px 60px rgba(0,0,0,0.08);">
+
+        <!-- Header -->
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <span style="font-size: 2.5rem; display: block; margin-bottom: 0.5rem;">📝</span>
+            <h1
+                style="font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900; color: #064e3b; margin: 0;">
+                Create Account
+            </h1>
+            <p style="color: #6b7280; font-size: 0.9rem; margin-top: 0.3rem;">Join GourmetHub today</p>
+        </div>
+
+        <!-- Form -->
+        <form method="POST" style="width: 100%;">
+            {% csrf_token %}
+
+            <!-- Errors -->
+            {% if form.errors %}
+            <div
+                style="background: #fef2f2; border-radius: 12px; padding: 0.8rem 1rem; margin-bottom: 1.5rem; border: 1px solid #fecaca;">
+                {% for field in form %}
+                {% for error in field.errors %}
+                <p style="color: #dc2626; font-size: 0.85rem; margin: 0.2rem 0;">❌ {{ error }}</p>
+                {% endfor %}
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Username -->
+            <div style="margin-bottom: 1.2rem;">
+                <label
+                    style="display: block; font-weight: 700; font-size: 0.85rem; color: #064e3b; margin-bottom: 0.4rem;">
+                    Username <span style="color: #ef4444;">*</span>
+                </label>
+                <input type="text" name="username" placeholder="Choose a username"
+                    style="width: 100%; padding: 0.8rem 1rem; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 0.95rem; outline: none; background: #fafafa; transition: all 0.3s ease; box-sizing: border-box;"
+                    onfocus="this.style.borderColor='#059669'; this.style.background='#ffffff';"
+                    onblur="this.style.borderColor='#e5e7eb'; this.style.background='#fafafa';" required>
+            </div>
+
+            <!-- Email (دستی اضافه شده) -->
+            <div style="margin-bottom: 1.2rem;">
+                <label
+                    style="display: block; font-weight: 700; font-size: 0.85rem; color: #064e3b; margin-bottom: 0.4rem;">
+                    Email Address <span style="color: #ef4444;">*</span>
+                </label>
+                <input type="email" name="email" placeholder="Enter your email"
+                    style="width: 100%; padding: 0.8rem 1rem; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 0.95rem; outline: none; background: #fafafa; transition: all 0.3s ease; box-sizing: border-box;"
+                    onfocus="this.style.borderColor='#059669'; this.style.background='#ffffff';"
+                    onblur="this.style.borderColor='#e5e7eb'; this.style.background='#fafafa';" required>
+            </div>
+
+            <!-- Password 1 -->
+            <div style="margin-bottom: 1.2rem;">
+                <label
+                    style="display: block; font-weight: 700; font-size: 0.85rem; color: #064e3b; margin-bottom: 0.4rem;">
+                    Password <span style="color: #ef4444;">*</span>
+                </label>
+                <input type="password" name="password1" placeholder="Enter password"
+                    style="width: 100%; padding: 0.8rem 1rem; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 0.95rem; outline: none; background: #fafafa; transition: all 0.3s ease; box-sizing: border-box;"
+                    onfocus="this.style.borderColor='#059669'; this.style.background='#ffffff';"
+                    onblur="this.style.borderColor='#e5e7eb'; this.style.background='#fafafa';" required>
+            </div>
+
+            <!-- Password 2 -->
+            <div style="margin-bottom: 1.5rem;">
+                <label
+                    style="display: block; font-weight: 700; font-size: 0.85rem; color: #064e3b; margin-bottom: 0.4rem;">
+                    Confirm Password <span style="color: #ef4444;">*</span>
+                </label>
+                <input type="password" name="password2" placeholder="Confirm password"
+                    style="width: 100%; padding: 0.8rem 1rem; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 0.95rem; outline: none; background: #fafafa; transition: all 0.3s ease; box-sizing: border-box;"
+                    onfocus="this.style.borderColor='#059669'; this.style.background='#ffffff';"
+                    onblur="this.style.borderColor='#e5e7eb'; this.style.background='#fafafa';" required>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit"
+                style="width: 100%; background: linear-gradient(135deg, #059669, #047857); color: #ffffff; padding: 0.9rem; border-radius: 50px; font-weight: 700; font-size: 1rem; border: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(5,150,105,0.30);"
+                onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 30px rgba(5,150,105,0.40)';"
+                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(5,150,105,0.30)';">
+                🚀 Register
+            </button>
+        </form>
+
+        <!-- Login Link -->
+        <div style="text-align: center; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #f3f4f6;">
+            <p style="color: #6b7280; font-size: 0.9rem; margin: 0;">
+                Already have an account?
+                <a href="#" style="color: #059669; text-decoration: none; font-weight: 600;">Login →</a>
+            </p>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
