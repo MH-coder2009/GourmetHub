@@ -11,7 +11,6 @@ def register(request):
         form = UserCreationForm(request.POST)
         email = request.POST.get("email")
 
-        # ولیدیشن ایمیل
         email_error = None
 
         if not email:
@@ -38,7 +37,7 @@ def register(request):
             messages.success(
                 request, "Account created successfully! You can now login."
             )
-            return redirect("food:index")  # ← اینجا redirect (بدون s)
+            return redirect("food:index")
         else:
             context = {"form": form, "email_value": email}
             return render(request, "users/register.html", context)
