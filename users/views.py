@@ -41,7 +41,7 @@ def register(request):
             messages.success(
                 request, f"Account created successfully! Welcome {username} 🎉"
             )
-            return redirect("food:index")
+            return redirect("users:login")  # ✅ درست
         else:
             context = {"form": form, "email_value": email}
             return render(request, "users/register.html", context)
