@@ -52,8 +52,3 @@ def register(request):
 
     context = {"form": form}
     return render(request, "users/register.html", context)
-
-
-def logout_view(request):
-    logout(request)
-    return render(request, "users/logout.html")
