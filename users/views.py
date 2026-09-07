@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth import login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 from django.views.decorators.csrf import csrf_protect, ensure_csrf_cookie
-from django.contrib.auth import logout
 from .forms import RegisterForm
 
 
@@ -38,11 +38,10 @@ def register(request):
             user = form.save(commit=False)
             user.email = email
             user.save()
+            login(request, user)
             username = form.cleaned_data.get("username")
-            messages.success(
-                request, f"Account created successfully! Welcome {username} 🎉"
-            )
-            return redirect("users:login")  # ✅ درست
+            messages.success(request, f"Welcome {username}! 🎉")
+            return redirect("food:index")
         else:
             context = {"form": form, "email_value": email}
             return render(request, "users/register.html", context)
@@ -52,3 +51,9 @@ def register(request):
 
     context = {"form": form}
     return render(request, "users/register.html", context)
+
+
+def logout_view(request):
+    logout(request)
+    messages.success(request, "You have been logged out successfully.")
+    return redirect("food:index")

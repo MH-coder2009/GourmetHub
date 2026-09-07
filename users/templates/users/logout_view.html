@@ -1,0 +1,283 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Login - Gourmet Food Hub{% endblock %}
+
+{% block content %}
+
+<style>
+    .login-container {
+        max-width: 440px;
+        width: 100%;
+        margin: 0 auto;
+        background: #ffffff;
+        border-radius: 24px;
+        padding: 2.5rem 2rem;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+    }
+
+    .login-container .header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .login-container .header .icon {
+        font-size: 2.5rem;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .login-container .header h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.8rem;
+        font-weight: 900;
+        color: #064e3b;
+        margin: 0;
+    }
+
+    .login-container .header p {
+        color: #6b7280;
+        font-size: 0.9rem;
+        margin-top: 0.3rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: 700;
+        font-size: 0.85rem;
+        color: #064e3b;
+        margin-bottom: 0.4rem;
+    }
+
+    .form-group label .required {
+        color: #ef4444;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 0.8rem 1rem;
+        border: 2px solid #e5e7eb;
+        border-radius: 12px;
+        font-size: 0.95rem;
+        outline: none;
+        background: #fafafa;
+        transition: all 0.3s ease;
+        box-sizing: border-box;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .form-group input:focus {
+        border-color: #059669;
+        background: #ffffff;
+        box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.08);
+    }
+
+    .form-group .error-input {
+        border-color: #dc2626 !important;
+        background: #fef2f2 !important;
+    }
+
+    .form-group .help-text {
+        color: #9ca3af;
+        font-size: 0.75rem;
+        margin-top: 0.3rem;
+        display: block;
+    }
+
+    .form-group .error-text {
+        color: #dc2626;
+        font-size: 0.8rem;
+        margin-top: 0.3rem;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+    }
+
+    .messages-container {
+        border-radius: 12px;
+        padding: 0.8rem 1rem;
+        margin-bottom: 1.5rem;
+        border: 1px solid;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .messages-container.success {
+        background: #d1fae5;
+        border-color: #6ee7b7;
+        color: #065f46;
+    }
+
+    .messages-container.error {
+        background: #fef2f2;
+        border-color: #fecaca;
+        color: #dc2626;
+    }
+
+    .messages-container p {
+        margin: 0;
+        font-size: 0.9rem;
+    }
+
+    .btn-submit {
+        width: 100%;
+        background: linear-gradient(135deg, #059669, #047857);
+        color: #ffffff;
+        padding: 0.9rem;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 1rem;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 20px rgba(5, 150, 105, 0.30);
+        font-family: 'Inter', sans-serif;
+    }
+
+    .btn-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(5, 150, 105, 0.40);
+    }
+
+    .btn-submit:active {
+        transform: translateY(0) scale(0.98);
+    }
+
+    .register-link {
+        text-align: center;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #f3f4f6;
+    }
+
+    .register-link p {
+        color: #6b7280;
+        font-size: 0.9rem;
+        margin: 0;
+    }
+
+    .register-link a {
+        color: #059669;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+
+    .register-link a:hover {
+        color: #047857;
+        text-decoration: underline;
+    }
+
+    .forgot-password {
+        text-align: right;
+        margin-top: 0.3rem;
+    }
+
+    .forgot-password a {
+        color: #9ca3af;
+        font-size: 0.8rem;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .forgot-password a:hover {
+        color: #059669;
+    }
+
+    @media (max-width: 480px) {
+        .login-container {
+            padding: 1.5rem 1.2rem;
+        }
+    }
+</style>
+
+<!-- ============================================================ -->
+<!-- LOGIN SECTION -->
+<!-- ============================================================ -->
+<section
+    style="min-height: 80vh; display: flex; align-items: center; justify-content: center; padding: 2rem 1rem; background: linear-gradient(135deg, #f0fdf4, #ecfdf5, #f0fdf4);">
+
+    <div class="login-container">
+
+        <!-- ===== HEADER ===== -->
+        <div class="header">
+            <span class="icon">🔐</span>
+            <h1>Welcome Back</h1>
+            <p>Login to your GourmetHub account</p>
+        </div>
+
+        <!-- ===== MESSAGES ===== -->
+        {% if messages %}
+        {% for message in messages %}
+        <div class="messages-container {% if message.tags == 'success' %}success{% else %}error{% endif %}">
+            {% if message.tags == 'success' %}✅{% else %}❌{% endif %}
+            <p>{{ message }}</p>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        <!-- ===== FORM ===== -->
+        <form method="POST" style="width: 100%;">
+            {% csrf_token %}
+
+            <!-- ===== FORM ERRORS ===== -->
+            {% if form.non_field_errors %}
+            <div
+                style="background: #fef2f2; border-radius: 12px; padding: 0.8rem 1rem; margin-bottom: 1.5rem; border: 1px solid #fecaca;">
+                {% for error in form.non_field_errors %}
+                <p style="color: #dc2626; font-size: 0.85rem; margin: 0.2rem 0;">❌ {{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- ===== USERNAME ===== -->
+            <div class="form-group">
+                <label>
+                    Username <span class="required">*</span>
+                </label>
+                <input type="text" name="username" placeholder="Enter your username"
+                    value="{{ form.username.value|default:'' }}"
+                    class="{% if form.username.errors %}error-input{% endif %}" required>
+                {% if form.username.errors %}
+                <span class="error-text">❌ {{ form.username.errors.0 }}</span>
+                {% endif %}
+            </div>
+
+            <!-- ===== PASSWORD ===== -->
+            <div class="form-group">
+                <label>
+                    Password <span class="required">*</span>
+                </label>
+                <input type="password" name="password" placeholder="Enter your password"
+                    class="{% if form.password.errors %}error-input{% endif %}" required>
+                {% if form.password.errors %}
+                <span class="error-text">❌ {{ form.password.errors.0 }}</span>
+                {% endif %}
+                <div class="forgot-password">
+                    <a href="#">Forgot password?</a>
+                </div>
+            </div>
+
+            <!-- ===== SUBMIT ===== -->
+            <button type="submit" class="btn-submit">
+                🚀 Login
+            </button>
+        </form>
+
+        <!-- ===== REGISTER LINK ===== -->
+        <div class="register-link">
+            <p>
+                Don't have an account?
+                <a href="{% url 'users:register' %}">Register →</a>
+            </p>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

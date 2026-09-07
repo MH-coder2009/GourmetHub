@@ -6,6 +6,7 @@ app_name = "users"
 
 urlpatterns = [
     path("register/", views.register, name="register"),
+    # ===== LOGIN =====
     path(
         "login/",
         auth_views.LoginView.as_view(
@@ -13,9 +14,6 @@ urlpatterns = [
         ),
         name="login",
     ),
-    path(
-        "logout/",
-        auth_views.LogoutView.as_view(next_page="food:index"),
-        name="logout",
-    ),
+    # ===== LOGOUT =====
+    path("logout/", views.logout_view, name="logout"),  # ← ویو سفارشی
 ]
