@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Profile - Gourmet Food Hub{% endblock %}
+
+{% block content %}
+
+<style>
+    .profile-container {
+        max-width: 600px;
+        width: 100%;
+        margin: 0 auto;
+        background: #ffffff;
+        border-radius: 24px;
+        padding: 2.5rem 2rem;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+    }
+
+    .profile-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .profile-header .avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #34d399, #059669);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        font-size: 2.5rem;
+        color: #ffffff;
+        font-weight: 700;
+        box-shadow: 0 8px 30px rgba(5, 150, 105, 0.25);
+    }
+
+    .profile-header h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.8rem;
+        font-weight: 900;
+        color: #064e3b;
+        margin: 0;
+    }
+
+    .profile-header p {
+        color: #6b7280;
+        font-size: 0.9rem;
+        margin-top: 0.3rem;
+    }
+
+    .profile-info {
+        margin-top: 2rem;
+    }
+
+    .info-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.8rem 0;
+        border-bottom: 1px solid #f3f4f6;
+    }
+
+    .info-item:last-child {
+        border-bottom: none;
+    }
+
+    .info-item .label {
+        font-weight: 600;
+        color: #6b7280;
+        font-size: 0.85rem;
+    }
+
+    .info-item .value {
+        font-weight: 600;
+        color: #064e3b;
+        font-size: 0.9rem;
+    }
+
+    .profile-actions {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .profile-actions a {
+        flex: 1;
+        min-width: 140px;
+        padding: 0.8rem 1.5rem;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        text-decoration: none;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+    .btn-edit {
+        background: linear-gradient(135deg, #059669, #047857);
+        color: #ffffff;
+        box-shadow: 0 4px 20px rgba(5, 150, 105, 0.25);
+    }
+
+    .btn-edit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(5, 150, 105, 0.35);
+    }
+
+    .btn-back {
+        background: #f3f4f6;
+        color: #4b5563;
+    }
+
+    .btn-back:hover {
+        background: #e5e7eb;
+        transform: translateY(-2px);
+    }
+
+    .badge {
+        display: inline-block;
+        background: #d1fae5;
+        color: #065f46;
+        padding: 0.2rem 0.8rem;
+        border-radius: 50px;
+        font-size: 0.7rem;
+        font-weight: 700;
+    }
+
+    @media (max-width: 480px) {
+        .profile-container {
+            padding: 1.5rem 1.2rem;
+        }
+
+        .info-item {
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .profile-actions a {
+            min-width: 100%;
+        }
+    }
+</style>
+
+<!-- ============================================================ -->
+<!-- PROFILE SECTION -->
+<!-- ============================================================ -->
+<section
+    style="min-height: 80vh; display: flex; align-items: center; justify-content: center; padding: 2rem 1rem; background: linear-gradient(135deg, #f0fdf4, #ecfdf5, #f0fdf4);">
+
+    <div class="profile-container">
+
+        <!-- ===== HEADER ===== -->
+        <div class="profile-header">
+            <div class="avatar">
+                {{ user.username|first|upper }}
+            </div>
+            <h1>{{ user.username }}</h1>
+            <p>
+                {% if user.is_staff %}
+                <span class="badge">👑 Admin</span>
+                {% endif %}
+                Member since {{ user.date_joined|date:"F Y" }}
+            </p>
+        </div>
+
+        <!-- ===== INFO ===== -->
+        <div class="profile-info">
+
+            <div class="info-item">
+                <span class="label">📝 Username</span>
+                <span class="value">{{ user.username }}</span>
+            </div>
+
+            <div class="info-item">
+                <span class="label">📧 Email</span>
+                <span class="value">{{ user.email }}</span>
+            </div>
+
+            <div class="info-item">
+                <span class="label">👤 First Name</span>
+                <span class="value">{{ user.first_name|default:"Not set" }}</span>
+            </div>
+
+            <div class="info-item">
+                <span class="label">👤 Last Name</span>
+                <span class="value">{{ user.last_name|default:"Not set" }}</span>
+            </div>
+
+            <div class="info-item">
+                <span class="label">📅 Joined</span>
+                <span class="value">{{ user.date_joined|date:"F d, Y" }}</span>
+            </div>
+
+            <div class="info-item">
+                <span class="label">🕐 Last Login</span>
+                <span class="value">{{ user.last_login|date:"F d, Y - H:i"|default:"Never" }}</span>
+            </div>
+
+        </div>
+
+        <!-- ===== ACTIONS ===== -->
+        <div class="profile-actions">
+            <a href="#" class="btn-edit">✏️ Edit Profile</a>
+            <a href="{% url 'food:index' %}" class="btn-back">🏠 Back to Home</a>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

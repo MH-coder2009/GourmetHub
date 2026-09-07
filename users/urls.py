@@ -15,5 +15,6 @@ urlpatterns = [
         name="login",
     ),
     # ===== LOGOUT =====
-    path("logout/", views.logout_view, name="logout"),  # ← ویو سفارشی
+    path("logout/", views.logout_view, name="logout"),
+    path("profile/", views.profile, name="profile"),
 ]
