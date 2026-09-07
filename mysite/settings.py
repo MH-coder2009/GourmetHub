@@ -143,3 +143,5 @@ CSRF_TRUSTED_ORIGINS = [
 LOGIN_REDIRECT_URL = "food:index"
 LOGOUT_REDIRECT_URL = "food:index"
 LOGIN_URL = "users:login"
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
