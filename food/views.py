@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView
 from .forms import ItemForm
 from .models import Item
 
@@ -9,6 +10,12 @@ def index(request):
     items = Item.objects.all()
     context = {"items": items}
     return render(request, "food/index.html", context)
+
+
+class IndexClassView(ListView):
+    model = Item
+    template_name = "food/index.html"
+    context_object_name = "items"
 
 
 def details(request, id):
