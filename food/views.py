@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from .models import Item
@@ -42,7 +42,14 @@ def update_item(request, id):
     return render(request, "food/item-form.html", context)
 
 
-@login_required
+class UpdateItemClassView(LoginRequiredMixin, UpdateView):
+    model = Item
+    form_class = ItemForm
+    template_name_suffix = "_update_form.html"
+    success_url = reverse_lazy("food:index")
+    login_url = "users:login"
+
+
 def delete_item(request, id):
     item = get_object_or_404(Item, id=id)
 

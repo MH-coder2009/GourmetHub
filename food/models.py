@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse  # ← import رو چک کن
 
 
 class Item(models.Model):
@@ -11,4 +12,4 @@ class Item(models.Model):
         return self.item_name
 
     def get_absolute_url(self):
-        return reverse("model_detail", kwargs={"pk": self.pk})
+        return reverse("food:details", kwargs={"pk": self.pk})
