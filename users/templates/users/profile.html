@@ -124,6 +124,19 @@
         font-weight: 700;
     }
 
+    /* ===== LOCATION BADGE ===== */
+    .location-badge {
+        display: inline-block;
+        background: #f0fdf4;
+        color: #047857;
+        padding: 0.3rem 1rem;
+        border-radius: 50px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-top: 0.5rem;
+        border: 1px solid #d1fae5;
+    }
+
     @media (max-width: 480px) {
         .profile-container {
             padding: 1.5rem 1.2rem;
@@ -151,7 +164,7 @@
         <!-- ===== HEADER ===== -->
         <div class="profile-header">
             <div class="avatar">
-                {% if user.profile.image %}
+                {% if user.profile.image and user.profile.image.url %}
                 <img src="{{ user.profile.image.url }}" alt="{{ user.username }}">
                 {% else %}
                 {{ user.username|first|upper }}
@@ -164,6 +177,9 @@
                 {% endif %}
                 Member since {{ user.date_joined|date:"F Y" }}
             </p>
+            {% if user.profile.location %}
+            <div class="location-badge">📍 {{ user.profile.location }}</div>
+            {% endif %}
         </div>
 
         <!-- ===== INFO ===== -->
@@ -187,6 +203,11 @@
             <div class="info-item">
                 <span class="label">👤 Last Name</span>
                 <span class="value">{{ user.last_name|default:"Not set" }}</span>
+            </div>
+
+            <div class="info-item">
+                <span class="label">📍 Location</span>
+                <span class="value">{{ user.profile.location|default:"Not set" }}</span>
             </div>
 
             <div class="info-item">
