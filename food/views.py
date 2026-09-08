@@ -1,27 +1,21 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import DetailView, ListView
 from .forms import ItemForm
 from .models import Item
 
 
-@login_required
-def index(request):
-    items = Item.objects.all()
-    context = {"items": items}
-    return render(request, "food/index.html", context)
-
-
-class IndexClassView(ListView):
+class IndexClassView(LoginRequiredMixin, ListView):
     model = Item
     template_name = "food/index.html"
     context_object_name = "items"
 
 
-def details(request, id):
-    item = get_object_or_404(Item, id=id)
-    context = {"item": item}
-    return render(request, "food/details.html", context)
+class DetailsClassView(LoginRequiredMixin, DetailView):
+    model = Item
+    template_name = "food/details.html"
+    context_object_name = "item"
 
 
 @login_required
