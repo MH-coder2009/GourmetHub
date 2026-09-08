@@ -1,38 +1,32 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView, DetailView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import DetailView, ListView
-from .forms import ItemForm
+from django.urls import reverse_lazy
 from .models import Item
+from .forms import ItemForm
 
 
 class IndexClassView(LoginRequiredMixin, ListView):
     model = Item
     template_name = "food/index.html"
     context_object_name = "items"
+    login_url = "users:login"
 
 
 class DetailsClassView(LoginRequiredMixin, DetailView):
     model = Item
     template_name = "food/details.html"
     context_object_name = "item"
+    login_url = "users:login"
 
 
-@login_required
-def create_item(request):
-    if request.method == "POST":
-        form = ItemForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("food:index")
-    else:
-        form = ItemForm()
-
-    context = {"form": form}
-    return render(request, "food/item-form.html", context)
+class CreateItemClassView(LoginRequiredMixin, CreateView):
+    model = Item
+    form_class = ItemForm
+    template_name = "food/item-form.html"
+    success_url = reverse_lazy("food:index")
+    login_url = "users:login"
 
 
-@login_required
 def update_item(request, id):
     item = get_object_or_404(Item, id=id)
 
