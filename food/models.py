@@ -1,8 +1,10 @@
 from django.db import models
-from django.urls import reverse  # ← import رو چک کن
+from django.urls import reverse
+from django.contrib.auth.models import User
 
 
 class Item(models.Model):
+    user_name = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     item_name = models.CharField(max_length=250)
     item_desc = models.CharField(max_length=850)
     item_price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)

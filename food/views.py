@@ -1,4 +1,10 @@
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import (
+    DeleteView,
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+)
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from .models import Item
@@ -26,20 +32,9 @@ class CreateItemClassView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy("food:index")
     login_url = "users:login"
 
-
-def update_item(request, id):
-    item = get_object_or_404(Item, id=id)
-
-    if request.method == "POST":
-        form = ItemForm(request.POST, instance=item)
-        if form.is_valid():
-            form.save()
-            return redirect("food:index")
-    else:
-        form = ItemForm(instance=item)
-
-    context = {"form": form}
-    return render(request, "food/item-form.html", context)
+    def form_valid(self, form):
+        form.instance.user_name = self.request.user
+        return super().form_valid(form)
 
 
 class UpdateItemClassView(LoginRequiredMixin, UpdateView):
@@ -50,12 +45,7 @@ class UpdateItemClassView(LoginRequiredMixin, UpdateView):
     login_url = "users:login"
 
 
-def delete_item(request, id):
-    item = get_object_or_404(Item, id=id)
-
-    if request.method == "POST":
-        item.delete()
-        return redirect("food:index")
-
-    context = {"item": item}
-    return render(request, "food/item-delete.html", context)
+class DeleteClassView(LoginRequiredMixin, DeleteView):
+    model = Item
+    success_url = reverse_lazy("food:index")
+    login_url = "users:login"
