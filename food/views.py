@@ -1,9 +1,9 @@
 from django.views.generic import (
-    DeleteView,
     ListView,
     DetailView,
     CreateView,
     UpdateView,
+    DeleteView,
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
@@ -45,7 +45,8 @@ class UpdateItemClassView(LoginRequiredMixin, UpdateView):
     login_url = "users:login"
 
 
-class DeleteClassView(LoginRequiredMixin, DeleteView):
+class DeleteItemClassView(LoginRequiredMixin, DeleteView):
     model = Item
+    template_name_suffix = "_delete.html"
     success_url = reverse_lazy("food:index")
     login_url = "users:login"
