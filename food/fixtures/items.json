@@ -1,0 +1,310 @@
+[
+{
+    "model": "food.item",
+    "pk": 23,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Margherita Pizza",
+        "item_desc": "Classic Italian pizza with fresh tomatoes, mozzarella, and basil",
+        "item_price": "12.99",
+        "item_image": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600",
+        "created_at": "2026-09-12T07:27:30.934Z",
+        "updated_at": "2026-09-12T07:27:30.935Z",
+        "is_available": true
+    }
+},
+{
+    "model": "food.item",
+    "pk": 24,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Pepperoni Pizza",
+        "item_desc": "Spicy pepperoni with mozzarella cheese on a crispy crust",
+        "item_price": "14.99",
+        "item_image": "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=600",
+        "created_at": "2026-09-12T07:27:30.939Z",
+        "updated_at": "2026-09-12T07:27:30.939Z",
+        "is_available": true
+    }
+},
+{
+    "model": "food.item",
+    "pk": 25,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Cheeseburger",
+        "item_desc": "Juicy beef patty with melted cheddar, lettuce, and special sauce",
+        "item_price": "10.99",
+        "item_image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600",
+        "created_at": "2026-09-12T07:27:30.940Z",
+        "updated_at": "2026-09-12T07:27:30.941Z",
+        "is_available": true
+    }
+},
+{
+    "model": "food.item",
+    "pk": 26,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Chicken Burger",
+        "item_desc": "Grilled chicken breast with avocado and honey mustard",
+        "item_price": "11.99",
+        "item_image": "https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=600",
+        "created_at": "2026-09-12T07:27:30.942Z",
+        "updated_at": "2026-09-12T07:27:30.942Z",
+        "is_available": true
+    }
+},
+{
+    "model": "food.item",
+    "pk": 27,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Caesar Salad",
+        "item_desc": "Fresh romaine lettuce with parmesan and croutons",
+        "item_price": "8.99",
+        "item_image": "https://images.unsplash.com/photo-1550304943-4f24f54ddde9?w=600",
+        "created_at": "2026-09-12T07:27:30.943Z",
+        "updated_at": "2026-09-12T07:27:30.944Z",
+        "is_available": true
+    }
+},
+{
+    "model": "food.item",
+    "pk": 28,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Greek Salad",
+        "item_desc": "Feta cheese, olives, cucumber, and tomatoes with olive oil",
+        "item_price": "9.49",
+        "item_image": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600",
+        "created_at": "2026-09-12T07:27:30.945Z",
+        "updated_at": "2026-09-12T07:27:30.945Z",
+        "is_available": true
+    }
+},
+{
+    "model": "food.item",
+    "pk": 29,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Spaghetti Carbonara",
+        "item_desc": "Authentic Italian pasta with bacon, eggs, and parmesan",
+        "item_price": "13.99",
+        "item_image": "https://images.unsplash.com/photo-1612874742237-6526221588e3?w=600",
+        "created_at": "2026-09-12T07:27:30.947Z",
+        "updated_at": "2026-09-12T07:27:30.947Z",
+        "is_available": true
+    }
+},
+{
+    "model": "food.item",
+    "pk": 30,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Lasagna",
+        "item_desc": "Layers of pasta, meat sauce, and melted cheese",
+        "item_price": "15.99",
+        "item_image": "https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=600",
+        "created_at": "2026-09-12T07:27:30.948Z",
+        "updated_at": "2026-09-12T07:27:30.948Z",
+        "is_available": true
+    }
+},
+{
+    "model": "food.item",
+    "pk": 31,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Penne Arrabbiata",
+        "item_desc": "Spicy tomato sauce with garlic and red chili",
+        "item_price": "11.49",
+        "item_image": "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=600",
+        "created_at": "2026-09-12T07:27:30.949Z",
+        "updated_at": "2026-09-12T07:27:30.949Z",
+        "is_available": true
+    }
+},
+{
+    "model": "food.item",
+    "pk": 32,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Sushi Platter",
+        "item_desc": "Assorted fresh sushi rolls with wasabi and ginger",
+        "item_price": "24.99",
+        "item_image": "https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=600",
+        "created_at": "2026-09-12T07:27:30.950Z",
+        "updated_at": "2026-09-12T07:27:30.950Z",
+        "is_available": true
+    }
+},
+{
+    "model": "food.item",
+    "pk": 33,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Chicken Teriyaki",
+        "item_desc": "Grilled chicken with sweet teriyaki sauce and rice",
+        "item_price": "13.49",
+        "item_image": "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=600",
+        "created_at": "2026-09-12T07:27:30.951Z",
+        "updated_at": "2026-09-12T07:27:30.951Z",
+        "is_available": true
+    }
+},
+{
+    "model": "food.item",
+    "pk": 34,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Pad Thai",
+        "item_desc": "Thai rice noodles with shrimp, peanuts, and lime",
+        "item_price": "12.99",
+        "item_image": "https://images.unsplash.com/photo-1559314809-0d155014e29e?w=600",
+        "created_at": "2026-09-12T07:27:30.952Z",
+        "updated_at": "2026-09-12T07:27:30.952Z",
+        "is_available": true
+    }
+},
+{
+    "model": "food.item",
+    "pk": 35,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Fish and Chips",
+        "item_desc": "Crispy battered fish with golden fries and tartar sauce",
+        "item_price": "14.49",
+        "item_image": "https://images.unsplash.com/photo-1579208575657-c595a05383b7?w=600",
+        "created_at": "2026-09-12T07:27:30.953Z",
+        "updated_at": "2026-09-12T07:27:30.953Z",
+        "is_available": true
+    }
+},
+{
+    "model": "food.item",
+    "pk": 36,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Steak Dinner",
+        "item_desc": "Grilled ribeye steak with garlic butter and vegetables",
+        "item_price": "29.99",
+        "item_image": "https://images.unsplash.com/photo-1600891964092-4316c288032e?w=600",
+        "created_at": "2026-09-12T07:27:30.954Z",
+        "updated_at": "2026-09-12T07:27:30.954Z",
+        "is_available": true
+    }
+},
+{
+    "model": "food.item",
+    "pk": 37,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Chicken Wings",
+        "item_desc": "Spicy buffalo wings with blue cheese dip",
+        "item_price": "10.99",
+        "item_image": "https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=600",
+        "created_at": "2026-09-12T07:27:30.955Z",
+        "updated_at": "2026-09-12T07:27:30.955Z",
+        "is_available": true
+    }
+},
+{
+    "model": "food.item",
+    "pk": 38,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Tacos",
+        "item_desc": "Three soft tacos with beef, cheese, and salsa",
+        "item_price": "9.99",
+        "item_image": "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600",
+        "created_at": "2026-09-12T07:27:30.956Z",
+        "updated_at": "2026-09-12T07:27:30.956Z",
+        "is_available": true
+    }
+},
+{
+    "model": "food.item",
+    "pk": 39,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Burrito Bowl",
+        "item_desc": "Rice, beans, chicken, guacamole, and sour cream",
+        "item_price": "11.99",
+        "item_image": "https://images.unsplash.com/photo-1543352634-99a5d50ae78e?w=600",
+        "created_at": "2026-09-12T07:27:30.957Z",
+        "updated_at": "2026-09-12T07:27:30.957Z",
+        "is_available": true
+    }
+},
+{
+    "model": "food.item",
+    "pk": 40,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Chocolate Cake",
+        "item_desc": "Rich chocolate cake with fudge frosting",
+        "item_price": "6.99",
+        "item_image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600",
+        "created_at": "2026-09-12T07:27:30.958Z",
+        "updated_at": "2026-09-12T07:27:30.958Z",
+        "is_available": true
+    }
+},
+{
+    "model": "food.item",
+    "pk": 41,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Cheesecake",
+        "item_desc": "Creamy New York cheesecake with strawberry topping",
+        "item_price": "7.49",
+        "item_image": "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=600",
+        "created_at": "2026-09-12T07:27:30.959Z",
+        "updated_at": "2026-09-12T07:27:30.959Z",
+        "is_available": true
+    }
+},
+{
+    "model": "food.item",
+    "pk": 42,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Ice Cream Sundae",
+        "item_desc": "Vanilla ice cream with chocolate sauce and nuts",
+        "item_price": "5.99",
+        "item_image": "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=600",
+        "created_at": "2026-09-12T07:27:30.961Z",
+        "updated_at": "2026-09-12T07:27:30.961Z",
+        "is_available": true
+    }
+},
+{
+    "model": "food.item",
+    "pk": 43,
+    "fields": {
+        "user_name": 1,
+        "item_name": "mac and cheese",
+        "item_desc": "meat and onion",
+        "item_price": "12.00",
+        "item_image": "https://tse3.mm.bing.net/th/id/OIP.qwoYcnXs9e0ffAD6piBkeAHaLH?r=0",
+        "created_at": "2026-09-12T07:27:30.962Z",
+        "updated_at": "2026-09-12T07:27:30.962Z",
+        "is_available": true
+    }
+},
+{
+    "model": "food.item",
+    "pk": 44,
+    "fields": {
+        "user_name": 1,
+        "item_name": "burger",
+        "item_desc": "meat and onion",
+        "item_price": "18.00",
+        "item_image": "https://tse3.mm.bing.net/th/id/OIP.PlwHFPfvVD-fJ6vdV_AlogHaEJ?r=0",
+        "created_at": "2026-09-12T07:27:30.964Z",
+        "updated_at": "2026-09-12T07:27:30.964Z",
+        "is_available": true
+    }
+}
+]
