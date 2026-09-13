@@ -9,6 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from .models import Item
 from .forms import ItemForm
+from django.http import HttpResponseRedirect
 
 
 class IndexClassView(LoginRequiredMixin, ListView):
@@ -50,3 +51,8 @@ class DeleteItemClassView(LoginRequiredMixin, DeleteView):
     template_name = "food/item_delete.html"
     success_url = reverse_lazy("food:index")
     login_url = "users:login"
+
+    def form_valid(self, form):
+        self.object = self.get_object()
+        self.object.delete()
+        return HttpResponseRedirect(self.get_success_url())
