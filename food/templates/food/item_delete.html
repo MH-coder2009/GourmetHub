@@ -1,0 +1,75 @@
+{% extends "food/base.html" %}
+
+{% block body %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+
+
+                <div class="card-header bg-danger bg-gradient text-white text-center py-4 border-0">
+                    <div class="mb-2" style="font-size: 3rem;">⚠️</div>
+                    <h4 class="mb-0 fw-bold">Confirm Deletion</h4>
+                    <small class="opacity-75">This action cannot be undone</small>
+                </div>
+
+                <div class="card-body p-4 text-center">
+
+
+                    {% if object.item_image %}
+                    <img src="{{ object.item_image.url }}" alt="{{ object.item_name }}" class="rounded-3 shadow-sm mb-3"
+                        style="width: 120px; height: 120px; object-fit: cover;">
+                    {% else %}
+                    <div class="rounded-3 bg-light d-inline-flex align-items-center justify-content-center mb-3"
+                        style="width: 120px; height: 120px; font-size: 3rem;">
+                        🍽️
+                    </div>
+                    {% endif %}
+
+
+                    <h5 class="fw-bold mb-1">{{ object.item_name }}</h5>
+
+
+                    <p class="text-success fw-bold fs-5 mb-2">
+                        ${{ object.item_price }}
+                    </p>
+
+
+                    {% if object.item_desc %}
+                    <p class="text-muted small mb-0">{{ object.item_desc|truncatechars:120 }}</p>
+                    {% endif %}
+
+                    <hr class="my-4">
+
+                    <p class="text-muted mb-0">
+                        Are you sure you want to delete this item?
+                    </p>
+                </div>
+
+                <!-- فوتر: دکمهها -->
+                <div class="card-footer bg-white border-0 p-4 pt-0">
+                    <form method="post" class="d-grid gap-2">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-lg rounded-3 fw-semibold">
+                            🗑️ Yes, Delete Item
+                        </button>
+                        <a href="{% url 'food:index' %}" class="btn btn-outline-secondary btn-lg rounded-3 fw-semibold">
+                            ← Cancel
+                        </a>
+                    </form>
+                </div>
+
+            </div>
+
+
+            <p class="text-center text-muted small mt-4 mb-0">
+                <a href="{% url 'food:index' %}" class="text-decoration-none text-muted">
+                    ← Back to all items
+                </a>
+            </p>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

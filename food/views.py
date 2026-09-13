@@ -47,6 +47,6 @@ class UpdateItemClassView(LoginRequiredMixin, UpdateView):
 
 class DeleteItemClassView(LoginRequiredMixin, DeleteView):
     model = Item
-    template_name_suffix = "_delete.html"
+    template_name = "food/item_delete.html"
     success_url = reverse_lazy("food:index")
     login_url = "users:login"
