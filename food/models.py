@@ -17,8 +17,7 @@ class Item(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
     is_available = models.BooleanField(default=True)
-
-    is_deleted = models.BooleanField(default=False)  # soft delete FloatRangeField
+    is_deleted = models.BooleanField(default=False)
     deleted_at = models.DateTimeField(null=True, blank=True)
 
     objects = ItemManager()
@@ -32,6 +31,11 @@ class Item(models.Model):
     def delete(self, using=None, keep_parents=False):
         self.is_deleted = True
         self.deleted_at = timezone.now()
+        self.save()
+
+    def restore(self):
+        self.is_deleted = False
+        self.deleted_at = None
         self.save()
 
     class Meta:

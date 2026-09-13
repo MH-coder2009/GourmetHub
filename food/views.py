@@ -1,3 +1,6 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy
 from django.views.generic import (
     ListView,
     DetailView,
@@ -5,11 +8,9 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
 )
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
+
 from .models import Item
 from .forms import ItemForm
-from django.http import HttpResponseRedirect
 
 
 class IndexClassView(LoginRequiredMixin, ListView):
@@ -41,7 +42,7 @@ class CreateItemClassView(LoginRequiredMixin, CreateView):
 class UpdateItemClassView(LoginRequiredMixin, UpdateView):
     model = Item
     form_class = ItemForm
-    template_name_suffix = "_update_form.html"
+    template_name = "food/item_update_form.html"
     success_url = reverse_lazy("food:index")
     login_url = "users:login"
 
@@ -53,6 +54,9 @@ class DeleteItemClassView(LoginRequiredMixin, DeleteView):
     login_url = "users:login"
 
     def form_valid(self, form):
+
         self.object = self.get_object()
+
         self.object.delete()
+
         return HttpResponseRedirect(self.get_success_url())
