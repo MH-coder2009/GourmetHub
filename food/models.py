@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.utils import timezone
+from numpy import delete
 
 from food.manager import ItemManager
 
@@ -28,6 +29,11 @@ class Item(models.Model):
 
     def get_absolute_url(self):
         return reverse("food:details", kwargs={"pk": self.pk})
+
+    def delete(self, using=None, keep_parents=False):
+        self.is_deleted = True
+        self.deleted_at = timezone.now()
+        self.save()
 
     class Meta:
         indexes = [
