@@ -3,6 +3,8 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django.utils import timezone
 
+from food.manager import ItemManager
+
 
 class Item(models.Model):
     user_name = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
@@ -16,6 +18,8 @@ class Item(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     is_available = models.BooleanField(default=True)
 
+    objects = ItemManager()
+
     def __str__(self):
         return self.item_name
 
@@ -24,7 +28,5 @@ class Item(models.Model):
 
     class Meta:
         indexes = [
-            models.Index(
-                fields=["item_name", "item_price"]
-            ),  # ← item_name نه itme_name
+            models.Index(fields=["item_name", "item_price"]),
         ]
