@@ -18,6 +18,9 @@ class Item(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     is_available = models.BooleanField(default=True)
 
+    is_deleted = models.BooleanField(default=False)  # soft delete FloatRangeField
+    deleted_at = models.DateTimeField(null=True, blank=True)
+
     objects = ItemManager()
 
     def __str__(self):
