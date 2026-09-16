@@ -29,14 +29,14 @@ class TimerMiddleware:
         return response
 
 
-class BlokcIPMiddleware:
-    BLOCK_IPS = ["127.0.0.1"]
+# class BlokcIPMiddleware:
+#     BLOCK_IPS = ["127.0.0.1"]
 
-    def __init__(self, get_response):
-        self.get_response = get_response
+#     def __init__(self, get_response):
+#         self.get_response = get_response
 
-    def __call__(self, request):
-        ip = request.META.get("REMOTE_ADDR")
-        if ip in self.BLOCK_IPS:
-            return HttpResponseForbidden("this ip cant rich to this site")
-        return self.get_response(request)
+#     def __call__(self, request):
+#         ip = request.META.get("REMOTE_ADDR")
+#         if ip in self.BLOCK_IPS:
+#             return HttpResponseForbidden("this ip cant rich to this site")
+#         return self.get_response(request)

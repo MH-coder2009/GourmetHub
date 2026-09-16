@@ -8,15 +8,22 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
 )
+from django.core.paginator import Paginator
 
 from .models import Item
 from .forms import ItemForm
+
+
+from django.views.generic import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import Item
 
 
 class IndexClassView(LoginRequiredMixin, ListView):
     model = Item
     template_name = "food/index.html"
     context_object_name = "items"
+    paginate_by = 5
     login_url = "users:login"
 
 

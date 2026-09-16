@@ -42,7 +42,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    "food.middleware.BlokcIPMiddleware",
+    # "food.middleware.BlokcIPMiddleware",
     "food.middleware.TimerMiddleware",
     "food.middleware.LogRequestMiddleware",
     "django.middleware.security.SecurityMiddleware",
