@@ -46,9 +46,9 @@
                 Experience culinary excellence with our handcrafted dishes, made from the finest ingredients and served
                 with passion.</p>
             <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem;">
-                <button
-                    style="background: #ffffff; color: #064e3b; padding: clamp(0.5rem, 1vw, 0.8rem) clamp(1.2rem, 3vw, 2.2rem); border-radius: 50px; font-weight: 700; font-size: clamp(0.75rem, 1vw, 0.9rem); border: none; cursor: pointer; box-shadow: 0 8px 30px rgba(0,0,0,0.15); transition: transform 0.3s ease;">🍽️
-                    Explore Menu</button>
+                <a href="#menu-section"
+                    style="background: #ffffff; color: #064e3b; padding: clamp(0.5rem, 1vw, 0.8rem) clamp(1.2rem, 3vw, 2.2rem); border-radius: 50px; font-weight: 700; font-size: clamp(0.75rem, 1vw, 0.9rem); border: none; cursor: pointer; box-shadow: 0 8px 30px rgba(0,0,0,0.15); transition: transform 0.3s ease; text-decoration: none; display: inline-block;">🍽️
+                    Explore Menu</a>
                 <button
                     style="background: transparent; border: 2px solid rgba(255,255,255,0.20); color: #ffffff; padding: clamp(0.5rem, 1vw, 0.8rem) clamp(1.2rem, 3vw, 2.2rem); border-radius: 50px; font-weight: 700; font-size: clamp(0.75rem, 1vw, 0.9rem); cursor: pointer; backdrop-filter: blur(4px); transition: all 0.3s ease;">📖
                     Our Story</button>
@@ -60,10 +60,7 @@
 <!-- ============================================================ -->
 <!-- MENU SECTION - SMALLER CARDS WITH FLEX + GRID -->
 <!-- ============================================================ -->
-<!-- ============================================================ -->
-<!-- MENU SECTION - SMALLER CARDS WITH FLEX + GRID -->
-<!-- ============================================================ -->
-<section
+<section id="menu-section"
     style="padding: clamp(2rem, 5vw, 3.5rem) clamp(1rem, 3vw, 1.5rem); background: linear-gradient(135deg, #f0fdf4, #ecfdf5, #f0fdf4);">
     <div style="max-width: 1280px; margin: 0 auto;">
 
@@ -93,8 +90,6 @@
             gap: clamp(0.8rem, 1.5vw, 1.2rem);
             width: 100%;
         ">
-
-            <!-- Tablet: 2 columns -->
             <style>
                 @media (min-width: 640px) {
                     .menu-grid-cards {
@@ -136,7 +131,6 @@
                         width: 100%;
                         height: 100%;
                     ">
-                        <!-- ===== IMAGE - SMALLER ===== -->
                         <div style="
                             position: relative;
                             width: 100%;
@@ -156,12 +150,6 @@
                             </div>
                             {% endif %}
 
-                            <!-- Hover Overlay -->
-                            <div
-                                style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(6,78,59,0.40) 0%, transparent 50%); opacity: 0; transition: opacity 0.3s ease; z-index: 2;">
-                            </div>
-
-                            <!-- Badges -->
                             <span
                                 style="position: absolute; top: 0.5rem; left: 0.5rem; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); padding: 0.2rem 0.7rem; border-radius: 50px; font-size: clamp(0.4rem, 0.5vw, 0.5rem); font-weight: 800; color: #065f46; letter-spacing: 0.06em; text-transform: uppercase; box-shadow: 0 2px 8px rgba(0,0,0,0.06); z-index: 3;">
                                 ⭐ Featured
@@ -172,7 +160,6 @@
                             </span>
                         </div>
 
-                        <!-- ===== CARD BODY - SMALLER ===== -->
                         <div
                             style="padding: clamp(0.6rem, 1.2vw, 0.9rem); display: flex; flex-direction: column; flex: 1; width: 100%;">
                             <h3
@@ -184,7 +171,6 @@
                                 {{ item.item_desc }}
                             </p>
 
-                            <!-- ===== CARD FOOTER - SMALLER ===== -->
                             <div
                                 style="margin-top: clamp(0.5rem, 1vw, 0.7rem); padding-top: clamp(0.5rem, 1vw, 0.7rem); border-top: 1.5px solid #d1fae5; display: flex; align-items: center; justify-content: space-between; width: 100%; flex-wrap: wrap; gap: 0.3rem;">
                                 <span
@@ -216,24 +202,22 @@
 
         <!-- ===== PAGINATION ===== -->
         {% if is_paginated %}
-        <div
+        <div id="pagination-top"
             style="display: flex; justify-content: center; align-items: center; gap: 0.5rem; margin-top: clamp(1.5rem, 3vw, 2.5rem); flex-wrap: wrap;">
 
-            <!-- Previous -->
             {% if page_obj.has_previous %}
-            <a href="?page=1"
+            <a href="?page=1#pagination-top"
                 style="padding: 0.6rem 1rem; background: #ffffff; color: #064e3b; border-radius: 50px; text-decoration: none; font-weight: 700; border: 2px solid #d1fae5; transition: all 0.3s ease;"
                 onmouseover="this.style.background='#d1fae5';" onmouseout="this.style.background='#ffffff';">
                 ««
             </a>
-            <a href="?page={{ page_obj.previous_page_number }}"
+            <a href="?page={{ page_obj.previous_page_number }}#pagination-top"
                 style="padding: 0.6rem 1rem; background: #ffffff; color: #064e3b; border-radius: 50px; text-decoration: none; font-weight: 700; border: 2px solid #d1fae5; transition: all 0.3s ease;"
                 onmouseover="this.style.background='#d1fae5';" onmouseout="this.style.background='#ffffff';">
                 «
             </a>
             {% endif %}
 
-            <!-- Page Numbers -->
             {% for num in page_obj.paginator.page_range %}
             {% if page_obj.number == num %}
             <span
@@ -241,7 +225,7 @@
                 {{ num }}
             </span>
             {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-            <a href="?page={{ num }}"
+            <a href="?page={{ num }}#pagination-top"
                 style="padding: 0.6rem 1.2rem; background: #ffffff; color: #064e3b; border-radius: 50px; text-decoration: none; font-weight: 700; border: 2px solid #d1fae5; transition: all 0.3s ease;"
                 onmouseover="this.style.background='#d1fae5';" onmouseout="this.style.background='#ffffff';">
                 {{ num }}
@@ -249,14 +233,13 @@
             {% endif %}
             {% endfor %}
 
-            <!-- Next -->
             {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}"
+            <a href="?page={{ page_obj.next_page_number }}#pagination-top"
                 style="padding: 0.6rem 1rem; background: #ffffff; color: #064e3b; border-radius: 50px; text-decoration: none; font-weight: 700; border: 2px solid #d1fae5; transition: all 0.3s ease;"
                 onmouseover="this.style.background='#d1fae5';" onmouseout="this.style.background='#ffffff';">
                 »
             </a>
-            <a href="?page={{ page_obj.paginator.num_pages }}"
+            <a href="?page={{ page_obj.paginator.num_pages }}#pagination-top"
                 style="padding: 0.6rem 1rem; background: #ffffff; color: #064e3b; border-radius: 50px; text-decoration: none; font-weight: 700; border: 2px solid #d1fae5; transition: all 0.3s ease;"
                 onmouseover="this.style.background='#d1fae5';" onmouseout="this.style.background='#ffffff';">
                 »»
@@ -265,7 +248,6 @@
 
         </div>
 
-        <!-- Page Info -->
         <div style="text-align: center; margin-top: 1rem; color: #6b7280; font-size: 0.85rem;">
             Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
             ({{ page_obj.paginator.count }} items)
@@ -282,40 +264,44 @@
 
     </div>
 </section>
-style="background: linear-gradient(135deg, #064e3b, #047857); padding: clamp(2rem, 4vw, 3rem) clamp(1rem, 3vw,
-1.5rem);">
-<div style="max-width: 1280px; margin: 0 auto;">
-    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1rem, 2vw, 1.5rem);">
-        <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-            <span
-                style="font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; color: #ffffff; line-height: 1;">15+</span>
-            <span
-                style="color: rgba(255,255,255,0.55); font-size: clamp(0.5rem, 0.7vw, 0.65rem); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.3rem;">Expert
-                Chefs</span>
-        </div>
-        <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-            <span
-                style="font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; color: #ffffff; line-height: 1;">4.9</span>
-            <span
-                style="color: rgba(255,255,255,0.55); font-size: clamp(0.5rem, 0.7vw, 0.65rem); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.3rem;">Average
-                Rating</span>
-        </div>
-        <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-            <span
-                style="font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; color: #ffffff; line-height: 1;">50+</span>
-            <span
-                style="color: rgba(255,255,255,0.55); font-size: clamp(0.5rem, 0.7vw, 0.65rem); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.3rem;">Signature
-                Dishes</span>
-        </div>
-        <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-            <span
-                style="font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; color: #ffffff; line-height: 1;">2K+</span>
-            <span
-                style="color: rgba(255,255,255,0.55); font-size: clamp(0.5rem, 0.7vw, 0.65rem); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.3rem;">Happy
-                Customers</span>
+
+<!-- ============================================================ -->
+<!-- STATS SECTION -->
+<!-- ============================================================ -->
+<section
+    style="background: linear-gradient(135deg, #064e3b, #047857); padding: clamp(2rem, 4vw, 3rem) clamp(1rem, 3vw, 1.5rem);">
+    <div style="max-width: 1280px; margin: 0 auto;">
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1rem, 2vw, 1.5rem);">
+            <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+                <span
+                    style="font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; color: #ffffff; line-height: 1;">15+</span>
+                <span
+                    style="color: rgba(255,255,255,0.55); font-size: clamp(0.5rem, 0.7vw, 0.65rem); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.3rem;">Expert
+                    Chefs</span>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+                <span
+                    style="font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; color: #ffffff; line-height: 1;">4.9</span>
+                <span
+                    style="color: rgba(255,255,255,0.55); font-size: clamp(0.5rem, 0.7vw, 0.65rem); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.3rem;">Average
+                    Rating</span>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+                <span
+                    style="font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; color: #ffffff; line-height: 1;">50+</span>
+                <span
+                    style="color: rgba(255,255,255,0.55); font-size: clamp(0.5rem, 0.7vw, 0.65rem); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.3rem;">Signature
+                    Dishes</span>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+                <span
+                    style="font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; color: #ffffff; line-height: 1;">2K+</span>
+                <span
+                    style="color: rgba(255,255,255,0.55); font-size: clamp(0.5rem, 0.7vw, 0.65rem); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.3rem;">Happy
+                    Customers</span>
+            </div>
         </div>
     </div>
-</div>
 </section>
 
 <!-- ============================================================ -->
@@ -423,62 +409,22 @@ style="background: linear-gradient(135deg, #064e3b, #047857); padding: clamp(2re
         </form>
     </div>
 </section>
-<!-- ===== PAGINATION ===== -->
-{% if is_paginated %}
-<div
-    style="display: flex; justify-content: center; align-items: center; gap: 0.5rem; margin-top: clamp(1.5rem, 3vw, 2.5rem); flex-wrap: wrap;">
 
-    <!-- Previous -->
-    {% if page_obj.has_previous %}
-    <a href="?page=1"
-        style="padding: 0.6rem 1rem; background: #ffffff; color: #064e3b; border-radius: 50px; text-decoration: none; font-weight: 700; border: 2px solid #d1fae5; transition: all 0.3s ease;"
-        onmouseover="this.style.background='#d1fae5';" onmouseout="this.style.background='#ffffff';">
-        ««
-    </a>
-    <a href="?page={{ page_obj.previous_page_number }}"
-        style="padding: 0.6rem 1rem; background: #ffffff; color: #064e3b; border-radius: 50px; text-decoration: none; font-weight: 700; border: 2px solid #d1fae5; transition: all 0.3s ease;"
-        onmouseover="this.style.background='#d1fae5';" onmouseout="this.style.background='#ffffff';">
-        «
-    </a>
-    {% endif %}
-
-    <!-- Page Numbers -->
-    {% for num in page_obj.paginator.page_range %}
-    {% if page_obj.number == num %}
-    <span
-        style="padding: 0.6rem 1.2rem; background: linear-gradient(135deg, #059669, #047857); color: #ffffff; border-radius: 50px; font-weight: 700; box-shadow: 0 4px 16px rgba(5,150,105,0.25);">
-        {{ num }}
-    </span>
-    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-    <a href="?page={{ num }}"
-        style="padding: 0.6rem 1.2rem; background: #ffffff; color: #064e3b; border-radius: 50px; text-decoration: none; font-weight: 700; border: 2px solid #d1fae5; transition: all 0.3s ease;"
-        onmouseover="this.style.background='#d1fae5';" onmouseout="this.style.background='#ffffff';">
-        {{ num }}
-    </a>
-    {% endif %}
-    {% endfor %}
-
-    <!-- Next -->
-    {% if page_obj.has_next %}
-    <a href="?page={{ page_obj.next_page_number }}"
-        style="padding: 0.6rem 1rem; background: #ffffff; color: #064e3b; border-radius: 50px; text-decoration: none; font-weight: 700; border: 2px solid #d1fae5; transition: all 0.3s ease;"
-        onmouseover="this.style.background='#d1fae5';" onmouseout="this.style.background='#ffffff';">
-        »
-    </a>
-    <a href="?page={{ page_obj.paginator.num_pages }}"
-        style="padding: 0.6rem 1rem; background: #ffffff; color: #064e3b; border-radius: 50px; text-decoration: none; font-weight: 700; border: 2px solid #d1fae5; transition: all 0.3s ease;"
-        onmouseover="this.style.background='#d1fae5';" onmouseout="this.style.background='#ffffff';">
-        »»
-    </a>
-    {% endif %}
-
-</div>
-
-<!-- Page Info -->
-<div style="text-align: center; margin-top: 1rem; color: #6b7280; font-size: 0.85rem;">
-    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-    ({{ page_obj.paginator.count }} items)
-</div>
-{% endif %}
+<!-- ===== SCROLL TO PAGINATION ON PAGE CHANGE ===== -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        if (window.location.hash === '#pagination-top') {
+            const element = document.getElementById('pagination-top');
+            if (element) {
+                setTimeout(function () {
+                    element.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                }, 100);
+            }
+        }
+    });
+</script>
 
 {% endblock %}
