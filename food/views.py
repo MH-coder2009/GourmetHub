@@ -9,6 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from .models import Item
 from .forms import ItemForm
+from django.core.cache import cache
 import logging
 
 logger = logging.getLogger(__name__)
@@ -58,6 +59,11 @@ class UpdateItemClassView(LoginRequiredMixin, UpdateView):
 # ===== DELETE =====
 class DeleteItemClassView(LoginRequiredMixin, DeleteView):
     model = Item
-    template_name_suffix = "_delete.html"
+    template_name = "food/item_delete.html"
     success_url = reverse_lazy("food:index")
     login_url = "users:login"
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        cache.clear()
+        return response
