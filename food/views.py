@@ -9,11 +9,16 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from .models import Item
 from .forms import ItemForm
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 # ===== INDEX =====
 class IndexClassView(LoginRequiredMixin, ListView):
+    logger.info("feching")
     model = Item
+    logger.debug(f"found {Item.model.count()}")
     template_name = "food/index.html"
     context_object_name = "items"
     paginate_by = 5
