@@ -48,6 +48,17 @@ class CreateItemClassView(LoginRequiredMixin, CreateView):
 
 
 # ===== UPDATE =====
+import logging
+from django.views.generic import UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from .models import Item
+from .forms import ItemForm
+
+# ===== اول logger رو تعریف کن =====
+logger = logging.getLogger(__name__)
+
+
 class UpdateItemClassView(LoginRequiredMixin, UpdateView):
     model = Item
     form_class = ItemForm
@@ -55,9 +66,22 @@ class UpdateItemClassView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy("food:index")
     login_url = "users:login"
 
+    def get(self, request, *args, **kwargs):
+
+        item = self.get_object()
+        logger.debug(f"Editing item: {item.item_name} (ID: {item.id})")
+        return super().get(request, *args, **kwargs)
+
+    def form_valid(self, form):
+
+        response = super().form_valid(form)
+        logger.info(f"Item updated: {form.instance.item_name} by {self.request.user}")
+        return response
+
 
 # ===== DELETE =====
 class DeleteItemClassView(LoginRequiredMixin, DeleteView):
+
     model = Item
     template_name = "food/item_delete.html"
     success_url = reverse_lazy("food:index")
