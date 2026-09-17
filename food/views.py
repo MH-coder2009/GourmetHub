@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 class IndexClassView(LoginRequiredMixin, ListView):
     logger.info("feching")
     model = Item
-    logger.debug(f"found {Item.model.count()}")
+    logger.debug(f"found {Item.objects.count()}")
     template_name = "food/index.html"
     context_object_name = "items"
     paginate_by = 5
