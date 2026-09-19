@@ -219,6 +219,7 @@
         <!-- ===== FORM ===== -->
         <form method="POST" novalidate>
             {% csrf_token %}
+            {{ form.non_field_errors }}
 
             <!-- ===== ITEM NAME ===== -->
             <div class="form-group">
