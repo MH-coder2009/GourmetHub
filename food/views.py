@@ -55,7 +55,6 @@ from django.urls import reverse_lazy
 from .models import Item
 from .forms import ItemForm
 
-# ===== اول logger رو تعریف کن =====
 logger = logging.getLogger(__name__)
 
 
