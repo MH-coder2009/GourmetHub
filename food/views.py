@@ -36,7 +36,7 @@ def get_list_api(request):
             return Response(serializer.data)
 
 
-@api_view(["GET", "PUT"])
+@api_view(["GET", "PUT", "DELETE"])
 def get_details_item(request, pk):
     if request.method == "GET":
         item = get_object_or_404(Item, pk=pk)
@@ -48,6 +48,10 @@ def get_details_item(request, pk):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
+    elif request.method == "DELETE":
+        item = get_object_or_404(Item, pk=pk)
+        item.delete()
+        return Response({"message:Item deleted"})
 
 
 # ===== INDEX =====
