@@ -1,3 +1,5 @@
+from tracemalloc import get_object_traceback
+
 from django.http import JsonResponse
 from django.views.generic import (
     ListView,
@@ -8,7 +10,7 @@ from django.views.generic import (
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-
+from django.shortcuts import get_object_or_404
 from food.serializers import Itemserializers
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -21,22 +23,31 @@ from .models import Item
 logger = logging.getLogger(__name__)
 
 
-@api_view(["GET"])
+@api_view(["GET", "POST"])
 def get_list_api(request):
-    items = Item.objects.all()
-    serializer = Itemserializers(items, many=True)
-    return Response(serializer.data)
+    if request.method == "GET":
+        items = Item.objects.all()
+        serializer = Itemserializers(items, many=True)
+        return Response(serializer.data)
+    elif request.method == "POST":
+        serializer = Itemserializers(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
 
 
-def get_list_json(request):
-    items = list(Item.objects.values("id", "item_name"))
-    return JsonResponse(
-        {
-            "success": True,
-            "count": len(items),
-            "items": items,
-        }
-    )
+@api_view(["GET", "PUT"])
+def get_details_item(request, pk):
+    if request.method == "GET":
+        item = get_object_or_404(Item, pk=pk)
+        serializer = Itemserializers(item)
+        return Response(serializer.data)
+    elif request.method == "PUT":
+        item = get_object_or_404(Item, pk=pk)
+        serializer = Itemserializers(item, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
 
 
 # ===== INDEX =====

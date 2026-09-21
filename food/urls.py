@@ -6,7 +6,7 @@ app_name = "food"
 
 urlpatterns = [
     path("item-api/", views.get_list_api, name="get_list_api"),
-    path("item-json/", views.get_list_json, name="get_list_json"),
+    path("item-details/<int:pk>", views.get_details_item, name="get_details_item"),
     path("", cache_page(60 * 15)(views.IndexClassView.as_view()), name="index"),
     path(
         "<int:pk>/",
