@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.views.generic import (
     ListView,
     DetailView,
@@ -13,6 +14,21 @@ from django.core.cache import cache
 import logging
 
 logger = logging.getLogger(__name__)
+
+
+from django.http import JsonResponse
+from .models import Item
+
+
+def get_list_item(request):
+    items = list(Item.objects.values("id", "item_name"))
+    return JsonResponse(
+        {
+            "success": True,
+            "count": len(items),
+            "items": items,
+        }
+    )
 
 
 # ===== INDEX =====
@@ -48,12 +64,6 @@ class CreateItemClassView(LoginRequiredMixin, CreateView):
 
 
 # ===== UPDATE =====
-import logging
-from django.views.generic import UpdateView
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
-from .models import Item
-from .forms import ItemForm
 
 logger = logging.getLogger(__name__)
 

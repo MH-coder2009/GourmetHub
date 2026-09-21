@@ -5,6 +5,7 @@ from . import views
 app_name = "food"
 
 urlpatterns = [
+    path("list_item/", views.get_list_item),
     path("", cache_page(60 * 15)(views.IndexClassView.as_view()), name="index"),
     path(
         "<int:pk>/",
