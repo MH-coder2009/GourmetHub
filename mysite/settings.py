@@ -32,14 +32,18 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "users.apps.UsersConfig",
-    "food.apps.FoodConfig",
+    # Django defaults (اینها اجباری هستند)
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # Third-party
+    "rest_framework",
+    # Local apps
+    "users.apps.UsersConfig",
+    "food.apps.FoodConfig",
 ]
 
 MIDDLEWARE = [
@@ -185,7 +189,7 @@ LOGGING = {
         },
         "file": {
             "class": "logging.FileHandler",
-            "filename": BASE_DIR / "debug.log",  # ← فایل لاگ اینجا ساخته می‌شه
+            "filename": BASE_DIR / "debug.log",
             "formatter": "verbose",
         },
     },
@@ -195,7 +199,7 @@ LOGGING = {
             "level": "INFO",
             "propagate": True,
         },
-        "food": {  # ← اپ خودت
+        "food": {
             "handlers": ["console", "file"],
             "level": "DEBUG",
             "propagate": True,

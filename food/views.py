@@ -8,19 +8,27 @@ from django.views.generic import (
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from .models import Item
+
+from food.serializers import Itemserializers
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 from .forms import ItemForm
 from django.core.cache import cache
 import logging
+from django.http import JsonResponse
+from .models import Item
 
 logger = logging.getLogger(__name__)
 
 
-from django.http import JsonResponse
-from .models import Item
+@api_view(["GET"])
+def get_list_api(request):
+    items = Item.objects.all()
+    serializer = Itemserializers(items, many=True)
+    return Response(serializer.data)
 
 
-def get_list_item(request):
+def get_list_json(request):
     items = list(Item.objects.values("id", "item_name"))
     return JsonResponse(
         {
