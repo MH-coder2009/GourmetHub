@@ -1,7 +1,7 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.cache import cache
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
+from django.views import generic
 from django.views.generic import (
     ListView,
     DetailView,
@@ -13,24 +13,30 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework import generics
 
 from .models import Item
 from .serializers import Itemserializers
 from .forms import ItemForm
 
 
-class ItemListAPIView(APIView):
-    def get(self, request):
-        items = Item.objects.all()
-        serializer = Itemserializers(items, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+class ItemListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Item.objects.all()
+    serializer_class = Itemserializers
 
-    def post(self, request):
-        serializer = Itemserializers(data=request.data)
-        if serializer.is_valid():
-            serializer.save(user_name=request.user)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# class ItemListAPIView(APIView):
+#     def get(self, request):
+#         items = Item.objects.all()
+#         serializer = Itemserializers(items, many=True)
+#         return Response(serializer.data, status=status.HTTP_200_OK)
+
+#     def post(self, request):
+#         serializer = Itemserializers(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save(user_name=request.user)
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 # @api_view(["GET", "POST"])
@@ -47,24 +53,29 @@ class ItemListAPIView(APIView):
 #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class ItemDetailAPI(APIView):
-    def get(self, request, pk):
-        item = get_object_or_404(Item, pk=pk)
-        serializer = Itemserializers(item)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+class ItemRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Item.objects.all()
+    serializer_class = Itemserializers
 
-    def put(self, request, pk):
-        item = get_object_or_404(Item, pk=pk)
-        serializer = Itemserializers(item, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, pk):
-        item = get_object_or_404(Item, pk=pk)
-        item.delete()
-        return Response({"Message": "item deleted"})
+# class ItemDetailAPI(APIView):
+#     def get(self, request, pk):
+#         item = get_object_or_404(Item, pk=pk)
+#         serializer = Itemserializers(item)
+#         return Response(serializer.data, status=status.HTTP_200_OK)
+
+#     def put(self, request, pk):
+#         item = get_object_or_404(Item, pk=pk)
+#         serializer = Itemserializers(item, data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_200_OK)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+#     def delete(self, request, pk):
+#         item = get_object_or_404(Item, pk=pk)
+#         item.delete()
+#         return Response({"Message": "item deleted"})
 
 
 # @api_view(["GET", "PUT", "DELETE"])
