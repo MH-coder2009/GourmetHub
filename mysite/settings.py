@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    # Django defaults (اینها اجباری هستند)
+    # Django defaults
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -41,11 +41,13 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Third-party
     "rest_framework",
+    "rest_framework_simplejwt",
+    "django_filters",
+    "drf_spectacular",
     # Local apps
     "users.apps.UsersConfig",
     "food.apps.FoodConfig",
 ]
-
 MIDDLEWARE = [
     # "food.middleware.BlokcIPMiddleware",
     "food.middleware.TimerMiddleware",
