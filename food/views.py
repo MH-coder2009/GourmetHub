@@ -33,18 +33,18 @@ class ItemListAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# @api_view(["GET", "POST"])
-# def get_list_api(request):
-#     if request.method == "GET":
-#         items = Item.objects.all()
-#         serializer = Itemserializers(items, many=True)
-#         return Response(serializer.data, status=status.HTTP_200_OK)
+@api_view(["GET", "POST"])
+def get_list_api(request):
+    if request.method == "GET":
+        items = Item.objects.all()
+        serializer = Itemserializers(items, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
-#     serializer = Itemserializers(data=request.data)
-#     if serializer.is_valid():
-#         serializer.save()
-#         return Response(serializer.data, status=status.HTTP_201_CREATED)
-#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    serializer = Itemserializers(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ItemDetailAPI(APIView):
@@ -52,6 +52,19 @@ class ItemDetailAPI(APIView):
         item = get_object_or_404(Item, pk=pk)
         serializer = Itemserializers(item)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def put(self, request, pk):
+        item = get_object_or_404(Item, pk=pk)
+        serializer = Itemserializers(Item, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        item = get_object_or_404(Item, pk=pk)
+        item.delete()
+        return Response({"Message": "item deleted"})
 
 
 @api_view(["GET", "PUT", "DELETE"])
