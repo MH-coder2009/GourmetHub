@@ -2,7 +2,12 @@ from django.urls import path
 from django.views.decorators.cache import cache_page
 from . import views
 
+from rest_framework.routers import DefaultRouter
+
 app_name = "food"
+
+router = DefaultRouter()
+router.register(r"items", views.ItemViewSet, basename="item")
 
 urlpatterns = [
     path("", cache_page(60 * 15)(views.IndexClassView.as_view()), name="index"),

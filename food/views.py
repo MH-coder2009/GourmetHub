@@ -13,14 +13,26 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework import viewsets
 from rest_framework import generics
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Item
 from .serializers import Itemserializers
 from .forms import ItemForm
 
 
+class ItemViewSet(viewsets.ModelViewSet):
+    queryset = Item.objects.all()
+    serializer_class = Itemserializers
+
+
 class ItemListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Item.objects.all()
+    serializer_class = Itemserializers
+
+
+class ItemRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Item.objects.all()
     serializer_class = Itemserializers
 
@@ -51,11 +63,6 @@ class ItemListCreateAPIView(generics.ListCreateAPIView):
 #         serializer.save()
 #         return Response(serializer.data, status=status.HTTP_201_CREATED)
 #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-class ItemRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Item.objects.all()
-    serializer_class = Itemserializers
 
 
 # class ItemDetailAPI(APIView):
