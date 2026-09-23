@@ -13,7 +13,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 from rest_framework import generics
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -25,16 +25,17 @@ from .forms import ItemForm
 class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = Itemserializers
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
-class ItemListCreateAPIView(generics.ListCreateAPIView):
-    queryset = Item.objects.all()
-    serializer_class = Itemserializers
+# class ItemListCreateAPIView(generics.ListCreateAPIView):
+#     queryset = Item.objects.all()
+#     serializer_class = Itemserializers
 
 
-class ItemRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Item.objects.all()
-    serializer_class = Itemserializers
+# class ItemRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Item.objects.all()
+#     serializer_class = Itemserializers
 
 
 # class ItemListAPIView(APIView):
