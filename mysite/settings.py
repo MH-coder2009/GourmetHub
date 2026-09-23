@@ -217,7 +217,7 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticatedOrReadOnly",
     ],
-    "DEFAULT_PAGINATION_CLASS": "utils.pagination.StandardPagination",
+    # "DEFAULT_PAGINATION_CLASS": "utils.pagination.StandardPagination",
     "PAGE_SIZE": 20,
     "DEFAULT_FILTER_BACKENDS": [
         "django_filters.rest_framework.DjangoFilterBackend",
