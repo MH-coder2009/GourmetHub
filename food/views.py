@@ -9,14 +9,10 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
 )
-from rest_framework import status
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from rest_framework import viewsets, permissions
-from rest_framework import generics
-from rest_framework.authentication import TokenAuthentication
+
+from rest_framework import viewsets
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .permission import IsOwnerOrReadOnly
 
 from .models import Item
 from .serializers import Itemserializers
@@ -26,7 +22,7 @@ from .forms import ItemForm
 class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = Itemserializers
-    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsOwnerOrReadOnly]
 
 
 # class ItemListCreateAPIView(generics.ListCreateAPIView):

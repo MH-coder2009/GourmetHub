@@ -249,3 +249,5 @@ SIMPLE_JWT = {
     "USER_ID_FIELD": "id",
     "USER_ID_CLAIM": "user_id",
 }
+
+SECRET_KEY = "django-insecure-your-fixed-secret-key-here-change-this"
