@@ -10,10 +10,12 @@ from django.views.generic import (
     DeleteView,
 )
 
+
 from rest_framework import viewsets
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .permission import IsOwnerOrReadOnly
 from django_filters.rest_framework import DjangoFilterBackend
+from django_filters import OrderingFilter
 
 from .models import Item
 from .serializers import Itemserializers
@@ -24,8 +26,9 @@ class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = Itemserializers
     permission_classes = [IsOwnerOrReadOnly]
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
     filterset_fields = ["item_name", "item_price"]
+    Ordering_fields = ["item_name", "item_price"]
 
     def perform_create(self, serializer):
         serializer.save(user_name=self.request.user)
