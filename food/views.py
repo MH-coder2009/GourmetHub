@@ -15,8 +15,9 @@ from rest_framework import viewsets
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .permission import IsOwnerOrReadOnly
 from django_filters.rest_framework import DjangoFilterBackend
-from django_filters import OrderingFilter
-
+from rest_framework.filters import OrderingFilter
+from rest_framework.filters import SearchFilter
+from rest_framework import permissions
 from .models import Item
 from .serializers import Itemserializers
 from .forms import ItemForm
@@ -25,10 +26,12 @@ from .forms import ItemForm
 class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = Itemserializers
-    permission_classes = [IsOwnerOrReadOnly]
-    filter_backends = [DjangoFilterBackend, OrderingFilter]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+
+    filter_backends = [DjangoFilterBackend, OrderingFilter, SearchFilter]
     filterset_fields = ["item_name", "item_price"]
-    Ordering_fields = ["item_name", "item_price"]
+    ordering_fields = ["item_name", "item_price"]
+    search_fields = ["item_name", "item_desc"]
 
     def perform_create(self, serializer):
         serializer.save(user_name=self.request.user)
