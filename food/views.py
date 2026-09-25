@@ -13,6 +13,7 @@ from django.views.generic import (
 from rest_framework import viewsets
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .permission import IsOwnerOrReadOnly
+from django_filters.rest_framework import DjangoFilterBackend
 
 from .models import Item
 from .serializers import Itemserializers
@@ -23,6 +24,11 @@ class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = Itemserializers
     permission_classes = [IsOwnerOrReadOnly]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["item_name", "item_price"]
+
+    def perform_create(self, serializer):
+        serializer.save(user_name=self.request.user)
 
 
 # class ItemListCreateAPIView(generics.ListCreateAPIView):
