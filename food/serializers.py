@@ -22,3 +22,13 @@ class Itemserializers(serializers.ModelSerializer):
             "item_price",
             "item_image",
         ]
+
+    def validate_item_price(self, value):
+        if value < 1:
+            raise serializers.ValidationError("price must be more than 1$")
+        return value
+
+    def validate(self, data):
+        if data["item_name"].lower() == data["item_desc"]:
+            raise serializers.ValidationError("item name and item desc are same")
+        return data
