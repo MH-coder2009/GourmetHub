@@ -252,3 +252,21 @@ SIMPLE_JWT = {
 }
 
 SECRET_KEY = "django-insecure-your-fixed-secret-key-here-change-this"
+
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "GourmetHub API",
+    "DESCRIPTION": "API documentation for GourmetHub food ordering system",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "COMPONENT_SPLIT_REQUEST": True,
+    "SORT_OPERATIONS": False,
+    "SWAGGER_UI_SETTINGS": {
+        "deepLinking": True,
+        "persistAuthorization": True,
+        "displayOperationId": True,
+    },
+    "SECURITY": [
+        {"jwtAuth": []},
+    ],
+}
