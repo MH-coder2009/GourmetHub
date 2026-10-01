@@ -8,6 +8,7 @@ app_name = "food"
 
 router = DefaultRouter()
 router.register(r"items", views.ItemViewSet, basename="item")
+router.register(r"orders", views.OrderViewSet, basename="order")
 
 urlpatterns = [
     path("api/", include(router.urls)),

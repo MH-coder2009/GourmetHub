@@ -1,5 +1,7 @@
+from typing import ReadOnly
+
 from rest_framework import serializers
-from .models import Item
+from .models import Item, Order
 from django.contrib.auth.models import User
 
 
@@ -32,3 +34,12 @@ class Itemserializers(serializers.ModelSerializer):
         if data["item_name"].lower() == data["item_desc"]:
             raise serializers.ValidationError("item name and item desc are same")
         return data
+
+
+class OrderSerializers(serializers.ModelSerializer):
+    items = Itemserializers(many=True, read_only=True)
+    user = serializers.StringRelatedField()
+
+    class Meta:
+        model = Order
+        fields = ["id", "user", "created_at", "items"]

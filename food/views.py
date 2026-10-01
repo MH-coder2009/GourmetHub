@@ -17,9 +17,11 @@ from .permission import IsOwnerOrReadOnly
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter
 from rest_framework.filters import SearchFilter
+from rest_framework.throttling import UserRateThrottle, AnonRateThrottle
+
 from rest_framework import permissions
-from .models import Item
-from .serializers import Itemserializers
+from .models import Item, Order
+from .serializers import Itemserializers, OrderSerializers
 from .forms import ItemForm
 
 
@@ -33,8 +35,15 @@ class ItemViewSet(viewsets.ModelViewSet):
     ordering_fields = ["item_name", "item_price"]
     search_fields = ["item_name", "item_desc"]
 
+    throttle_classes = [UserRateThrottle, AnonRateThrottle]
+
     def perform_create(self, serializer):
         serializer.save(user_name=self.request.user)
+
+
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializers
 
 
 # class ItemListCreateAPIView(generics.ListCreateAPIView):

@@ -13,7 +13,7 @@ class Item(models.Model):
     item_price = models.DecimalField(
         max_digits=10, decimal_places=2, default=0.00, db_index=True
     )
-    item_image = models.CharField(max_length=500, blank=True)
+    item_image = models.ImageField(upload_to="item_images/", blank=True, null=True)
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
     is_available = models.BooleanField(default=True)
@@ -42,3 +42,12 @@ class Item(models.Model):
         indexes = [
             models.Index(fields=["item_name", "item_price"]),
         ]
+
+
+class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    items = models.ManyToManyField(Item, related_name="orders")
+
+    def __str__(self):
+        return f"order{self.id} by {self.user.username}"

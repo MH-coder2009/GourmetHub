@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Item
+from .models import Item, Order
 
 
 @admin.register(Item)
@@ -9,3 +9,6 @@ class ItemAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         return Item._base_manager.all()
+
+
+admin.site.register(Order)
